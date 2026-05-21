@@ -1,0 +1,36 @@
+{
+  "app": {
+    "name": "kreaverse-ai",
+    "owner": "HABI-STUDIO.AI",
+    "city": "Jember Jawa Timur",
+    "version": "1.0.0",
+    "watermarkMs": 3000
+  },
+  "pricing": {
+    "currency": "IDR",
+    "premium": 700000,
+    "periodMonths": 3,
+    "wa": "+6285119821813"
+  },
+  "languages": ["id", "jw", "mad", "en"],
+  "defaultLanguage": "id",
+  "endpoints": {
+    "createTask": "/api/v1/jobs/createTask",
+    "recordInfo": "/api/v1/jobs/recordInfo",
+    "downloadUrl": "/api/v1/common/download-url",
+    "credits": "/api/v1/user/credits"
+  },
+  "providers": [
+    { "id": "kie",         "name": "Kie AI",        "docs": "https://docs.kie.ai" },
+    { "id": "apibox",      "name": "API.box",       "docs": "https://docs.api.box" },
+    { "id": "apiframe",    "name": "Apiframe AI",   "docs": "https://docs.apiframe.ai" },
+    { "id": "crun",        "name": "Crun AI",       "docs": "https://docs.crun.ai" },
+    { "id": "suno",        "name": "Suno API",      "docs": "https://docs.sunoapi.org" },
+    { "id": "evolink",     "name": "Evolink AI",    "docs": "https://docs.evolink.ai" },
+    { "id": "aimastering", "name": "AI Mastering",  "docs": "https://aimastering.com/api_docs/" },
+    { "id": "deepseek",    "name": "DeepSeek",      "docs": "https://api-docs.deepseek.com" },
+    { "id": "leonardo",    "name": "Leonardo AI",   "docs": "https://docs.leonardo.ai" },
+    { "id": "gemini",      "name": "Gemini AI",     "docs": "https://ai.google.dev" },
+    { "id": "grok",        "name": "Grok (xAI)",    "docs": "https://docs.x.ai" }
+  ]
+}
