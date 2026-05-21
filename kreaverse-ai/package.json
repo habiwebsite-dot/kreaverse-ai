@@ -1,0 +1,41 @@
+{
+  "name": "kreaverse-ai",
+  "version": "1.0.0",
+  "description": "kreaverse-ai - Platform agregasi 11 provider AI dalam satu dashboard. By HABI-STUDIO.AI",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"no tests yet\" && exit 0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "ai",
+    "kreaverse",
+    "habi-studio",
+    "image-ai",
+    "video-ai",
+    "audio-ai",
+    "chat-ai",
+    "dangdut-ai"
+  ],
+  "author": "HABI-STUDIO.AI",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cloudinary": "^2.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "form-data": "^4.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
