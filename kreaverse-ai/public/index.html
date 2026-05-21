@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=yes" />
+<meta name="theme-color" content="#0B0E14" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>✨ kreaverse-ai — Kreasikan Apa Pun dengan Satu Platform AI</title>
+<meta name="description" content="kreaverse-ai – 11 provider AI dalam satu dashboard. By HABI-STUDIO.AI – Jember Jawa Timur." />
+<link rel="icon" href="/favicon.ico" />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<!-- Watermark overlay -->
+<div id="watermark" class="watermark hidden">
+  <div class="wm-text">✨ kreaverse-ai</div>
+  <div class="wm-sub">By HABI-STUDIO.AI</div>
+</div>
+
+<!-- NAVBAR -->
+<header class="nav glass">
+  <a href="#home" class="brand">
+    <span class="logo-dot"></span>
+    <span class="brand-name">kreaverse<span class="brand-accent">-ai</span></span>
+  </a>
+  <nav class="nav-links">
+    <a href="#layanan" data-i18n="nav.services">Layanan</a>
+    <a href="#provider" data-i18n="nav.providers">Provider</a>
+    <a href="#dangdut" data-i18n="nav.dangdut">Dangdut AI</a>
+    <a href="#harga" data-i18n="nav.price">Harga</a>
+    <a href="#undang" data-i18n="nav.invite">Undang</a>
+  </nav>
+  <div class="nav-actions">
+    <select id="lang" class="lang-select" title="Bahasa">
+      <option value="id">🇮🇩 ID</option>
+      <option value="jw">☕ JW</option>
+      <option value="mad">🌊 MAD</option>
+      <option value="en">🇬🇧 EN</option>
+    </select>
+    <button id="apiToggle" class="btn ghost sm" title="API Key Mode">
+      <span class="dot on"></span><span id="apiMode">Unlimited</span>
+    </button>
+    <!-- Slot login/avatar dinamis -->
+    <div id="authSlot"></div>
+    <button id="burger" class="burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<nav id="drawer" class="drawer">
+  <a href="#layanan" data-i18n="nav.services">🚀 Layanan</a>
+  <a href="#provider" data-i18n="nav.providers">🌐 Provider</a>
+  <a href="#dangdut" data-i18n="nav.dangdut">🎤 Dangdut AI</a>
+  <a href="#harga" data-i18n="nav.price">💳 Harga</a>
+  <a href="#undang" data-i18n="nav.invite">🎁 Undang</a>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner reveal">
+    <h1>✨ <span class="grad">kreaverse-ai</span><br/>Kreasikan Apa Pun dengan Satu Platform AI</h1>
+    <p class="sub">Satu dashboard, <b>11 provider</b>, ratusan model. Gambar, video, musik, dan chat — semuanya jadi cepat dan murah.</p>
+    <div class="cta">
+      <a href="#layanan" class="btn primary big">Coba Sekarang</a>
+      <a href="#provider" class="btn ghost big">Lihat Layanan</a>
+    </div>
+    <div class="hero-meta">
+      <span>⚡ Serverless ready</span>
+      <span>🔐 API Key milikmu</span>
+      <span>🇮🇩 Bahasa Indonesia</span>
+    </div>
+  </div>
+</section>
+
+<!-- GRID LAYANAN -->
+<section id="layanan" class="section">
+  <h2 class="sec-title">🚀 Layanan AI</h2>
+  <div class="grid grid-4">
+    <div class="card neon reveal">
+      <div class="ico">🖼️</div>
+      <h3>Gambar AI</h3>
+      <p>Text-to-image & image-to-image dari 12+ model: Flux, Imagen, Ideogram, Recraft, Topaz, dan banyak lagi.</p>
+      <button class="btn ghost" data-open="image-tool">Buka Tool</button>
+    </div>
+    <div class="card neon reveal">
+      <div class="ico">🎥</div>
+      <h3>Video AI</h3>
+      <p>Reference-to-video & image-to-video: Kling, Sora, Runway, Veo, Hailuo, Luma, Wan.</p>
+      <button class="btn ghost" data-open="video-tool">Buka Tool</button>
+    </div>
+    <div class="card neon reveal">
+      <div class="ico">🎵</div>
+      <h3>Audio AI</h3>
+      <p>Music Cover (Suno), TTS, dan AI Mastering studio-grade.</p>
+      <button class="btn ghost" data-open="audio-tool">Buka Tool</button>
+    </div>
+    <div class="card neon reveal">
+      <div class="ico">💬</div>
+      <h3>Chat AI</h3>
+      <p>GPT-4o, Claude 3.5, Gemini 1.5 Pro, DeepSeek V3. Satu UI, satu billing.</p>
+      <button class="btn ghost" data-open="chat-tool">Buka Tool</button>
+    </div>
+  </div>
+</section>
+
+<!-- DANGDUT BANNER -->
+<section id="dangdut" class="dangdut reveal">
+  <div class="dangdut-inner">
+    <h2>🎤 Dangdut AI</h2>
+    <p>Ciptakan lagu dangdut hanya dengan prompt — koplo, klasik, atau remix modern.</p>
+    <button class="btn gold" data-open="audio-tool" data-preset="dangdut">Buat Lagu Dangdut</button>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section">
+  <h2 class="sec-title">💎 Mengapa kreaverse-ai?</h2>
+  <div class="grid grid-3">
+    <div class="card reveal"><h3>11 Provider</h3><p>Kie AI, API.box, Apiframe, Crun, Suno, Evolink, AI Mastering, DeepSeek, Leonardo, Gemini, Grok.</p></div>
+    <div class="card reveal"><h3>Harga Terjangkau</h3><p>Rp 700rb / 3 bulan unlimited. Hemat hingga 80% dibanding langganan terpisah.</p></div>
+    <div class="card reveal"><h3>Dokumentasi Lengkap</h3><p>Setiap provider memiliki link dokumentasi resmi & contoh request siap pakai.</p></div>
+  </div>
+</section>
+
+<!-- PROVIDERS -->
+<section id="provider" class="section">
+  <h2 class="sec-title">🌐 11 Provider Terpisah Rapi</h2>
+  <p class="muted center">Setiap provider menampilkan model-nya sendiri. <b>Tidak ada percampuran antar provider.</b></p>
+  <div id="providerList" class="provider-list"></div>
+</section>
+
+<!-- DEMO CAROUSEL -->
+<section class="section">
+  <h2 class="sec-title">🎬 Demo Hasil Karya</h2>
+  <div class="carousel reveal">
+    <div class="ctrack">
+      <div class="cslide">🖼️ Imagen</div>
+      <div class="cslide">🎥 Veo</div>
+      <div class="cslide">🎵 Suno</div>
+      <div class="cslide">🖼️ Flux</div>
+      <div class="cslide">🎥 Kling</div>
+      <div class="cslide">🎛️ Mastering</div>
+      <div class="cslide">🖼️ Imagen</div>
+      <div class="cslide">🎥 Veo</div>
+      <div class="cslide">🎵 Suno</div>
+      <div class="cslide">🖼️ Flux</div>
+      <div class="cslide">🎥 Kling</div>
+      <div class="cslide">🎛️ Mastering</div>
+    </div>
+  </div>
+</section>
+
+<!-- HARGA -->
+<section id="harga" class="section">
+  <h2 class="sec-title">💳 Paket Premium</h2>
+  <div class="price-card reveal">
+    <div class="price-head">
+      <h3>Unlimited 3 Bulan</h3>
+      <div class="price"><span>Rp</span> 700.000</div>
+      <p class="muted">≈ Rp 7.700 / hari · tanpa kredit · tanpa batas model</p>
+    </div>
+    <ul class="benefits">
+      <li>✅ 11 provider aktif tanpa kuota</li>
+      <li>✅ Semua model image / video / audio / chat</li>
+      <li>✅ Cloudinary upload disertakan</li>
+      <li>✅ AI Mastering tanpa batas</li>
+      <li>✅ Prioritas server owner</li>
+    </ul>
+    <a id="btnPay" class="btn primary big" href="#">Bayar via WhatsApp →</a>
+    <div class="qr-wrap">
+      <img class="qr" src="/images/qr-code.png" alt="QR Pembayaran" onerror="this.style.display='none'"/>
+    </div>
+    <p class="muted small" style="margin-top:10px">📁 Ganti QR via GitHub: <code>public/images/qr-code.png</code></p>
+  </div>
+  <div class="compare reveal">
+    <h3>Bandingkan</h3>
+    <table>
+      <tr><th>Layanan</th><th>Harga/3 bulan</th><th>Provider</th></tr>
+      <tr><td>Midjourney</td><td>~Rp 1.500.000</td><td>1</td></tr>
+      <tr><td>Runway Pro</td><td>~Rp 1.350.000</td><td>1</td></tr>
+      <tr><td>Suno Pro</td><td>~Rp 450.000</td><td>1</td></tr>
+      <tr class="hi"><td>kreaverse-ai</td><td><b>Rp 700.000</b></td><td><b>11</b></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- UNDANG TEMAN -->
+<section id="undang" class="section">
+  <h2 class="sec-title">🎁 Undang Teman — Trial 3 Hari</h2>
+  <div class="card reveal">
+    <p>Ajak temanmu mencoba kreaverse-ai. Setelah login, kamu bisa membuat <b>URL undangan</b>. Teman yang mendaftar dan memasukkan kode dari URL itu mendapat <b>akses trial 3 hari penuh</b>.</p>
+    <ol>
+      <li>Login ke akunmu.</li>
+      <li>Klik <b>Buat URL Undangan</b> di bawah ini.</li>
+      <li>Kirim URL ke temanmu (bukan URL website utama).</li>
+      <li>Teman login, lalu masukkan kode undangan di halaman ini.</li>
+    </ol>
+    <div class="row">
+      <button id="btnMakeInvite" class="btn primary">Buat URL Undangan</button>
+      <input id="inviteOut" class="input" placeholder="URL undangan akan tampil di sini" readonly />
+    </div>
+    <div class="row">
+      <input id="inviteCode" class="input" placeholder="Masukkan kode undangan (KV-XXXXXX)" />
+      <button id="btnRedeem" class="btn ghost">Klaim Trial</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER dengan kilauan cahaya -->
+<footer class="foot">
+  <span class="foot-sparkle"></span>
+  <span class="foot-sparkle"></span>
+  <span class="foot-sparkle"></span>
+  <span class="foot-sparkle"></span>
+  <span class="foot-sparkle"></span>
+  <div class="foot-content">
+    <div class="foot-title">✨ Powered by kreaverse-ai · Jember Jawa Timur ✨</div>
+    <div class="foot-by">By <a href="#">HABI-STUDIO.AI</a></div>
+  </div>
+</footer>
+
+<!-- ===== MODAL ===== -->
+<div id="modal" class="modal hidden">
+  <div class="modal-box">
+    <button class="modal-close" data-close>✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="/i18n.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
