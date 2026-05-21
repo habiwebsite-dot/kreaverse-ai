@@ -1,4 +1,4 @@
-name: Tarik Kode dari Gemini
+name: Tarik Kode dari Gemini (browser otomatis)
 
 on:
   workflow_dispatch:
@@ -6,6 +6,7 @@ on:
       gemini_url:
         description: 'Masukkan Link Share Gemini Kamu'
         required: true
+        default: 'https://gemini.google.com/share/aa68a6f02c4e'
 
 jobs:
   fetch_and_push:
@@ -14,59 +15,25 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.x'
+          node-version: 20
 
-      - name: Install Dependencies
-        run: pip install beautifulsoup4 requests
+      - name: Install Puppeteer (headless Chrome)
+        run: |
+          npm init -y
+          npm install puppeteer
 
       - name: Ambil Kode dari Gemini
         env:
           GEMINI_URL: ${{ github.event.inputs.gemini_url }}
-        run: |
-          python -c "
-          import os, requests, re
-          from bs4 import BeautifulSoup
-          
-          url = os.environ['GEMINI_URL']
-          res = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
-          soup = BeautifulSoup(res.text, 'html.parser')
-          
-          code_blocks = soup.find_all('pre')
-          
-          if not code_blocks:
-              print('Tidak ada blok kode yang ditemukan.')
-              exit(1)
-              
-          def tebak_ekstensi(code):
-              if re.search(r'<!DOCTYPE html|<html|<div|<body', code, re.IGNORECASE):
-                  return 'html'
-              if re.search(r'({[\s\S]*?\b(margin|padding|color|background|display)\b[\s\S]*?})', code):
-                  return 'css'
-              if re.search(r'\b(def |import |print\(|elif |if __name__ ==)', code):
-                  return 'py'
-              if re.search(r'\b(console\.log|const |let |function |import .* from)', code):
-                  return 'js'
-              if code.strip().startswith('{') and code.strip().endswith('}') and '\"' in code:
-                  return 'json'
-              return 'txt'
-              
-          for idx, block in enumerate(code_blocks):
-              code_text = block.get_text()
-              ext = tebak_ekstensi(code_text)
-              filename = f'kode_gemini_{idx+1}.{ext}'
-              
-              with open(filename, 'w', encoding='utf-8') as f:
-                  f.write(code_text)
-              print(f'Berhasil mengekstrak {filename}')
-          "
+        run: node extract-gemini-code.js
 
       - name: Commit dan Push Otomatis
         run: |
           git config --global user.name "Gemini Pusher Bot"
           git config --global user.email "bot@gemini.local"
           git add .
-          git commit -m "Otomatis push kode dari Gemini Share" || echo "Tidak ada perubahan"
+          git commit -m "✨ Kode dari Gemini Share (otomatis)" || echo "Tidak ada perubahan"
           git push https://${{ secrets.GEMINI_TO_GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
