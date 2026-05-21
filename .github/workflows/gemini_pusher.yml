@@ -1,4 +1,4 @@
-name: Tarik Kode dari Gemini (browser otomatis)
+name: Tarik Kode dari Gemini
 
 on:
   workflow_dispatch:
@@ -15,22 +15,29 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GEMINI_TO_GH_TOKEN }}   # <-- ini penting
+          token: ${{ secrets.GEMINI_TO_GH_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install Puppeteer (headless Chrome)
+      - name: Install Puppeteer di folder terpisah
         run: |
-          npm init -y
+          mkdir temp_puppeteer
+          cd temp_puppeteer
+          npm init -y > /dev/null
           npm install puppeteer
 
       - name: Ambil Kode dari Gemini
         env:
           GEMINI_URL: ${{ github.event.inputs.gemini_url }}
         run: node extract-gemini-code.js
+
+      - name: Hapus file sampah
+        run: |
+          rm -rf temp_puppeteer node_modules package.json package-lock.json
+          rm -f extract-gemini-code.js   # opsional, hapus kalau tidak ingin disimpan
 
       - name: Commit dan Push Otomatis
         run: |
