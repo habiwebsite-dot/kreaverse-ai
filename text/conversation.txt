@@ -1,0 +1,159 @@
+--- Bagian 1 ---
+📁 `package.json`
+
+--- Bagian 2 ---
+📁 `render.yaml`
+
+--- Bagian 3 ---
+📁 `.env.example`
+
+--- Bagian 4 ---
+📁 `README.md`
+
+--- Bagian 5 ---
+bash
+git init
+git add .
+git commit -m "Initial commit Kreaverse AI"
+git remote add origin https://github.com/username/kreaverse-ai.git
+git push -u origin main
+
+--- Bagian 6 ---
+bash
+node -e "const b=require('bcryptjs');console.log(b.hashSync('habi.studio.com',10))"
+
+--- Bagian 7 ---
+📁 `config/default.json`
+
+--- Bagian 8 ---
+📁 `src/index.js`
+
+--- Bagian 9 ---
+📁 `src/database/db.js`
+
+--- Bagian 10 ---
+📁 `src/utils/response.js`
+
+--- Bagian 11 ---
+📁 `src/utils/request.js`
+
+--- Bagian 12 ---
+📁 `src/utils/validator.js`
+
+--- Bagian 13 ---
+📁 `src/utils/cloudinary.js`
+
+--- Bagian 14 ---
+📁 `src/utils/encryption.js`
+
+--- Bagian 15 ---
+📁 `src/middleware/auth.js`
+
+--- Bagian 16 ---
+📁 `src/endpoints/auth.js`
+
+--- Bagian 17 ---
+📁 `src/endpoints/user.js`
+
+--- Bagian 18 ---
+📁 `src/endpoints/jobs.js`
+
+--- Bagian 19 ---
+📁 `src/endpoints/common.js`
+
+--- Bagian 20 ---
+📁 `src/endpoints/admin.js`
+
+--- Bagian 21 ---
+📁 `src/endpoints/referral.js`
+
+--- Bagian 22 ---
+📁 `src/endpoints/payment.js`
+
+--- Bagian 23 ---
+📁 `src/models/index.js`
+
+--- Bagian 24 ---
+📁 `src/models/kie-ai/register.js`
+
+--- Bagian 25 ---
+📁 `src/models/kie-ai/base.js`
+
+--- Bagian 26 ---
+📁 `src/models/kie-ai/seedream.js`
+
+--- Bagian 27 ---
+📁 `src/models/kie-ai/flux.js`
+
+--- Bagian 28 ---
+📁 `src/models/kie-ai/flux-pro.js`
+
+--- Bagian 29 ---
+📁 `src/models/kie-ai/stable-diffusion.js`
+
+--- Bagian 30 ---
+📁 `src/models/kie-ai/kolors.js`
+
+--- Bagian 31 ---
+📁 `src/models/kie-ai/ideogram.js`
+
+--- Bagian 32 ---
+📁 `src/models/kie-ai/img2img.js`
+
+--- Bagian 33 ---
+📁 `src/models/kie-ai/wan-t2v.js`
+
+--- Bagian 34 ---
+📁 `src/models/kie-ai/wan-i2v.js`
+
+--- Bagian 35 ---
+📁 `src/models/kie-ai/kling-t2v.js`
+
+--- Bagian 36 ---
+📁 `src/models/kie-ai/kling-i2v.js`
+
+--- Bagian 37 ---
+📁 `src/models/kie-ai/hailuo-t2v.js`
+
+--- Bagian 38 ---
+📁 `src/models/kie-ai/suno-v4.js`
+
+--- Bagian 39 ---
+📁 `src/models/kie-ai/music-cover.js`
+
+--- Bagian 40 ---
+📁 `src/models/kie-ai/chat.js`
+
+--- Bagian 41 ---
+✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+
+=== LANJUT ===
+
+📁 `public/js/pages.js`
+
+--- Bagian 42 ---
+✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+
+=== LANJUT ===
+
+📁 `public/css/main.css`
+
+--- Bagian 43 ---
+📁 `public/index.html`
+
+--- Bagian 44 ---
+📁 `admin/index.html`
+
+--- Bagian 45 ---
+📁 `public/images/.gitkeep`
+
+--- Bagian 46 ---
+📁 `public/images/providers/.gitkeep`
+
+--- Bagian 47 ---
+📁 `tests/api.test.js`
+
+--- Bagian 48 ---
+✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+
+=== SELESAI ===
