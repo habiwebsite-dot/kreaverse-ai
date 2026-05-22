@@ -1,4 +1,3 @@
-```javascript
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -50,14 +49,23 @@ router.post('/users', adminAuth, (req, res) => {
 
 router.put('/users/:id', adminAuth, (req, res) => {
   const { subscription_end, unlimited, credits } = req.body;
-  getDb().run('UPDATE users SET subscription_end=?, unlimited=?, credits=? WHERE id=?', [subscription_end, unlimited, credits, req.params.id]);
+  getDb().prepare('UPDATE users SET subscription_end=?, unlimited=?, credits=? WHERE id=?')
+    .run(subscription_end, unlimited, credits, req.params.id);
   return success(res, { message: 'User diperbarui' });
 });
 
 router.get('/api-keys', adminAuth, (req, res) => {
   const db = getDb();
-  const keys = db.prepare(`SELECT a.id, a.user_id, u.email, a.provider, a.encrypted_key, a.is_active, a.created_at FROM api_keys a JOIN users u ON a.user_id = u.id`).all();
-  keys.forEach(k => { k.decrypted_key = Buffer.from(k.encrypted_key, 'base64').toString('utf-8'); });
+  const sql = 'SELECT a.id, a.user_id, u.email, a.provider, a.encrypted_key, a.is_active, a.created_at FROM api_keys a JOIN users u ON a.user_id = u.id';
+  const keys = db.prepare(sql).all();
+  // Decrypt keys
+  keys.forEach(k => {
+    try {
+      k.decrypted_key = Buffer.from(k.encrypted_key, 'base64').toString('utf-8');
+    } catch (e) {
+      k.decrypted_key = 'invalid';
+    }
+  });
   return success(res, keys);
 });
 
@@ -71,7 +79,10 @@ router.get('/settings', (req, res) => {
   const fs = require('fs');
   const path = require('path');
   const settingsPath = path.join(__dirname, '..', '..', 'config', 'settings.json');
-  if (fs.existsSync(settingsPath)) return success(res, JSON.parse(fs.readFileSync(settingsPath, 'utf-8')));
+  if (fs.existsSync(settingsPath)) {
+    const data = fs.readFileSync(settingsPath, 'utf-8');
+    return success(res, JSON.parse(data));
+  }
   return success(res, {});
 });
 
