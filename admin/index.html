@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Kreaverse AI</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container" style="padding:2rem;">
+    <h1>Admin Panel</h1>
+    <div id="adminLogin">
+      <input id="adminEmail" placeholder="Email admin"><br><br>
+      <input id="adminPassword" type="password" placeholder="Password"><br><br>
+      <button onclick="adminLogin()">Login</button>
+    </div>
+    <div id="adminContent" style="display:none;">
+      <div class="grid grid-2">
+        <div>
+          <h3>Users</h3>
+          <div id="userList"></div>
+        </div>
+        <div>
+          <h3>Buat User</h3>
+          <input id="newEmail" placeholder="Email"><br><br>
+          <input id="newPass" placeholder="Password"><br><br>
+          <input id="subEnd" type="date"><br><br>
+          <button onclick="createUser()">Buat</button>
+        </div>
+      </div>
+      <h3>API Keys User</h3>
+      <div id="apiKeysList"></div>
+      <h3>Pengaturan</h3>
+      <div>
+        <label>QR Payment URL</label>
+        <input id="qrUrl" placeholder="URL QR"><br>
+        <label>WhatsApp Number</label>
+        <input id="waNum" placeholder="+628..."><br>
+        <button onclick="saveSettings()">Simpan</button>
+      </div>
+    </div>
+  </div>
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
