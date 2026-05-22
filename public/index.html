@@ -1,588 +1,330 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Kreaverse AI - Platform Agregasi AI #1 Indonesia</title>
-  <style>
-    :root {
-      --bg: #0B0E14;
-      --surface: #1A1D24;
-      --surface-light: #242833;
-      --neon-blue: #3182CE;
-      --neon-magenta: #D53F8C;
-      --gradient: linear-gradient(135deg, #3182CE, #D53F8C);
-      --text: #E2E8F0;
-      --text-secondary: #A0AEC0;
-      --border: #2D3748;
-      --danger: #E53E3E;
-      --success: #38A169;
-      --warning: #D69E2E;
-      --shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    h1,h2,h3,h4,h5,h6 { font-family: 'Inter', sans-serif; font-weight: 700; }
-    a { color: var(--neon-blue); text-decoration: none; transition: color 0.2s; }
-    a:hover { color: var(--neon-magenta); }
-    img { max-width:100%; height:auto; }
-    .promo-banner {
-      background: var(--gradient);
-      color: #fff;
-      text-align: center;
-      padding: 0.6rem 1rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: none;
-    }
-    .navbar {
-      position: sticky; top:0; z-index:1000;
-      backdrop-filter: blur(12px);
-      background: rgba(11,14,20,0.9);
-      border-bottom: 1px solid var(--border);
-      padding: 0.8rem 1rem;
-    }
-    .nav-container {
-      display: flex; align-items: center; justify-content: space-between;
-      max-width: 1300px; margin:0 auto;
-    }
-    .logo { display:flex; align-items:center; gap:0.5rem; }
-    .logo-img { height:32px; }
-    .logo-text {
-      font-family: 'Inter', sans-serif; font-weight:800; font-size:1.6rem;
-      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .nav-links { display:flex; gap:1.8rem; align-items:center; }
-    .nav-links a { color: var(--text); font-weight:500; font-size:0.95rem; }
-    .nav-links a:hover { color: var(--neon-magenta); }
-    .hamburger { display:none; background:none; border:none; color:var(--text); font-size:1.8rem; cursor:pointer; }
-    .lang-btn { background:none; border:none; font-size:1.3rem; cursor:pointer; }
-    .watermark-overlay {
-      position:fixed; top:0; left:0; width:100%; height:100%;
-      background: rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center;
-      z-index:9999; animation: fadeOut 5s forwards; pointer-events: none;
-    }
-    .watermark-text {
-      font-family: 'Inter', sans-serif; font-size:2.5rem; font-weight:800;
-      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px var(--neon-magenta);
-      animation: pulse3D 2s infinite alternate;
-    }
-    @keyframes pulse3D {
-      0% { transform: perspective(600px) rotateY(-8deg) scale(0.95); }
-      100% { transform: perspective(600px) rotateY(8deg) scale(1.05); }
-    }
-    @keyframes fadeOut { 0%,70% { opacity:1; } 100% { opacity:0; visibility:hidden; } }
-    .container { max-width:1300px; margin:0 auto; padding:2rem 1rem; }
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center; gap:0.5rem;
-      padding:0.8rem 2rem; border-radius:0.8rem; font-weight:600; cursor:pointer; border:none;
-      transition: all 0.3s; font-family: inherit; font-size:1rem;
-    }
-    .btn-primary { background: var(--neon-blue); color:#fff; }
-    .btn-primary:hover { background: var(--neon-magenta); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(213,63,140,0.4); }
-    .btn-outline { border:2px solid var(--neon-blue); color: var(--neon-blue); background:transparent; }
-    .btn-outline:hover { border-color: var(--neon-magenta); color: var(--neon-magenta); }
-    .card {
-      background: var(--surface); border-radius:1.2rem; padding:2rem;
-      border:1px solid var(--border); transition: all 0.3s;
-    }
-    .card:hover { box-shadow: 0 0 25px rgba(49,130,206,0.2); transform: translateY(-3px); }
-    .grid { display:grid; gap:1.5rem; }
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .form-group { margin-bottom:1.2rem; }
-    .form-group label { display:block; margin-bottom:0.4rem; color: var(--text-secondary); font-size:0.9rem; font-weight:500; }
-    .form-group input, .form-group select, .form-group textarea {
-      width:100%; padding:0.8rem 1rem; border-radius:0.6rem; border:1px solid var(--border);
-      background: var(--bg); color: var(--text); font-family: inherit; font-size:0.95rem;
-      transition: border-color 0.3s;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline:none; border-color: var(--neon-blue); box-shadow: 0 0 0 3px rgba(49,130,206,0.2);
-    }
-    .badge {
-      display: inline-block; padding:0.25rem 0.7rem; border-radius:2rem;
-      font-size:0.75rem; font-weight:600;
-    }
-    .badge-success { background: var(--success); color:#fff; }
-    .badge-danger { background: var(--danger); color:#fff; }
-    .badge-warning { background: var(--warning); color:#fff; }
-    .text-center { text-align:center; }
-    .mt-1 { margin-top:0.5rem; } .mt-2 { margin-top:1rem; } .mt-3 { margin-top:1.5rem; }
-    .hero {
-      text-align:center; padding:5rem 1rem;
-      background: radial-gradient(ellipse at center, rgba(49,130,206,0.15) 0%, rgba(11,14,20,1) 70%);
-      position:relative; overflow:hidden;
-    }
-    .chat-container { display:flex; flex-direction:column; height:75vh; }
-    .chat-messages { flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:0.8rem; }
-    .chat-bubble { max-width:80%; padding:0.8rem 1.2rem; border-radius:1.2rem; word-wrap:break-word; font-size:0.95rem; }
-    .chat-bubble.user { align-self:flex-end; background: var(--neon-blue); color:#fff; }
-    .chat-bubble.ai { align-self:flex-start; background: var(--surface); border:1px solid var(--border); }
-    .footer { padding:2rem 1rem; text-align:center; color: var(--text-secondary); font-size:0.9rem; border-top:1px solid var(--border); margin-top:2rem; }
-    @media (max-width: 768px) {
-      .nav-links { display:none; flex-direction:column; position:fixed; top:60px; left:0; width:100%; background: var(--surface); padding:1.5rem; z-index:999; border-bottom:1px solid var(--border); }
-      .nav-links.active { display:flex; }
-      .hamburger { display:block; }
-      .hero h1 { font-size:2.2rem; }
-      .watermark-text { font-size:1.8rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kreaverse AI</title>
+    <style>
+        :root {
+            --bg: #0B0E14;
+            --surface: #1A1D24;
+            --neon-blue: #3182CE;
+            --neon-magenta: #D53F8C;
+            --text: #E2E8F0;
+            --text-secondary: #A0AEC0;
+            --border: #2D3748;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        a { color: var(--neon-blue); text-decoration: none; }
+        .navbar {
+            position: sticky; top:0; z-index:100;
+            backdrop-filter: blur(10px);
+            background: rgba(11,14,20,0.9);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin:0 auto; }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--neon-blue); }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: var(--text); font-weight: 500; }
+        .hamburger { display: none; background: none; border: none; color: var(--text); font-size: 1.8rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+        .btn {
+            display: inline-block; padding: 0.8rem 2rem; border-radius: 0.5rem;
+            font-weight: 600; cursor: pointer; border: none; transition: 0.3s;
+        }
+        .btn-primary { background: var(--neon-blue); color: white; }
+        .btn-primary:hover { background: var(--neon-magenta); }
+        .btn-outline { border: 2px solid var(--neon-blue); color: var(--neon-blue); background: transparent; }
+        .card {
+            background: var(--surface); border-radius: 1rem; padding: 2rem;
+            border: 1px solid var(--border);
+        }
+        .grid { display: grid; gap: 1.5rem; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.3rem; color: var(--text-secondary); }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.8rem; border-radius: 0.5rem;
+            border: 1px solid var(--border); background: var(--bg); color: var(--text);
+        }
+        .hero { text-align: center; padding: 4rem 1rem; }
+        .footer { text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid var(--border); margin-top: 2rem; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: fixed; top: 60px; left: 0; width: 100%; background: var(--surface); padding: 1rem; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+        }
+        .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; }
+        .badge-success { background: #38A169; color: white; }
+        .badge-danger { background: #E53E3E; color: white; }
+        .text-center { text-align: center; }
+        .mt-2 { margin-top: 1rem; }
+    </style>
 </head>
-<body class="dark">
-  <div id="promoBanner" class="promo-banner"></div>
-  <div id="app">
-    <nav id="navbar" class="navbar">
-      <div class="nav-container">
-        <a href="#/" class="logo">
-          <span class="logo-text">Kreaverse AI</span>
-        </a>
-        <div class="nav-links" id="navLinks">
-          <a href="#/">Beranda</a>
-          <a href="#/tools">Tool Model</a>
-          <a href="#/layanan">Layanan</a>
-          <a href="#/tentang">Tentang</a>
-          <span id="authArea"></span>
-          <button id="langToggle" class="lang-btn">🌐</button>
+<body>
+    <div id="promoBanner" class="promo-banner" style="background: var(--neon-magenta); color: white; text-align: center; padding: 0.5rem; display: none;"></div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#/" class="logo">Kreaverse AI</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#/">Beranda</a>
+                <a href="#/tools">Tool Model</a>
+                <a href="#/layanan">Layanan</a>
+                <a href="#/tentang">Tentang</a>
+                <span id="authArea"></span>
+            </div>
+            <button class="hamburger" id="hamburger">☰</button>
         </div>
-        <button class="hamburger" id="hamburger">☰</button>
-      </div>
     </nav>
     <main id="mainContent"></main>
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2026 Kreaverse AI by HABI STUDIO. All rights reserved.</p>
-      </div>
-    </footer>
-  </div>
-  <div id="watermark" class="watermark-overlay">
-    <div class="watermark-text">Kreaverse AI X HABI STUDIO</div>
-  </div>
+    <footer class="footer">&copy; 2026 Kreaverse AI by HABI STUDIO</footer>
 
-  <script>
-    // ========== lang.js ==========
-    const translations = {
-      id: {
-        home: 'Beranda', tools: 'Tool Model', services: 'Layanan', about: 'Tentang', login: 'Login', logout: 'Logout',
-        dashboard: 'Dashboard', heroTitle: 'Kreaverse AI', heroSub: 'Platform Agregasi 11 Provider AI Terlengkap di Indonesia',
-        tryNow: 'Coba Sekarang', viewServices: 'Lihat Layanan', categoryImage: 'Gambar', categoryVideo: 'Video',
-        categoryAudio: 'Audio', categoryChat: 'Chat AI', audioBanner: '🎤 Audio AI – Ciptakan Lagu Hanya dengan Prompt!',
-        playground: 'Playground', inputPrompt: 'Prompt', generate: 'Generate', result: 'Hasil', download: 'Unduh',
-        uploadFile: 'Upload File', referral: 'Kode Undangan', referralDesc: 'Bagikan kode ini dan dapatkan trial 3 hari untuk setiap teman yang mendaftar.',
-        enterReferral: 'Masukkan kode undangan', apiKeyOn: 'API Key Server (ON)', apiKeyOff: 'API Key Pribadi (OFF)',
-        save: 'Simpan', delete: 'Hapus', statusActive: 'Aktif', statusInactive: 'Tidak Aktif', getApiKey: 'Dapatkan API Key',
-        chat: 'Chat AI', send: 'Kirim', copy: 'Salin', uploadImage: 'Upload Gambar', referenceImages: 'Gambar Referensi',
-        resolution: 'Resolusi', aspectRatio: 'Aspek Rasio', duration: 'Durasi', style: 'Gaya', lyrics: 'Lirik',
-        vocalGender: 'Gender Vokal', negativeTags: 'Tag Negatif', styleWeight: 'Bobot Gaya', weirdnessConstraint: 'Batasan Aneh',
-        audioWeight: 'Bobot Audio', title: 'Judul', musicCover: 'Music Cover', selectProvider: 'Pilih Provider',
-        selectModel: 'Pilih Model', processing: 'Memproses...', completed: 'Selesai', failed: 'Gagal',
-        noResults: 'Belum ada hasil', account: 'Akun', settings: 'Pengaturan', adminPanel: 'Panel Admin'
-      },
-      en: {
-        home: 'Home', tools: 'Tools', services: 'Services', about: 'About', login: 'Login', logout: 'Logout',
-        dashboard: 'Dashboard', heroTitle: 'Kreaverse AI', heroSub: 'The Ultimate 11 AI Provider Aggregation Platform in Indonesia',
-        tryNow: 'Try Now', viewServices: 'View Services', categoryImage: 'Image', categoryVideo: 'Video',
-        categoryAudio: 'Audio', categoryChat: 'Chat AI', audioBanner: '🎤 Audio AI – Create Songs with Just a Prompt!',
-        playground: 'Playground', inputPrompt: 'Prompt', generate: 'Generate', result: 'Result', download: 'Download',
-        uploadFile: 'Upload File', referral: 'Referral Code', referralDesc: 'Share this code and get 3 days trial for each friend who signs up.',
-        enterReferral: 'Enter referral code', apiKeyOn: 'Server API Key (ON)', apiKeyOff: 'Personal API Key (OFF)',
-        save: 'Save', delete: 'Delete', statusActive: 'Active', statusInactive: 'Inactive', getApiKey: 'Get API Key',
-        chat: 'Chat AI', send: 'Send', copy: 'Copy', uploadImage: 'Upload Image', referenceImages: 'Reference Images',
-        resolution: 'Resolution', aspectRatio: 'Aspect Ratio', duration: 'Duration', style: 'Style', lyrics: 'Lyrics',
-        vocalGender: 'Vocal Gender', negativeTags: 'Negative Tags', styleWeight: 'Style Weight', weirdnessConstraint: 'Weirdness Constraint',
-        audioWeight: 'Audio Weight', title: 'Title', musicCover: 'Music Cover', selectProvider: 'Select Provider',
-        selectModel: 'Select Model', processing: 'Processing...', completed: 'Completed', failed: 'Failed',
-        noResults: 'No results yet', account: 'Account', settings: 'Settings', adminPanel: 'Admin Panel'
-      }
-    };
-    let currentLang = localStorage.getItem('lang') || 'id';
-    function t(key) { return translations[currentLang]?.[key] || key; }
-    function setLang(lang) { currentLang = lang; localStorage.setItem('lang', lang); renderPage(); }
+    <script>
+        // Error handling
+        window.onerror = function(msg, url, line) {
+            alert('JS Error: ' + msg + ' at line ' + line);
+        };
 
-    // ========== api.js ==========
-    const API_BASE = '/api/v1';
-    async function apiRequest(url, options = {}) {
-      const token = localStorage.getItem('token');
-      const headers = { 'Content-Type': 'application/json', ...(token && { Authorization: `Bearer ${token}` }), ...options.headers };
-      const res = await fetch(url, { ...options, headers });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Request failed');
-      return data;
-    }
-    async function loginUser(email, password) {
-      const res = await apiRequest(`${API_BASE}/user/login`, { method: 'POST', body: JSON.stringify({ email, password }) });
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('role', res.data.role);
-      return res.data;
-    }
-    function logout() { localStorage.removeItem('token'); localStorage.removeItem('role'); window.location.hash = '#/'; location.reload(); }
-    function isLoggedIn() { return !!localStorage.getItem('token'); }
+        // ========== DATA ==========
+        const PROVIDER_DATA = {
+            'kie-ai': { name: 'Kie AI', models: ['seedream','flux','kling'], types: { seedream:'image', flux:'image', kling:'video' } },
+            'api-box': { name: 'API Box', models: ['default'], types: { default:'image' } },
+            'apiframe': { name: 'Apiframe.ai', models: ['default'], types: { default:'image' } },
+            'crun': { name: 'Crun.ai', models: ['default'], types: { default:'image' } },
+            'sunoapi': { name: 'SunoAPI', models: ['music'], types: { music:'audio' } },
+            'evolink': { name: 'Evolink.ai', models: ['default'], types: { default:'video' } },
+            'aimastering': { name: 'AI Mastering', models: ['mastering'], types: { mastering:'audio' } },
+            'deepseek': { name: 'DeepSeek', models: ['chat'], types: { chat:'chat' } },
+            'leonardo': { name: 'Leonardo.ai', models: ['image'], types: { image:'image' } },
+            'gemini': { name: 'Gemini AI', models: ['chat'], types: { chat:'chat' } },
+            'grok': { name: 'Grok AI', models: ['chat'], types: { chat:'chat' } }
+        };
 
-    // ========== components.js ==========
-    function showWatermarkOncePerDay() {
-      const lastShown = localStorage.getItem('watermarkDate');
-      const today = new Date().toDateString();
-      const watermark = document.getElementById('watermark');
-      if (!watermark) return;
-      if (lastShown !== today) {
-        watermark.style.display = 'flex';
-        localStorage.setItem('watermarkDate', today);
-        setTimeout(() => { watermark.style.display = 'none'; }, 5000);
-      } else { watermark.style.display = 'none'; }
-    }
-    function updateAuthUI() {
-      const authArea = document.getElementById('authArea');
-      if (!authArea) return;
-      if (isLoggedIn()) {
-        authArea.innerHTML = `<a href="#/dashboard">${t('dashboard')}</a><a href="#/chat">${t('chat')}</a><a href="#" onclick="logout(); return false;">${t('logout')}</a>`;
-      } else {
-        authArea.innerHTML = `<a href="#/login">${t('login')}</a>`;
-      }
-    }
-    function loadPromoBanner() {
-      fetch('/api/v1/admin/settings').then(r => r.json()).then(d => {
-        if (d.data?.promo_banner?.active) {
-          const banner = document.getElementById('promoBanner');
-          if (banner) {
-            banner.innerHTML = d.data.promo_banner.link ? `<a href="${d.data.promo_banner.link}" style="color:#fff;">${d.data.promo_banner.text}</a>` : d.data.promo_banner.text;
-            banner.style.display = 'block';
-          }
+        const translations = {
+            id: { home:'Beranda', tools:'Tool Model', login:'Login', logout:'Logout', dashboard:'Dashboard', heroTitle:'Kreaverse AI', heroSub:'Platform Agregasi AI Terlengkap', tryNow:'Coba Sekarang', viewServices:'Lihat Layanan', categoryImage:'Gambar', categoryVideo:'Video', categoryAudio:'Audio', categoryChat:'Chat AI', playground:'Playground', inputPrompt:'Prompt', generate:'Generate', result:'Hasil', uploadFile:'Upload File', noResults:'Belum ada hasil', referral:'Kode Undangan' },
+            en: { home:'Home', tools:'Tools', login:'Login', logout:'Logout', dashboard:'Dashboard', heroTitle:'Kreaverse AI', heroSub:'Ultimate AI Platform', tryNow:'Try Now', viewServices:'View Services', categoryImage:'Image', categoryVideo:'Video', categoryAudio:'Audio', categoryChat:'Chat AI', playground:'Playground', inputPrompt:'Prompt', generate:'Generate', result:'Result', uploadFile:'Upload File', noResults:'No results', referral:'Referral Code' }
+        };
+        let currentLang = 'id';
+        function t(key) { return translations[currentLang]?.[key] || key; }
+
+        // ========== AUTH ==========
+        function isLoggedIn() { return !!localStorage.getItem('token'); }
+        function logout() { localStorage.removeItem('token'); window.location.hash = '#/'; location.reload(); }
+        async function loginUser(email, password) {
+            const res = await fetch('/api/v1/user/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message);
+            localStorage.setItem('token', data.data.token);
+            return data.data;
         }
-      });
-    }
+        async function apiRequest(url, options = {}) {
+            const token = localStorage.getItem('token');
+            const headers = { 'Content-Type': 'application/json', ...(token && { Authorization: 'Bearer ' + token }) };
+            const res = await fetch(url, { ...options, headers });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message);
+            return data;
+        }
 
-    // ========== app.js ==========
-    function renderPage() {
-      const hash = window.location.hash || '#/';
-      const main = document.getElementById('mainContent');
-      updateAuthUI();
-      if (!main) return;
-      switch (hash) {
-        case '#/': renderHome(main); break;
-        case '#/tools': renderTools(main); break;
-        case '#/playground': renderPlayground(main); break;
-        case '#/chat': renderChat(main); break;
-        case '#/dashboard': renderDashboard(main); break;
-        case '#/tentang': renderAbout(main); break;
-        case '#/layanan': renderLayanan(main); break;
-        case '#/login': renderLogin(main); break;
-        case '#/register': renderRegister(main); break;
-        case '#/pembayaran': renderPembayaran(main); break;
-        case '#/dokumentasi': renderDokumentasi(main); break;
-        case '#/referral': renderReferral(main); break;
-        case '#/enter-referral': renderEnterReferral(main); break;
-        default: renderHome(main);
-      }
-    }
+        // ========== ROUTER ==========
+        function renderPage() {
+            const hash = window.location.hash || '#/';
+            const main = document.getElementById('mainContent');
+            updateAuthUI();
+            if (!main) return;
+            switch (hash) {
+                case '#/': renderHome(main); break;
+                case '#/tools': renderTools(main); break;
+                case '#/playground': renderPlayground(main); break;
+                case '#/chat': renderChat(main); break;
+                case '#/dashboard': renderDashboard(main); break;
+                case '#/login': renderLogin(main); break;
+                case '#/register': renderRegister(main); break;
+                case '#/pembayaran': renderPembayaran(main); break;
+                case '#/tentang': main.innerHTML = '<div class="container"><h2>Tentang</h2></div>'; break;
+                case '#/layanan': main.innerHTML = '<div class="container"><h2>Layanan</h2></div>'; break;
+                default: renderHome(main);
+            }
+        }
 
-    window.addEventListener('hashchange', renderPage);
-    window.addEventListener('DOMContentLoaded', () => {
-      const hamburger = document.getElementById('hamburger');
-      const navLinks = document.getElementById('navLinks');
-      if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
-      const langToggle = document.getElementById('langToggle');
-      if (langToggle) langToggle.addEventListener('click', () => {
-        const langs = ['id','en'];
-        const idx = langs.indexOf(currentLang);
-        setLang(langs[(idx+1)%langs.length]);
-      });
-      showWatermarkOncePerDay();
-      updateAuthUI();
-      loadPromoBanner();
-      renderPage();
-    });
+        function updateAuthUI() {
+            const authArea = document.getElementById('authArea');
+            if (!authArea) return;
+            if (isLoggedIn()) {
+                authArea.innerHTML = '<a href="#/dashboard">' + t('dashboard') + '</a> <a href="#" id="logoutLink">' + t('logout') + '</a>';
+                document.getElementById('logoutLink')?.addEventListener('click', (e) => { e.preventDefault(); logout(); });
+            } else {
+                authArea.innerHTML = '<a href="#/login">' + t('login') + '</a>';
+            }
+        }
 
-    // ========== pages.js ==========
-    const PROVIDER_DATA = {
-      'kie-ai': { name: 'Kie AI', models: ['seedream', 'flux', 'kling'], types: { seedream: 'image', flux: 'image', kling: 'video' }, description: 'Image & Video generation terbaik' },
-      'api-box': { name: 'API Box', models: ['default'], types: { default: 'image' }, description: 'API Box generasi gambar' },
-      'apiframe': { name: 'Apiframe.ai', models: ['default'], types: { default: 'image' }, description: 'Apiframe image AI' },
-      'crun': { name: 'Crun.ai', models: ['default'], types: { default: 'image' }, description: 'Crun AI generation' },
-      'sunoapi': { name: 'SunoAPI', models: ['music'], types: { music: 'audio' }, description: 'AI Music generation' },
-      'evolink': { name: 'Evolink.ai', models: ['default'], types: { default: 'video' }, description: 'Evolink video AI' },
-      'aimastering': { name: 'AI Mastering', models: ['mastering'], types: { mastering: 'audio' }, description: 'Professional audio mastering' },
-      'deepseek': { name: 'DeepSeek', models: ['chat'], types: { chat: 'chat' }, description: 'DeepSeek chat AI' },
-      'leonardo': { name: 'Leonardo.ai', models: ['image'], types: { image: 'image' }, description: 'Leonardo image generation' },
-      'gemini': { name: 'Gemini AI', models: ['chat'], types: { chat: 'chat' }, description: 'Google Gemini chat' },
-      'grok': { name: 'Grok AI', models: ['chat'], types: { chat: 'chat' }, description: 'xAI Grok chat' }
-    };
+        // ========== PAGES ==========
+        function renderHome(container) {
+            container.innerHTML = '<div class="hero"><h1>' + t('heroTitle') + '</h1><p>' + t('heroSub') + '</p><a href="#/playground" class="btn btn-primary">' + t('tryNow') + '</a> <a href="#/layanan" class="btn btn-outline">' + t('viewServices') + '</a></div>' +
+                '<div class="container grid grid-4">' +
+                '<a href="#/playground?provider=kie-ai" class="card text-center"><div style="font-size:2rem;">🖼️</div><h3>' + t('categoryImage') + '</h3></a>' +
+                '<a href="#/playground?provider=evolink" class="card text-center"><div style="font-size:2rem;">🎥</div><h3>' + t('categoryVideo') + '</h3></a>' +
+                '<a href="#/playground?provider=sunoapi" class="card text-center"><div style="font-size:2rem;">🎵</div><h3>' + t('categoryAudio') + '</h3></a>' +
+                '<a href="#/playground?provider=deepseek" class="card text-center"><div style="font-size:2rem;">💬</div><h3>' + t('categoryChat') + '</h3></a>' +
+                '</div>';
+        }
 
-    function renderHome(container) {
-      container.innerHTML = `<section class="hero"><h1 style="background: linear-gradient(135deg, #3182CE, #D53F8C); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${t('heroTitle')}</h1><p>${t('heroSub')}</p><div style="margin-top:2rem;"><a href="#/playground" class="btn btn-primary">🚀 ${t('tryNow')}</a><a href="#/layanan" class="btn btn-outline" style="margin-left:1rem;">📋 ${t('viewServices')}</a></div></section><div class="container grid grid-4 mt-3"><a href="#/playground?provider=kie-ai" class="card text-center" style="text-decoration:none; color:inherit;"><div style="font-size:2.5rem;">🖼️</div><h3>${t('categoryImage')}</h3><p>Seedream, Flux, Leonardo</p></a><a href="#/playground?provider=evolink" class="card text-center" style="text-decoration:none; color:inherit;"><div style="font-size:2.5rem;">🎥</div><h3>${t('categoryVideo')}</h3><p>Kling, Evolink</p></a><a href="#/playground?provider=sunoapi" class="card text-center" style="text-decoration:none; color:inherit;"><div style="font-size:2.5rem;">🎵</div><h3>${t('categoryAudio')}</h3><p>SunoAPI, AI Mastering</p></a><a href="#/playground?provider=deepseek" class="card text-center" style="text-decoration:none; color:inherit;"><div style="font-size:2.5rem;">💬</div><h3>${t('categoryChat')}</h3><p>DeepSeek, Gemini, Grok</p></a></div><a href="#/playground?provider=sunoapi" style="text-decoration:none;"><div class="container" style="background:var(--gradient); padding:2rem; text-align:center; margin:2rem auto; border-radius:1rem; color:#fff; font-size:1.2rem; font-weight:600;">${t('audioBanner')}</div></a><div class="container grid grid-2"><div class="card text-center"><h3>💎 Langganan Premium</h3><p style="font-size:1.5rem; font-weight:700;">Rp 700.000</p><p>3 bulan unlimited tanpa batas</p><a href="#/pembayaran" class="btn btn-primary mt-2">Langganan Sekarang</a></div><div class="card text-center"><h3>🔑 API Key Pribadi</h3><p>Gunakan API key sendiri, multi-key support</p><a href="#/dashboard" class="btn btn-outline mt-2">Kelola API Key</a></div></div>`;
-    }
+        function renderTools(container) {
+            let html = '<div class="container"><h2>' + t('tools') + '</h2><div class="grid grid-3">';
+            for (let key in PROVIDER_DATA) {
+                html += '<div class="card text-center"><h4>' + PROVIDER_DATA[key].name + '</h4><p>' + PROVIDER_DATA[key].description + '</p><a href="#/playground?provider=' + key + '" class="btn btn-primary btn-sm">Coba</a></div>';
+            }
+            html += '</div></div>';
+            container.innerHTML = html;
+        }
 
-    function renderTools(container) {
-      let cards = '';
-      for (const [key, prov] of Object.entries(PROVIDER_DATA)) {
-        cards += `<div class="card text-center"><h4>${prov.name}</h4><p>${prov.description}</p><p><small>${prov.models.join(', ')}</small></p><a href="#/playground?provider=${key}" class="btn btn-sm btn-outline mt-1">Coba</a></div>`;
-      }
-      container.innerHTML = `<div class="container"><h2>${t('tools')}</h2><div class="grid grid-3">${cards}</div></div>`;
-    }
+        function renderPlayground(container) {
+            if (!isLoggedIn()) { window.location.hash = '#/login'; return; }
+            let options = '';
+            for (let key in PROVIDER_DATA) {
+                options += '<option value="' + key + '">' + PROVIDER_DATA[key].name + '</option>';
+            }
+            container.innerHTML = '<div class="container"><h2>' + t('playground') + '</h2><div class="grid grid-2"><div class="card"><div class="form-group"><label>Provider</label><select id="providerSelect">' + options + '</select></div><div class="form-group"><label>Model</label><select id="modelSelect"></select></div><div class="form-group"><label>' + t('inputPrompt') + '</label><textarea id="promptInput" rows="3"></textarea></div><div class="form-group"><label>' + t('uploadFile') + '</label><input type="file" id="fileInput"></div><button class="btn btn-primary" id="generateBtn">' + t('generate') + '</button><div id="generationStatus"></div></div><div class="card"><h3>' + t('result') + '</h3><div id="resultContainer">' + t('noResults') + '</div></div></div></div>';
+            updateModels();
+            document.getElementById('providerSelect').addEventListener('change', updateModels);
+            document.getElementById('generateBtn').addEventListener('click', generate);
+        }
 
-    function renderPlayground(container) {
-      if (!isLoggedIn()) { window.location.hash = '#/login'; return; }
-      const hash = window.location.hash;
-      const params = {};
-      if (hash.includes('?')) {
-        const query = hash.split('?')[1];
-        query.split('&').forEach(p => {
-          const pair = p.split('=');
-          params[pair[0]] = pair[1] || '';
+        function updateModels() {
+            const provider = document.getElementById('providerSelect').value;
+            const models = PROVIDER_DATA[provider].models;
+            let opts = '';
+            models.forEach(m => opts += '<option value="' + m + '">' + m + '</option>');
+            document.getElementById('modelSelect').innerHTML = opts;
+        }
+
+        async function generate() {
+            const provider = document.getElementById('providerSelect').value;
+            const model = document.getElementById('modelSelect').value;
+            const prompt = document.getElementById('promptInput').value;
+            const input = { prompt: prompt };
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput.files.length > 0) {
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+                const uploadRes = await fetch('/api/v1/upload/file', {
+                    method: 'POST',
+                    headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+                    body: formData
+                }).then(r => r.json());
+                if (uploadRes.success) input.file_url = uploadRes.data.url;
+            }
+            document.getElementById('generationStatus').innerHTML = 'Processing...';
+            try {
+                const res = await apiRequest('/api/v1/jobs/createTask', {
+                    method: 'POST',
+                    body: JSON.stringify({ provider, model, input, usePersonalKey: false })
+                });
+                pollTask(res.data.taskId);
+            } catch (e) {
+                alert(e.message);
+            }
+        }
+
+        async function pollTask(taskId) {
+            const res = await apiRequest('/api/v1/jobs/recordInfo?taskId=' + taskId);
+            if (res.data.state === 2) {
+                const urls = res.data.resultUrls;
+                const container = document.getElementById('resultContainer');
+                if (urls && urls.length) {
+                    container.innerHTML = urls.map(u => '<img src="' + u + '" style="width:100%;">').join('');
+                } else if (res.data.result?.text) {
+                    container.innerHTML = '<div style="white-space:pre-wrap;">' + res.data.result.text + '</div>';
+                }
+                document.getElementById('generationStatus').innerHTML = 'Selesai';
+            } else if (res.data.state === 3) {
+                document.getElementById('generationStatus').innerHTML = 'Gagal';
+            } else {
+                setTimeout(() => pollTask(taskId), 2000);
+            }
+        }
+
+        function renderChat(container) {
+            if (!isLoggedIn()) { window.location.hash = '#/login'; return; }
+            container.innerHTML = '<div class="container"><h2>Chat AI</h2><div class="card" style="height:60vh; overflow-y:auto;" id="chatMessages"></div><div style="display:flex; gap:0.5rem; margin-top:1rem;"><select id="chatModel"><option value="deepseek">DeepSeek</option><option value="gemini">Gemini</option><option value="grok">Grok</option></select><input type="text" id="chatPrompt" placeholder="Ketik pesan..." style="flex:1;"><button class="btn btn-primary" id="sendChatBtn">Kirim</button></div></div>';
+            document.getElementById('sendChatBtn').addEventListener('click', sendChat);
+            document.getElementById('chatPrompt').addEventListener('keypress', function(e) { if (e.key === 'Enter') sendChat(); });
+        }
+
+        async function sendChat() {
+            const model = document.getElementById('chatModel').value;
+            const prompt = document.getElementById('chatPrompt').value;
+            if (!prompt.trim()) return;
+            const msgs = document.getElementById('chatMessages');
+            msgs.innerHTML += '<div style="text-align:right; color:var(--neon-blue); margin:0.5rem;">' + prompt + '</div>';
+            document.getElementById('chatPrompt').value = '';
+            try {
+                const res = await apiRequest('/api/v1/jobs/createTask', { method: 'POST', body: JSON.stringify({ provider: model, model: 'chat', input: { prompt }, usePersonalKey: false }) });
+                const pollRes = await apiRequest('/api/v1/jobs/recordInfo?taskId=' + res.data.taskId);
+                if (pollRes.data.result?.text) {
+                    msgs.innerHTML += '<div style="margin:0.5rem;">' + pollRes.data.result.text + '</div>';
+                }
+                msgs.scrollTop = msgs.scrollHeight;
+            } catch (e) { alert(e.message); }
+        }
+
+        function renderDashboard(container) {
+            if (!isLoggedIn()) { window.location.hash = '#/login'; return; }
+            container.innerHTML = '<div class="container"><h2>' + t('dashboard') + '</h2></div>';
+        }
+
+        function renderLogin(container) {
+            container.innerHTML = '<div class="container" style="max-width:400px; margin:2rem auto;"><h2>' + t('login') + '</h2><div class="card"><div class="form-group"><input id="email" type="email" placeholder="Email"></div><div class="form-group"><input id="password" type="password" placeholder="Password"></div><button class="btn btn-primary" id="loginBtn" style="width:100%;">' + t('login') + '</button><p class="mt-2 text-center">Belum punya akun? <a href="#/register">Daftar</a></p></div></div>';
+            document.getElementById('loginBtn').addEventListener('click', async () => {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                if (!email || !password) { alert('Isi email dan password'); return; }
+                try {
+                    await loginUser(email, password);
+                    window.location.hash = '#/dashboard';
+                } catch (e) { alert(e.message); }
+            });
+        }
+
+        function renderRegister(container) {
+            container.innerHTML = '<div class="container" style="max-width:400px; margin:2rem auto;"><h2>Daftar</h2><div class="card"><div class="form-group"><input id="regEmail" type="email" placeholder="Email"></div><div class="form-group"><input id="regPassword" type="password" placeholder="Password"></div><button class="btn btn-primary" id="registerBtn" style="width:100%;">Daftar</button></div></div>';
+            document.getElementById('registerBtn').addEventListener('click', async () => {
+                const email = document.getElementById('regEmail').value;
+                const password = document.getElementById('regPassword').value;
+                if (!email || !password) { alert('Isi email dan password'); return; }
+                try {
+                    await apiRequest('/api/v1/user/register', { method: 'POST', body: JSON.stringify({ email, password }) });
+                    alert('Registrasi berhasil! Silakan login.');
+                    window.location.hash = '#/login';
+                } catch (e) { alert(e.message); }
+            });
+        }
+
+        function renderPembayaran(container) {
+            container.innerHTML = '<div class="container text-center"><h2>Langganan Premium</h2><p>Rp 700.000 / 3 bulan</p></div>';
+        }
+
+        // ========== INIT ==========
+        window.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('hamburger').addEventListener('click', function() {
+                document.getElementById('navLinks').classList.toggle('active');
+            });
+            renderPage();
+            window.addEventListener('hashchange', renderPage);
         });
-      }
-      const defaultProvider = params.provider || 'kie-ai';
-      let providerOptions = '';
-      for (const [key, prov] of Object.entries(PROVIDER_DATA)) {
-        providerOptions += `<option value="${key}" ${key === defaultProvider ? 'selected' : ''}>${prov.name}</option>`;
-      }
-      container.innerHTML = `<div class="container"><h2>🎮 ${t('playground')}</h2><div class="grid grid-2"><div class="card"><div class="form-group"><label>${t('selectProvider')}</label><select id="providerSelect" onchange="onProviderChange()">${providerOptions}</select></div><div class="form-group"><label>${t('selectModel')}</label><select id="modelSelect" onchange="onModelChange()"></select></div><div id="modelDescription" class="text-secondary mb-2" style="font-size:0.85rem;"></div><div class="form-group"><label>${t('inputPrompt')}</label><textarea id="promptInput" rows="4" placeholder="Masukkan prompt detail..."></textarea></div><div id="advancedParams"></div><div class="form-group" id="fileUploadArea" style="display:none;"><label>${t('uploadFile')}</label><input type="file" id="fileInput" multiple accept="image/*,audio/*,video/*"></div><div class="form-group"><label>API Key Mode</label><select id="apiKeyMode"><option value="server">🌐 Server (Admin)</option><option value="personal">🔒 Pribadi</option></select></div><button class="btn btn-primary btn-lg" onclick="generate()" style="width:100%;">⚡ ${t('generate')}</button><div id="generationStatus" class="mt-2 text-center"></div></div><div class="card"><h3>📤 ${t('result')}</h3><div id="resultContainer" class="text-center text-secondary">${t('noResults')}</div><div id="downloadArea" class="mt-2 text-center"></div></div></div></div>`;
-      onProviderChange();
-    }
-
-    function onProviderChange() {
-      const provider = document.getElementById('providerSelect').value;
-      const provData = PROVIDER_DATA[provider];
-      const modelSelect = document.getElementById('modelSelect');
-      modelSelect.innerHTML = provData.models.map(m => `<option value="${m}">${m.charAt(0).toUpperCase()+m.slice(1)}</option>`).join('');
-      document.getElementById('modelDescription').innerText = provData.description;
-      onModelChange();
-    }
-
-    function onModelChange() {
-      const provider = document.getElementById('providerSelect').value;
-      const model = document.getElementById('modelSelect').value;
-      const type = PROVIDER_DATA[provider].types[model];
-      const advanced = document.getElementById('advancedParams');
-      const fileUpload = document.getElementById('fileUploadArea');
-      advanced.innerHTML = '';
-      fileUpload.style.display = 'none';
-      if (type === 'image') {
-        fileUpload.style.display = 'block';
-        advanced.innerHTML = `<div class="form-group"><label>${t('aspectRatio')}</label><select id="aspectRatio"><option>1:1</option><option>16:9</option><option>9:16</option></select></div><div class="form-group"><label>${t('resolution')}</label><select id="resolution"><option>1024x1024</option><option>1792x1024</option><option>1024x1792</option></select></div>`;
-      } else if (type === 'video') {
-        fileUpload.style.display = 'block';
-        advanced.innerHTML = `<div class="form-group"><label>${t('duration')} (detik)</label><input id="duration" type="number" value="5" min="1" max="30"></div><div class="form-group"><label>${t('resolution')}</label><select id="resolution"><option>720p</option><option>1080p</option></select></div>`;
-      } else if (type === 'audio') {
-        fileUpload.style.display = 'block';
-        if (model === 'mastering') {
-          advanced.innerHTML = `<div class="form-group"><label>Target Loudness (LUFS)</label><input id="targetLoudness" value="-14"></div><div class="form-group"><label>Ceiling (dB)</label><input id="ceiling" value="-1"></div><div class="form-group"><label>Output Format</label><select id="outputFormat"><option value="wav">WAV</option><option value="mp3">MP3</option></select></div>`;
-        } else {
-          advanced.innerHTML = `<div class="form-group"><label>${t('title')}</label><input id="title"></div><div class="form-group"><label>${t('style')}</label><input id="style"></div><div class="form-group"><label>${t('lyrics')}</label><textarea id="lyrics" rows="2"></textarea></div>`;
-        }
-      }
-    }
-
-    async function generate() {
-      const provider = document.getElementById('providerSelect').value;
-      const model = document.getElementById('modelSelect').value;
-      const prompt = document.getElementById('promptInput').value;
-      const input = { prompt };
-      const type = PROVIDER_DATA[provider].types[model];
-      if (type === 'image') { input.aspect_ratio = document.getElementById('aspectRatio')?.value; input.resolution = document.getElementById('resolution')?.value; }
-      if (type === 'video') { input.duration = document.getElementById('duration')?.value; input.resolution = document.getElementById('resolution')?.value; }
-      if (type === 'audio' && model === 'mastering') { input.target_loudness = document.getElementById('targetLoudness')?.value; input.ceiling = document.getElementById('ceiling')?.value; input.output_format = document.getElementById('outputFormat')?.value; }
-      if (type === 'audio' && model === 'music') { input.title = document.getElementById('title')?.value; input.style = document.getElementById('style')?.value; input.lyrics = document.getElementById('lyrics')?.value; }
-      const usePersonal = document.getElementById('apiKeyMode')?.value === 'personal';
-      const fileInput = document.getElementById('fileInput');
-      if (fileInput && fileInput.files.length > 0) {
-        const formData = new FormData();
-        formData.append('file', fileInput.files[0]);
-        const uploadRes = await fetch('/api/v1/upload/file', {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-          body: formData
-        }).then(r => r.json());
-        if (uploadRes.success) input.file_url = uploadRes.data.url;
-      }
-      document.getElementById('generationStatus').innerHTML = '<span class="badge badge-warning">⏳ Processing...</span>';
-      document.getElementById('resultContainer').innerHTML = '<div class="spinner"></div>';
-      try {
-        const res = await apiRequest('/api/v1/jobs/createTask', {
-          method: 'POST',
-          body: JSON.stringify({ provider, model, input, usePersonalKey: usePersonal })
-        });
-        pollTask(res.data.taskId);
-      } catch (e) {
-        document.getElementById('generationStatus').innerHTML = `<span class="badge badge-danger">❌ ${e.message}</span>`;
-      }
-    }
-
-    async function pollTask(taskId) {
-      const res = await apiRequest(`/api/v1/jobs/recordInfo?taskId=${taskId}`);
-      if (res.data.state === 2) {
-        document.getElementById('generationStatus').innerHTML = '<span class="badge badge-success">✅ Completed</span>';
-        displayResults(res.data.resultUrls, res.data.result);
-      } else if (res.data.state === 3) {
-        document.getElementById('generationStatus').innerHTML = '<span class="badge badge-danger">❌ Failed</span>';
-      } else {
-        setTimeout(() => pollTask(taskId), 3000);
-      }
-    }
-
-    function displayResults(urls, result) {
-      const container = document.getElementById('resultContainer');
-      const downloadArea = document.getElementById('downloadArea');
-      if (urls && urls.length) {
-        container.innerHTML = urls.map(u => {
-          if (u.match(/\.(mp4|webm|mov)/i)) return `<video controls style="width:100%;border-radius:0.5rem;"><source src="${u}"></video>`;
-          if (u.match(/\.(mp3|wav|ogg)/i)) return `<audio controls src="${u}" style="width:100%;"></audio>`;
-          return `<img src="${u}" style="width:100%;border-radius:0.5rem;margin-bottom:0.5rem;">`;
-        }).join('');
-        downloadArea.innerHTML = urls.map(u => `<a href="/api/v1/common/download-url?url=${encodeURIComponent(u)}" class="btn btn-sm btn-outline">⬇ Download</a>`).join(' ');
-      } else if (result?.text) {
-        container.innerHTML = `<div style="white-space:pre-wrap;background:var(--bg);padding:1rem;border-radius:0.5rem;">${result.text}</div>`;
-      }
-    }
-
-    function renderChat(container) {
-      if (!isLoggedIn()) { window.location.hash = '#/login'; return; }
-      container.innerHTML = `<div class="container chat-container"><h2>💬 ${t('chat')}</h2><div class="card chat-messages" id="chatMessages"><div class="text-center text-secondary">Kirim pesan untuk memulai percakapan dengan AI</div></div><div class="card" style="display:flex; gap:0.5rem; margin-top:0.5rem;"><select id="chatModel" style="width:auto;"><option value="deepseek">DeepSeek</option><option value="gemini">Gemini</option><option value="grok">Grok</option></select><input type="text" id="chatPrompt" placeholder="Ketik pesan..." style="flex:1;" onkeypress="if(event.key==='Enter') sendChat()"><input type="file" id="chatFile" style="display:none;" accept="image/*"><button class="btn btn-outline" onclick="document.getElementById('chatFile').click()">📎</button><button class="btn btn-primary" onclick="sendChat()">➤</button></div></div>`;
-    }
-
-    async function sendChat() {
-      const model = document.getElementById('chatModel').value;
-      const prompt = document.getElementById('chatPrompt').value;
-      if (!prompt.trim()) return;
-      const fileInput = document.getElementById('chatFile');
-      const input = { prompt };
-      const msgs = document.getElementById('chatMessages');
-      msgs.innerHTML += `<div class="chat-bubble user">${prompt}</div>`;
-      document.getElementById('chatPrompt').value = '';
-      if (fileInput.files.length > 0) {
-        const formData = new FormData();
-        formData.append('file', fileInput.files[0]);
-        const uploadRes = await fetch('/api/v1/upload/file', {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-          body: formData
-        }).then(r => r.json());
-        if (uploadRes.success) input.file_url = uploadRes.data.url;
-        fileInput.value = '';
-      }
-      try {
-        const res = await apiRequest('/api/v1/jobs/createTask', {
-          method: 'POST',
-          body: JSON.stringify({ provider: model, model: 'chat', input, usePersonalKey: false })
-        });
-        const pollRes = await apiRequest(`/api/v1/jobs/recordInfo?taskId=${res.data.taskId}`);
-        if (pollRes.data.result?.text) {
-          msgs.innerHTML += `<div class="chat-bubble ai">${pollRes.data.result.text}</div>`;
-        }
-        msgs.scrollTop = msgs.scrollHeight;
-      } catch (e) {
-        msgs.innerHTML += `<div class="chat-bubble ai">❌ Error: ${e.message}</div>`;
-      }
-    }
-
-    function renderDashboard(container) {
-      if (!isLoggedIn()) { window.location.hash = '#/login'; return; }
-      apiRequest('/api/v1/user/credits').then(d => {
-        const user = d.data;
-        container.innerHTML = `<div class="container"><h2>📊 ${t('dashboard')}</h2><div class="grid grid-3"><div class="card"><h3>Status Langganan</h3><p>${user.unlimited ? '<span class="badge badge-success">✨ Unlimited</span>' : '<span class="badge badge-danger">Terbatas</span>'}</p><p>Berakhir: ${user.subscription_end ? new Date(user.subscription_end).toLocaleDateString() : '-'}</p>${!user.unlimited ? '<a href="#/pembayaran" class="btn btn-primary mt-1">Upgrade</a>' : ''}</div><div class="card"><h3>${t('referral')}</h3><p>Kode: <strong>${user.referral_code || '-'}</strong></p><a href="#/referral" class="btn btn-outline btn-sm">Detail</a></div><div class="card"><h3>API Keys Pribadi</h3><div id="apiKeyListContainer">Loading...</div><button class="btn btn-primary btn-sm mt-1" onclick="showAddApiKey()">+ Tambah</button></div></div></div>`;
-        loadApiKeys();
-      });
-    }
-
-    async function loadApiKeys() {
-      const res = await apiRequest('/api/v1/user/api-keys');
-      const container = document.getElementById('apiKeyListContainer');
-      if (!container) return;
-      if (res.data.length === 0) { container.innerHTML = '<p class="text-secondary">Belum ada API key.</p>'; return; }
-      container.innerHTML = res.data.map(k => `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;"><span>${k.provider} <span class="badge ${k.is_active ? 'badge-success' : 'badge-danger'}">${k.is_active ? t('statusActive') : t('statusInactive')}</span></span><button class="btn btn-danger btn-sm" onclick="deleteApiKey(${k.id})">X</button></div>`).join('');
-    }
-
-    async function deleteApiKey(id) {
-      await apiRequest(`/api/v1/user/api-key/${id}`, { method: 'DELETE' });
-      loadApiKeys();
-    }
-
-    function showAddApiKey() {
-      const provider = prompt('Provider (kie-ai, deepseek, dll):');
-      const key = prompt('API Key:');
-      if (provider && key) {
-        apiRequest('/api/v1/user/api-key', { method: 'POST', body: JSON.stringify({ provider, key }) }).then(() => loadApiKeys());
-      }
-    }
-
-    function renderPembayaran(container) {
-      container.innerHTML = `<div class="container" style="max-width:600px; margin:2rem auto; text-align:center;"><h2>💎 Langganan Premium</h2><div class="card"><h3 style="font-size:2rem;">Rp 700.000</h3><p>3 bulan akses unlimited</p><img id="qrImage" src="/images/qr-payment.png" style="width:200px; margin:1rem 0;" onerror="this.style.display='none'"><div id="bankInfo" class="mt-2"></div><a id="waConfirmBtn" class="btn btn-primary mt-2" href="#" target="_blank">Konfirmasi via WhatsApp</a></div></div>`;
-      fetch('/api/v1/admin/settings').then(r => r.json()).then(d => {
-        if (d.data?.payment_qr_url) document.getElementById('qrImage').src = d.data.payment_qr_url;
-        if (d.data?.bank_transfer) {
-          document.getElementById('bankInfo').innerHTML = `<p><strong>Transfer Bank ${d.data.bank_transfer.bank_name}</strong><br>No: ${d.data.bank_transfer.account_number}<br>a.n: ${d.data.bank_transfer.account_holder}</p>`;
-        }
-        const waNum = d.data?.whatsapp_number || '+6285119821813';
-        document.getElementById('waConfirmBtn').href = `https://wa.me/${waNum.replace(/\D/g, '')}?text=${encodeURIComponent('Halo admin, saya ingin konfirmasi pembayaran Premium Kreaverse AI.')}`;
-      });
-    }
-
-    function renderLogin(container) {
-      container.innerHTML = `<div class="container" style="max-width:420px; margin:2rem auto;"><h2>🔐 ${t('login')}</h2><div class="card"><div class="form-group"><input id="email" type="email" placeholder="Email"></div><div class="form-group"><input id="password" type="password" placeholder="Password"></div><button class="btn btn-primary" onclick="doLogin()" style="width:100%;">${t('login')}</button><p class="mt-2 text-center">Belum punya akun? <a href="#/register">Daftar</a></p></div></div>`;
-    }
-
-    async function doLogin() {
-      const email = document.getElementById('email')?.value;
-      const password = document.getElementById('password')?.value;
-      if (!email || !password) { alert('Email dan password harus diisi!'); return; }
-      try {
-        await loginUser(email, password);
-        window.location.hash = '#/dashboard';
-      } catch (e) { alert(e.message); }
-    }
-
-    function renderRegister(container) {
-      container.innerHTML = `<div class="container" style="max-width:420px; margin:2rem auto;"><h2>📝 Daftar</h2><div class="card"><div class="form-group"><input id="regEmail" type="email" placeholder="Email"></div><div class="form-group"><input id="regPassword" type="password" placeholder="Password"></div><div class="form-group"><input id="refCode" placeholder="Kode Undangan (opsional)"></div><button class="btn btn-primary" onclick="doRegister()" style="width:100%;">Daftar</button><p class="mt-2 text-center">Sudah punya akun? <a href="#/login">Login</a></p></div></div>`;
-    }
-
-    async function doRegister() {
-      const email = document.getElementById('regEmail')?.value;
-      const password = document.getElementById('regPassword')?.value;
-      const referral_code = document.getElementById('refCode')?.value;
-      if (!email || !password) { alert('Email dan password harus diisi!'); return; }
-      try {
-        await apiRequest('/api/v1/user/register', { method: 'POST', body: JSON.stringify({ email, password, referral_code }) });
-        alert('Registrasi berhasil! Silakan login.');
-        window.location.hash = '#/login';
-      } catch (e) { alert(e.message); }
-    }
-
-    function renderReferral(container) {
-      if (!isLoggedIn()) { window.location.hash = '#/login'; return; }
-      apiRequest('/api/v1/user/referral').then(d => {
-        container.innerHTML = `<div class="container text-center" style="max-width:500px; margin:2rem auto;"><h2>🔗 ${t('referral')}</h2><p>${t('referralDesc')}</p><div style="font-size:2rem; letter-spacing:0.5rem; background:var(--surface); padding:1rem; border-radius:0.5rem; margin:1rem 0;">${d.data.referral_code || 'N/A'}</div></div>`;
-      });
-    }
-
-    function renderAbout(container) {
-      container.innerHTML = `<div class="container"><h2>${t('about')}</h2><p>Kreaverse AI adalah platform agregasi 11 provider AI terbaik di Indonesia, dikembangkan oleh HABI STUDIO untuk memudahkan akses ke berbagai model AI generatif.</p></div>`;
-    }
-
-    function renderLayanan(container) {
-      container.innerHTML = `<div class="container"><h2>${t('services')}</h2><p>Kami menyediakan layanan generasi gambar, video, audio, mastering, dan chat AI dengan dukungan multi-provider.</p></div>`;
-    }
-
-    function renderDokumentasi(container) {
-      container.innerHTML = `<div class="container"><h2>Dokumentasi API</h2><pre>POST /api/v1/jobs/createTask\nGET /api/v1/jobs/recordInfo?taskId=</pre></div>`;
-    }
-
-    function renderEnterReferral(container) {
-      container.innerHTML = `<div class="container" style="max-width:400px;"><h2>${t('enterReferral')}</h2><input id="enterRefCode" placeholder="Kode"><button onclick="submitReferralCode()">${t('save')}</button></div>`;
-    }
-
-    function submitReferralCode() {
-      alert('Fitur tersedia saat registrasi.');
-    }
-  </script>
+    </script>
 </body>
 </html>
