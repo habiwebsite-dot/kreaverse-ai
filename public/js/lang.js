@@ -1,4 +1,3 @@
-```javascript
 const translations = {
   id: {
     home: 'Beranda',
