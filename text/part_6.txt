@@ -1,0 +1,2 @@
+bash
+node -e "const b=require('bcryptjs');console.log(b.hashSync('habi.studio.com',10))"
