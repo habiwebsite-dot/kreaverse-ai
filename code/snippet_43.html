@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Kreaverse AI – Platform Agregasi 11 Provider AI. Gambar, Video, Audio, Chat AI dalam satu platform.">
+  <meta name="theme-color" content="#0B0E14">
+  <meta property="og:title" content="Kreaverse AI">
+  <meta property="og:description" content="Platform AI Terlengkap – 11 Provider, Satu Tempat">
+  <meta property="og:image" content="/images/og-image.png">
+  <title>Kreaverse AI – Platform AI Terlengkap</title>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/images/logo.png">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+  <!-- ─── Navbar ─────────────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <!-- Brand -->
+      <a class="nav-brand" data-route="/" onclick="navigate('/')">
+        <img src="/images/logo.png" alt="Logo" class="nav-logo site-logo"
+             onerror="this.style.display='none'">
+        <span class="nav-brand-text">Kreaver<span>se</span> AI</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="nav-links" id="nav-links">
+        <a class="nav-link" data-route="/" data-i18n="nav_home">Beranda</a>
+
+        <!-- Tool Model Dropdown -->
+        <div class="nav-link nav-tools-btn" id="tools-btn" onclick="toggleToolsDropdown()">
+          <span data-i18n="nav_tools">Tool Model</span> ▾
+          <div class="models-dropdown" id="models-dropdown">
+            <div class="models-dropdown-grid" id="models-dropdown-grid">
+              <div style="padding:1rem;color:var(--text-muted);font-size:0.85rem">Memuat model...</div>
+            </div>
+          </div>
+        </div>
+
+        <a class="nav-link" data-route="/about" data-i18n="nav_services">Layanan</a>
+        <a class="nav-link" data-route="/about" data-i18n="nav_about">Tentang</a>
+        <a class="nav-link" data-route="/docs" data-i18n="nav_docs">Dokumentasi</a>
+
+        <!-- Auth Show/Hide -->
+        <div class="nav-user auth-show-logged" style="display:none">
+          <div class="nav-avatar" id="nav-avatar">U</div>
+          <span class="nav-link" style="cursor:pointer" onclick="navigate('/dashboard')">
+            <span class="user-name-display">User</span>
+          </span>
+          <a class="nav-link" onclick="Auth.logout()" style="cursor:pointer" data-i18n="nav_logout">Keluar</a>
+        </div>
+        <a class="nav-link btn btn-primary auth-hide-logged" onclick="showLoginModal()" data-i18n="nav_login">Masuk</a>
+      </div>
+
+      <!-- Right: Lang + Hamburger -->
+      <div class="nav-right">
+        <div id="lang-switcher"></div>
+        <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a class="nav-link" onclick="navigate('/');closeMobileMenu()" data-i18n="nav_home">Beranda</a>
+    <a class="nav-link" onclick="toggleToolsDropdown();closeMobileMenu()" data-i18n="nav_tools">Tool Model</a>
+    <a class="nav-link" onclick="navigate('/about');closeMobileMenu()" data-i18n="nav_services">Layanan</a>
+    <a class="nav-link" onclick="navigate('/about');closeMobileMenu()" data-i18n="nav_about">Tentang</a>
+    <a class="nav-link" onclick="navigate('/docs');closeMobileMenu()" data-i18n="nav_docs">Dokumentasi</a>
+    <a class="nav-link" onclick="navigate('/dashboard');closeMobileMenu()" data-i18n="nav_dashboard" style="display:none" class="auth-show-logged">Dashboard</a>
+    <a class="nav-link" onclick="navigate('/payment');closeMobileMenu()">💎 Berlangganan</a>
+    <div class="auth-show-logged" style="display:none">
+      <a class="nav-link" onclick="Auth.logout();closeMobileMenu()" data-i18n="nav_logout">Keluar</a>
+    </div>
+    <a class="nav-link" onclick="showLoginModal();closeMobileMenu()" data-i18n="nav_login" class="auth-hide-logged">Masuk</a>
+  </div>
+
+  <!-- ─── Main Content (SPA) ─────────────────────────────────── -->
+  <main id="main-content">
+    <div class="page-loading">
+      <div class="spinner"></div>
+      <p>Memuat Kreaverse AI...</p>
+    </div>
+  </main>
+
+  <!-- ─── Footer ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a onclick="navigate('/')">Beranda</a>
+        <a onclick="navigate('/about')">Tentang</a>
+        <a onclick="navigate('/docs')">Dokumentasi</a>
+        <a onclick="navigate('/payment')">Berlangganan</a>
+        <a href="https://wa.me/6285119821813" target="_blank">Kontak</a>
+      </div>
+      <p class="footer-copy" data-i18n="footer_rights">© 2025 Kreaverse AI. All rights reserved.</p>
+      <p class="footer-copy" style="font-size:0.72rem">Powered by HABI STUDIO</p>
+    </div>
+  </footer>
+
+  <!-- ─── Login Modal ─────────────────────────────────────────── -->
+  <div id="login-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="login-form">
+        <h2 data-i18n="auth_login_title">Masuk ke Kreaverse AI</h2>
+        <p data-i18n="auth_login_sub">Masukkan email dan password yang diberikan admin</p>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label data-i18n="auth_email">Email</label>
+            <input type="email" id="login-email" class="form-control" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label data-i18n="auth_password">Password</label>
+            <input type="password" id="login-password" class="form-control" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="login-btn" data-i18n="auth_login">Masuk</button>
+        </form>
+        <p class="login-footer">
+          <span data-i18n="auth_forgot">Lupa password? Hubungi admin.</span><br>
+          <a onclick="navigate('/payment');hideLoginModal()">💎 Belum punya akun? Berlangganan</a>
+        </p>
+        <button onclick="hideLoginModal()" class="btn btn-ghost btn-full" style="margin-top:0.75rem">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Promo Popup ──────────────────────────────────────────── -->
+  <div id="promo-popup">
+    <div class="popup-inner">
+      <button class="popup-close" onclick="document.getElementById('promo-popup').classList.remove('active')">✕</button>
+      <div class="popup-content"></div>
+    </div>
+  </div>
+
+  <!-- ─── Scripts ─────────────────────────────────────────────── -->
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/pages.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu')?.classList.toggle('open');
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu')?.classList.remove('open');
+    }
+
+    // Tools Dropdown
+    async function toggleToolsDropdown() {
+      const dd = document.getElementById('models-dropdown');
+      if (!dd) return;
+      const isOpen = dd.classList.toggle('open');
+      if (isOpen) {
+        await populateModelsDropdown();
+        document.addEventListener('click', closeToolsDropdown, { once: true });
+      }
+    }
+    function closeToolsDropdown(e) {
+      if (!e.target.closest('#tools-btn')) {
+        document.getElementById('models-dropdown')?.classList.remove('open');
+      }
+    }
+    async function populateModelsDropdown() {
+      const grid = document.getElementById('models-dropdown-grid');
+      if (!grid || grid.dataset.loaded) return;
+      const models = window.playgroundModels || (await API.getModels().then(r => r.data?.data)) || {};
+      const providerNames = {
+        'kie-ai':'Kie AI','api-box':'API Box','apiframe':'Apiframe','crun':'Crun',
+        'sunoapi':'SunoAPI','evolink':'Evolink','aimastering':'AI Mastering',
+        'deepseek':'DeepSeek','leonardo':'Leonardo','gemini':'Gemini','grok':'Grok'
+      };
+      grid.innerHTML = Object.entries(models).map(([prov, modelList]) => `
+        <div class="model-dropdown-provider">
+          <h4>
+            <img src="/images/providers/${prov}.png" alt="${prov}" onerror="this.style.display='none'">
+            ${providerNames[prov] || prov}
+          </h4>
+          ${modelList.map(m => `
+            <div class="model-dropdown-item" onclick="navigate('/playground?provider=${prov}&model=${m.model}');document.getElementById('models-dropdown').classList.remove('open')">
+              ${m.model.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ')}
+            </div>`).join('')}
+        </div>`).join('');
+      grid.dataset.loaded = 'true';
+    }
+
+    // Update nav avatar
+    document.addEventListener('userLoggedIn', (e) => {
+      const avatar = document.getElementById('nav-avatar');
+      if (avatar && e.detail?.name) avatar.textContent = e.detail.name.charAt(0).toUpperCase();
+    });
+  </script>
+</body>
+</html>
