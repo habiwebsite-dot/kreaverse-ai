@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: kreaverse-ai
+    env: node
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    plan: starter
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: PROVIDER_API_KEYS
+        sync: false
+      - key: ADMIN_EMAIL
+        value: habistudio.ai@unlimited.com
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: SESSION_SECRET
+        sync: false
+    autoDeploy: true
