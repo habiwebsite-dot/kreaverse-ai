@@ -36,17 +36,24 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
-// Init DB
-initDatabase();
+// Init DB (async dengan sql.js), lalu jalankan server
+initDatabase()
+  .then(() => {
+    console.log('Database siap.');
 
-// Anti-sleep cron every 14 minutes
-cron.schedule('*/14 * * * *', () => {
-  const http = require('http');
-  http.get(`http://localhost:${PORT}/health`, (res) => {
-    console.log('Anti-sleep ping');
+    // Anti-sleep cron every 14 minutes
+    cron.schedule('*/14 * * * *', () => {
+      const http = require('http');
+      http.get(`http://localhost:${PORT}/health`, (res) => {
+        console.log('Anti-sleep ping');
+      });
+    });
+
+    app.listen(PORT, () => {
+      console.log(`Kreaverse AI running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Gagal inisialisasi database:', err);
+    process.exit(1);
   });
-});
-
-app.listen(PORT, () => {
-  console.log(`Kreaverse AI running on port ${PORT}`);
-});
