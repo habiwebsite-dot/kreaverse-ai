@@ -1,5 +1,0 @@
-Placeholder untuk logo dan QR.
-Ganti dengan file asli:
-- logo.png: logo Kreaverse AI
-- qr-payment.png: QR code pembayaran
-- providers/kie-ai.png, dll: logo provider
