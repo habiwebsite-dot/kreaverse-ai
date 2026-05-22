@@ -1,9 +1,0 @@
-
-### 2. Buat Web Service di Render
-1. Login ke [render.com](https://render.com)
-2. Klik **New > Web Service**
-3. Hubungkan repo GitHub Anda
-4. Render akan otomatis membaca `render.yaml`
-5. Isi **Environment Variables** sesuai `.env.example`
-
-### 3. Generate Admin Password Hash
