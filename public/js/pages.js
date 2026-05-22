@@ -231,7 +231,7 @@ function renderChat(container) {
   container.innerHTML = `
     <div class="container" style="display:flex; flex-direction:column; height:80vh;">
       <h2>${t('chat')}</h2>
-      <div class="card" style="flex:1; overflow-y:auto; margin-bottom:1rem;" id="chatMessages"><div class="chat-placeholder">Mulai percakapan dengan AI.</div></div>
+      <div class="card" style="flex:1; overflow-y:auto; margin-bottom:1rem;" id="chatMessages"><div>Mulai percakapan dengan AI.</div></div>
       <div class="card" style="display:flex; gap:0.5rem;">
         <select id="chatModel" style="width:auto;"><option value="deepseek">DeepSeek</option><option value="gemini">Gemini</option><option value="grok">Grok</option></select>
         <input type="text" id="chatPrompt" placeholder="Ketik pesan..." style="flex:1;">
@@ -258,29 +258,20 @@ async function sendChat() {
     }).then(r => r.json());
     if (uploadRes.success) input.file_url = uploadRes.data.url;
   }
-  appendChatBubble('user', prompt);
   document.getElementById('chatPrompt').value = '';
+  const msgs = document.getElementById('chatMessages');
+  msgs.innerHTML += `<div class="chat-bubble user">${prompt}</div>`;
   const res = await apiRequest('/api/v1/jobs/createTask', {
     method: 'POST',
     body: JSON.stringify({ provider: model, model: 'chat', input, usePersonalKey: false })
   });
   if (res.success) {
     const pollRes = await apiRequest(`/api/v1/jobs/recordInfo?taskId=${res.data.taskId}`);
-    if (pollRes.data.state === 2 && pollRes.data.result?.text) {
-      appendChatBubble('ai', pollRes.data.result.text);
-    } else if (pollRes.data.resultUrls?.length) {
-      // chat bisa juga return gambar
+    if (pollRes.data.result?.text) {
+      msgs.innerHTML += `<div class="chat-bubble ai">${pollRes.data.result.text}</div>`;
+      msgs.scrollTop = msgs.scrollHeight;
     }
   }
-}
-
-function appendChatBubble(sender, text) {
-  const container = document.getElementById('chatMessages');
-  const div = document.createElement('div');
-  div.className = `chat-bubble ${sender}`;
-  div.textContent = text;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
 }
 
 function renderDashboard(container) {
@@ -308,7 +299,6 @@ function renderDashboard(container) {
             <button class="btn btn-primary mt-1" onclick="showAddApiKey()">${t('getApiKey')}</button>
           </div>
         </div>
-        <div class="card mt-2"><h3>Task Aktif</h3><p>Belum ada.</p></div>
       </div>
     `;
     loadApiKeys();
