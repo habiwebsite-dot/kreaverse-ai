@@ -1,0 +1,6 @@
+bash
+git init
+git add .
+git commit -m "Initial commit Kreaverse AI"
+git remote add origin https://github.com/username/kreaverse-ai.git
+git push -u origin main
