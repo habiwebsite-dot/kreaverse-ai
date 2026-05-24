@@ -1,0 +1,769 @@
+cURL
+
+multi_character
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "happyhorse-1.0-reference-to-video",
+"prompt": "A woman in a red qipao character1, the camera first frames the slim cut of the qipao from a side medium shot, then switches to a low-angle upward shot capturing details as she gracefully lifts her hand to open a folding fan character2, with tasseled earrings character3 swaying lightly as she turns her head.",
+"image_urls": [
+"https://cdn.example.com/girl.jpg",
+"https://cdn.example.com/folding-fan.jpg",
+"https://cdn.example.com/earrings.jpg"
+],
+"quality": "720p",
+"aspect_ratio": "16:9",
+"duration": 5
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "happyhorse-1.0-reference-to-video",
+"prompt": "A woman in a red qipao character1, the camera first frames the slim cut of the qipao from a side medium shot, then switches to a low-angle upward shot capturing details as she gracefully lifts her hand to open a folding fan character2, with tasseled earrings character3 swaying lightly as she turns her head.",
+"image_urls": [
+"https://cdn.example.com/girl.jpg",
+"https://cdn.example.com/folding-fan.jpg",
+"https://cdn.example.com/earrings.jpg"
+],
+"quality": "720p",
+"aspect_ratio": "16:9",
+"duration": 5
+}
+'
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1761313744-h1r2vef0"
+,
+"model"
+:
+"happyhorse-1.0-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+2400
+,
+"video_duration"
+:
+5
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+607500
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1761313744-h1r2vef0"
+,
+"model"
+:
+"happyhorse-1.0-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+2400
+,
+"video_duration"
+:
+5
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+607500
+,
+"user_group"
+:
+"default"
+}
+}
+
+HappyHorse 1.0 Reference-to-Video
+
+HappyHorse 1.0 reference-to-video, supports 1–9 reference images plus a text prompt
+
+Character reference convention
+: in
+prompt
+, use
+character1
+,
+character2
+,
+character3
+… keywords to reference the images in
+image_urls
+array in order
+
+prompt
+
+character1
+
+character2
+
+character3
+
+image_urls
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+multi_character
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "happyhorse-1.0-reference-to-video",
+"prompt": "A woman in a red qipao character1, the camera first frames the slim cut of the qipao from a side medium shot, then switches to a low-angle upward shot capturing details as she gracefully lifts her hand to open a folding fan character2, with tasseled earrings character3 swaying lightly as she turns her head.",
+"image_urls": [
+"https://cdn.example.com/girl.jpg",
+"https://cdn.example.com/folding-fan.jpg",
+"https://cdn.example.com/earrings.jpg"
+],
+"quality": "720p",
+"aspect_ratio": "16:9",
+"duration": 5
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "happyhorse-1.0-reference-to-video",
+"prompt": "A woman in a red qipao character1, the camera first frames the slim cut of the qipao from a side medium shot, then switches to a low-angle upward shot capturing details as she gracefully lifts her hand to open a folding fan character2, with tasseled earrings character3 swaying lightly as she turns her head.",
+"image_urls": [
+"https://cdn.example.com/girl.jpg",
+"https://cdn.example.com/folding-fan.jpg",
+"https://cdn.example.com/earrings.jpg"
+],
+"quality": "720p",
+"aspect_ratio": "16:9",
+"duration": 5
+}
+'
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1761313744-h1r2vef0"
+,
+"model"
+:
+"happyhorse-1.0-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+2400
+,
+"video_duration"
+:
+5
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+607500
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1761313744-h1r2vef0"
+,
+"model"
+:
+"happyhorse-1.0-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+2400
+,
+"video_duration"
+:
+5
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+607500
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All endpoints require Bearer Token authentication##
+
+Get API Key:
+
+Visit the
+API Key Management Page
+to obtain your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+happyhorse-1.0-reference-to-video
+
+"happyhorse-1.0-reference-to-video"
+
+"happyhorse-1.0-reference-to-video"
+
+Text prompt,
+required
+
+Length limits:
+
+Chinese: up to
+2500
+characters
+
+2500
+
+Non-Chinese: up to
+5000
+characters
+
+5000
+
+Excess content is automatically truncated
+
+Character reference convention (important):
+
+The prompt must explicitly use
+character1
+,
+character2
+,
+character3
+... keywords to reference images in
+image_urls
+in order
+
+character1
+
+character2
+
+character3
+
+image_urls
+
+The 1st image corresponds to
+character1
+, the 2nd to
+character2
+, and so on
+
+character1
+
+character2
+
+Missing explicit references may cause character confusion
+
+"A woman in a red qipao character1, the camera first frames the slim cut of the qipao from a side medium shot, then switches to a low-angle upward shot capturing details as she gracefully lifts her hand to open a folding fan character2, with tasseled earrings character3 swaying lightly as she turns her head."
+
+"A woman in a red qipao character1, the camera first frames the slim cut of the qipao from a side medium shot, then switches to a low-angle upward shot capturing details as she gracefully lifts her hand to open a folding fan character2, with tasseled earrings character3 swaying lightly as she turns her head."
+
+Reference image URL array,
+required
+,
+1 ~ 9 images
+
+Image requirements:
+
+Supported formats: JPEG, JPG, PNG, WEBP
+
+Resolution: short edge ≥
+400
+px; 720P or higher quality images are recommended (avoid extremely small, blurry, or heavily compressed images)
+
+400
+
+Recommended aspect ratio: short edge / long edge ≥
+0.4
+, with consistent proportions across images (close to the target video ratio)
+
+0.4
+
+File size: ≤
+10MB
+per image
+
+10MB
+
+Image URLs must be
+publicly accessible (HTTP or HTTPS)
+; private OSS, intranet, or authenticated links are not supported
+
+Order:
+Array order corresponds to
+character1
+,
+character2
+... references in the prompt
+
+character1
+
+character2
+
+1 - 9
+
+[
+"https://cdn.example.com/girl.jpg"
+,
+"https://cdn.example.com/folding-fan.jpg"
+,
+"https://cdn.example.com/earrings.jpg"
+]
+
+[
+"https://cdn.example.com/girl.jpg"
+,
+"https://cdn.example.com/folding-fan.jpg"
+,
+"https://cdn.example.com/earrings.jpg"
+]
+
+Video resolution tier, defaults to
+720p
+
+720p
+
+Options:
+
+720p
+: Standard clarity, this is the default
+
+720p
+
+1080p
+: HD clarity
+
+1080p
+
+Billing note:
+Resolution tier directly affects billing
+
+720p
+
+1080p
+
+"720p"
+
+"720p"
+
+Video aspect ratio, defaults to
+16:9
+
+16:9
+
+Options:
+
+16:9
+(landscape)
+
+16:9
+
+9:16
+(portrait)
+
+9:16
+
+1:1
+(square)
+
+1:1
+
+4:3
+
+4:3
+
+3:4
+
+3:4
+
+16:9
+
+9:16
+
+1:1
+
+4:3
+
+3:4
+
+"16:9"
+
+"16:9"
+
+Video duration (seconds), defaults to
+5
+seconds
+
+5
+
+Range:
+
+Integer
+3
+~
+15
+
+3
+
+15
+
+Duration directly affects billing
+
+3 <= x <= 15
+
+5
+
+5
+
+Random seed, default is random
+
+Details:
+
+Range:
+1
+~
+2147483647
+
+1
+
+2147483647
+
+A fixed seed reduces parameter-induced variation when iterating on prompts and improves reproducibility
+
+1 <= x <= 2147483647
+
+42
+
+42
+
+HTTPS callback URL for task completion
+
+Callback timing:
+
+Triggered when the task is completed, failed, or cancelled
+
+Sent after billing confirmation is complete
+
+Security restrictions:
+
+Only HTTPS protocol is supported
+
+Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (at
+1
+/
+2
+/
+4
+seconds after failure respectively)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format is consistent with the task query endpoint response format
+
+A 2xx status code is considered successful; other status codes trigger retries
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1761313744
+
+1761313744
+
+Task ID
+
+"task-unified-1761313744-h1r2vef0"
+
+"task-unified-1761313744-h1r2vef0"
+
+Actual model name used
+
+"happyhorse-1.0-reference-to-video"
+
+"happyhorse-1.0-reference-to-video"
+
+Specific type of the task
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+cancelled
+
+"pending"
+
+"pending"
+
+Video task details
+
+Show
+child attributes
+
+Output type of the task
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
