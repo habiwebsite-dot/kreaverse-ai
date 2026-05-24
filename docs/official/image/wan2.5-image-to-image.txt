@@ -1,0 +1,550 @@
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.5-image-to-image",
+"prompt": "Replace the background with a starry sky"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.5-image-to-image",
+"prompt": "Replace the background with a starry sky"
+}
+'
+
+{
+"created"
+:
+1757156493
+,
+"id"
+:
+"task-unified-1757156493-imcg5zqt"
+,
+"model"
+:
+"wan2.5-image-to-image"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+30
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.2
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757156493
+,
+"id"
+:
+"task-unified-1757156493-imcg5zqt"
+,
+"model"
+:
+"wan2.5-image-to-image"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+30
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.2
+,
+"user_group"
+:
+"default"
+}
+}
+
+Wan2.5 Image to Image
+
+WAN2.5 (wan2.5-image-to-image) model supports image-to-image, image editing and other generation modes
+
+Asynchronous processing mode, use the returned task ID to
+query
+
+Generated image links are valid for 24 hours, please save them promptly
+
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.5-image-to-image",
+"prompt": "Replace the background with a starry sky"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.5-image-to-image",
+"prompt": "Replace the background with a starry sky"
+}
+'
+
+{
+"created"
+:
+1757156493
+,
+"id"
+:
+"task-unified-1757156493-imcg5zqt"
+,
+"model"
+:
+"wan2.5-image-to-image"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+30
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.2
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757156493
+,
+"id"
+:
+"task-unified-1757156493-imcg5zqt"
+,
+"model"
+:
+"wan2.5-image-to-image"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+30
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.2
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name
+
+wan2.5-image-to-image
+
+"wan2.5-image-to-image"
+
+"wan2.5-image-to-image"
+
+Prompt describing the image to generate or how to edit the input image, limited to 2000 tokens
+
+2000
+
+"Replace the background with a starry sky"
+
+"Replace the background with a starry sky"
+
+Reference image URL list for image-to-image and image editing functions
+
+Note:
+
+Maximum number of input images per request:
+2
+images
+
+2
+
+Image size: no more than
+10MB
+
+10MB
+
+Supported image formats:
+.jpeg
+,
+.jpg
+,
+.png
+(transparent channels not supported),
+.bmp
+,
+.webp
+
+.jpeg
+
+.jpg
+
+.png
+
+.bmp
+
+.webp
+
+Image resolution: image width and height range is
+[384, 5000]
+pixels
+
+[384, 5000]
+
+Image URLs must be directly accessible by the server, or the image URL should directly download when accessed (typically these URLs end with image file extensions, such as
+.png
+,
+.jpg
+)
+
+.png
+
+.jpg
+
+2
+
+[
+"https://example.com/image1.png"
+,
+"https://example.com/image2.png"
+]
+
+[
+"https://example.com/image1.png"
+,
+"https://example.com/image2.png"
+]
+
+Number of images to generate, supports any integer value between
+[1,4]
+
+[1,4]
+
+Note:
+
+A single request will be pre-charged based on the value of
+n
+, and the actual charge will be based on the number of generated images
+
+n
+
+1
+
+1
+
+HTTPS callback address after task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation is completed
+
+Security Restrictions:
+
+Only HTTPS protocol is supported
+
+Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Maximum
+3
+retries on failure (retries after
+1
+second/
+2
+seconds/
+4
+seconds)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format is consistent with the task query API response format
+
+Callback address returning 2xx status code is considered successful, other status codes will trigger retry
+
+"https://your-domain.com/webhooks/image-task-completed"
+
+"https://your-domain.com/webhooks/image-task-completed"
+
+Response
+
+Image task created successfully
+
+Task creation timestamp
+
+1757156493
+
+1757156493
+
+Task ID
+
+"task-unified-1757156493-imcg5zqt"
+
+"task-unified-1757156493-imcg5zqt"
+
+Actual model name used
+
+"wan2.5-image-to-image"
+
+"wan2.5-image-to-image"
+
+Specific task type
+
+image.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Asynchronous task information
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"image"
+
+"image"
+
+Usage and billing information
+
+Show
+child attributes
