@@ -1,0 +1,443 @@
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/base64
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"base64_data": "data:image/png;base64,iVBORw0KGgo..."
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/base64
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"base64_data": "data:image/png;base64,iVBORw0KGgo..."
+}
+'
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"avatar.png"
+,
+"original_name"
+:
+"avatar.png"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/png"
+,
+"upload_path"
+:
+"avatars"
+,
+"file_url"
+:
+"https://files.evolink.ai/avatars/avatar.png"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"avatar.png"
+,
+"original_name"
+:
+"avatar.png"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/png"
+,
+"upload_path"
+:
+"avatars"
+,
+"file_url"
+:
+"https://files.evolink.ai/avatars/avatar.png"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+Base64 File Upload
+
+Supports Base64 encoding and Data URL formats
+
+Automatically identifies file types and categorizes storage
+
+Returns accessible file URLs and download links
+
+Files will expire after 72 hours
+
+Current user quota is limited. Uploads will fail when quota is exhausted. Please save locally if persistent storage is needed
+
+Note:
+The file upload API base URL is
+https://files-api.evolink.ai
+
+https://files-api.evolink.ai
+
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/base64
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"base64_data": "data:image/png;base64,iVBORw0KGgo..."
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/base64
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"base64_data": "data:image/png;base64,iVBORw0KGgo..."
+}
+'
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"avatar.png"
+,
+"original_name"
+:
+"avatar.png"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/png"
+,
+"upload_path"
+:
+"avatars"
+,
+"file_url"
+:
+"https://files.evolink.ai/avatars/avatar.png"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"avatar.png"
+,
+"original_name"
+:
+"avatar.png"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/png"
+,
+"upload_path"
+:
+"avatars"
+,
+"file_url"
+:
+"https://files.evolink.ai/avatars/avatar.png"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Base64 encoded file data
+
+Supported Formats:
+
+Data URL format:
+data:image/png;base64,iVBORw0KGgo...
+
+data:image/png;base64,iVBORw0KGgo...
+
+Pure Base64 encoding:
+iVBORw0KGgo...
+
+iVBORw0KGgo...
+
+Note:
+
+Maximum
+1
+image per request
+
+1
+
+Currently supports uploading files in:
+image/jpeg
+,
+image/png
+,
+image/gif
+,
+image/webp
+formats only
+
+image/jpeg
+
+image/png
+
+image/gif
+
+image/webp
+
+"data:image/png;base64,iVBORw0KGgo..."
+
+"data:image/png;base64,iVBORw0KGgo..."
+
+Custom upload path
+
+Note:
+
+If not specified, system will automatically categorize based on file type
+
+"avatars"
+
+"avatars"
+
+Custom file name
+
+Note:
+
+If not specified, system will automatically generate a unique file name
+
+"avatar.png"
+
+"avatar.png"
+
+Response
+
+File uploaded successfully
+
+Whether the request was successful
+
+true
+
+true
+
+Response status code
+
+200
+
+200
+
+Response message
+
+"File uploaded successfully"
+
+"File uploaded successfully"
+
+Show
+child attributes
