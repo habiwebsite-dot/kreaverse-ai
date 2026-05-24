@@ -4,14 +4,24 @@ import { requireAdmin } from '@/lib/require-admin';
 import { fail, ok } from '@/lib/http';
 import { commitRepoFile } from '@/lib/github';
 import { prisma } from '@/lib/prisma';
+import { readSiteConfig } from '@/lib/site-config';
 
 const configPath = path.join(process.cwd(), 'config', 'site.json');
+
+export async function GET() {
+  try {
+    await requireAdmin();
+    return ok(readSiteConfig());
+  } catch {
+    return fail('Gagal memuat aset live.', 500);
+  }
+}
 
 export async function POST(request: Request) {
   try {
     await requireAdmin();
     const body = await request.json();
-    const current = JSON.parse(await fs.readFile(configPath, 'utf8'));
+    const current = readSiteConfig();
     const nextConfig = {
       ...current,
       ...body,
@@ -22,6 +32,10 @@ export async function POST(request: Request) {
       toolLogos: {
         ...current.toolLogos,
         ...(body.toolLogos || {}),
+      },
+      modelLogos: {
+        ...current.modelLogos,
+        ...(body.modelLogos || {}),
       },
     };
 
