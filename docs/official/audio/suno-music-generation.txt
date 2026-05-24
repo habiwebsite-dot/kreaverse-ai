@@ -1,0 +1,983 @@
+cURL
+
+simple_mode
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "suno-v5-beta",
+"prompt": "A cheerful summer pop song about road trips and freedom"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "suno-v5-beta",
+"prompt": "A cheerful summer pop song about road trips and freedom"
+}
+'
+
+{
+"created"
+:
+1766319090
+,
+"id"
+:
+"task-unified-1766319089-oqs9cue4"
+,
+"model"
+:
+"suno-v5-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+10
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1766319090
+,
+"id"
+:
+"task-unified-1766319089-oqs9cue4"
+,
+"model"
+:
+"suno-v5-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+10
+,
+"user_group"
+:
+"default"
+}
+}
+
+Suno Music Generation Beta
+
+Suno AI music generation model, supports generating complete music based on text descriptions or lyrics
+
+Supports custom mode (fine control over style, title, lyrics) and simple mode (AI auto-generation)
+
+Supports
+Persona
+for reusable vocal/style characteristics
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated audio links are valid for 72 hours, please save them promptly
+
+Each request generates multiple music variations
+
+cURL
+
+simple_mode
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "suno-v5-beta",
+"prompt": "A cheerful summer pop song about road trips and freedom"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "suno-v5-beta",
+"prompt": "A cheerful summer pop song about road trips and freedom"
+}
+'
+
+{
+"created"
+:
+1766319090
+,
+"id"
+:
+"task-unified-1766319089-oqs9cue4"
+,
+"model"
+:
+"suno-v5-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+10
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1766319090
+,
+"id"
+:
+"task-unified-1766319089-oqs9cue4"
+,
+"model"
+:
+"suno-v5-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+10
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name
+
+Backward compatibility:
+Previously integrated model names (e.g.
+suno-v5
+,
+suno-v4.5
+,
+suno-v4.5plus
+,
+suno-v4.5all
+,
+suno-v4
+) are still supported and will be automatically mapped to the corresponding
+-beta
+versions
+
+suno-v5
+
+suno-v4.5
+
+suno-v4.5plus
+
+suno-v4.5all
+
+suno-v4
+
+-beta
+
+Available options:
+
+suno-v5-beta
+: V5 latest version (default recommended), supports Voice Persona, superior musical expression, faster generation, prompt max
+5000
+characters, style max
+1000
+characters
+
+suno-v5-beta
+
+5000
+
+1000
+
+suno-v4.5plus-beta
+: V4.5+ enhanced version, richer tones, new creative methods, up to 8 minutes, prompt max
+5000
+characters, style max
+1000
+characters
+
+suno-v4.5plus-beta
+
+5000
+
+1000
+
+suno-v4.5all-beta
+: V4.5 full-featured version, smarter prompts, faster generation, up to 8 minutes, prompt max
+5000
+characters, style max
+1000
+characters
+
+suno-v4.5all-beta
+
+5000
+
+1000
+
+suno-v4.5-beta
+: V4.5 version, smarter prompts, faster generation, up to 8 minutes, prompt max
+5000
+characters, style max
+1000
+characters
+
+suno-v4.5-beta
+
+5000
+
+1000
+
+suno-v4-beta
+: V4 version, improved vocal quality, up to 4 minutes, prompt max
+3000
+characters, style max
+200
+characters
+
+suno-v4-beta
+
+3000
+
+200
+
+suno-v5-beta
+
+suno-v4.5plus-beta
+
+suno-v4.5all-beta
+
+suno-v4.5-beta
+
+suno-v4-beta
+
+"suno-v5-beta"
+
+"suno-v5-beta"
+
+Enable custom mode
+
+Description:
+
+false
+: Simple mode, only provide
+prompt
+, AI auto-generates lyrics and style
+
+false
+
+prompt
+
+true
+: Custom mode, allows fine control over
+style
+,
+title
+, lyrics, etc.
+
+true
+
+style
+
+title
+
+Required parameters in custom mode:
+
+style
+: Required
+
+style
+
+title
+: Required
+
+title
+
+prompt
+: Required when
+instrumental=false
+(used as lyrics)
+
+prompt
+
+instrumental=false
+
+false
+
+false
+
+Generate instrumental music (no vocals)
+
+Description:
+
+false
+: Generate music with vocals
+
+false
+
+true
+: Generate instrumental/background music without vocals
+
+true
+
+Note:
+
+In non-custom mode, this parameter doesn't affect required fields
+
+In custom mode, when set to
+true
+,
+prompt
+becomes optional
+
+true
+
+prompt
+
+false
+
+false
+
+Prompt describing the desired music content
+
+Non-custom mode (
+custom_mode=false
+):
+
+custom_mode=false
+
+Required, serves as music description, AI auto-generates lyrics and style
+
+Max length:
+500
+characters
+
+500
+
+Custom mode (
+custom_mode=true
+):
+
+custom_mode=true
+
+Required when
+instrumental=false
+, used as exact lyrics
+
+instrumental=false
+
+Optional when
+instrumental=true
+
+instrumental=true
+
+Max length:
+3000
+characters for V4,
+5000
+characters for V4.5+
+
+3000
+
+5000
+
+Lyrics format suggestions:
+
+Use tags like
+[Verse]
+,
+[Chorus]
+,
+[Bridge]
+to organize lyrics structure
+
+[Verse]
+
+[Chorus]
+
+[Bridge]
+
+"A cheerful summer pop song about road trips and freedom"
+
+"A cheerful summer pop song about road trips and freedom"
+
+Music style specification
+
+Description:
+
+Required in custom mode (
+custom_mode=true
+)
+
+custom_mode=true
+
+Defines the genre, mood, or artistic direction of the music
+
+Recommended to use comma-separated tags in English
+
+Character limits:
+
+V4: Max
+200
+characters
+
+200
+
+V4.5+: Max
+1000
+characters
+
+1000
+
+Common style tags:
+
+Genres: pop, rock, jazz, classical, electronic, hip-hop, r&b, country, folk
+
+Moods: happy, sad, energetic, calm, romantic, dark, uplifting
+
+Instruments: piano, guitar, drums, bass, violin, saxophone, synthesizer
+
+Vocals: male vocals, female vocals, choir, harmonies
+
+Tempo: slow, fast, upbeat, groovy, 120bpm
+
+"pop, electronic, upbeat, female vocals"
+
+"pop, electronic, upbeat, female vocals"
+
+Song title
+
+Description:
+
+Required in custom mode (
+custom_mode=true
+)
+
+custom_mode=true
+
+Will be displayed in the player interface and filename
+
+Max length:
+80
+characters
+
+80
+
+80
+
+"Summer Dreams"
+
+"Summer Dreams"
+
+Excluded styles, specify music styles or features to avoid
+
+Examples:
+
+heavy metal, screaming, sad
+
+heavy metal, screaming, sad
+
+rap, fast tempo
+
+rap, fast tempo
+
+"heavy metal, screaming"
+
+"heavy metal, screaming"
+
+Vocal gender preference
+
+Options:
+
+m
+: Male voice
+
+m
+
+f
+: Female voice
+
+f
+
+Note:
+
+Only effective when
+custom_mode=true
+
+custom_mode=true
+
+This parameter only increases the probability, cannot guarantee the specified gender will be followed
+
+m
+
+f
+
+"f"
+
+"f"
+
+Style weight, controls adherence to the specified style
+
+Range:
+0.0
+~
+1.0
+, one decimal place
+
+0.0
+
+1.0
+
+Description:
+
+Higher values result in closer adherence to specified style
+
+Value of
+0
+is treated as unset
+
+0
+
+0 <= x <= 1
+
+0.7
+
+0.7
+
+Weirdness constraint, controls the creativity/experimental degree of the output
+
+Range:
+0.0
+~
+1.0
+, one decimal place
+
+0.0
+
+1.0
+
+Description:
+
+Higher values result in more creative and experimental output
+
+Lower values result in more traditional and conservative output
+
+Value of
+0
+is treated as unset
+
+0
+
+0 <= x <= 1
+
+0.3
+
+0.3
+
+Audio weight, controls the weight of audio features
+
+Range:
+0.0
+~
+1.0
+, one decimal place
+
+0.0
+
+1.0
+
+Description:
+
+Value of
+0
+is treated as unset
+
+0
+
+0 <= x <= 1
+
+0.5
+
+0.5
+
+Persona ID to apply a previously created Persona style to this music generation
+
+Only available when
+custom_mode=true
+. Obtained via the
+Suno Persona Creation
+API, preserves consistent vocal and style characteristics
+
+custom_mode=true
+
+How to obtain:
+After the Persona creation task completes, retrieve from
+result_data.persona_id
+
+result_data.persona_id
+
+"5c57d49ef834110496fae5aa14fec441"
+
+"5c57d49ef834110496fae5aa14fec441"
+
+Persona application mode
+
+Options:
+
+style_persona
+: Style-oriented, emphasizes musical style characteristics (arrangement, rhythm, timbre), supports all model versions
+
+style_persona
+
+voice_persona
+: Voice-oriented, emphasizes vocal characteristics (timbre, singing style, voice),
+V5 only
+
+voice_persona
+
+Only available when
+custom_mode=true
+, typically used with
+persona_id
+. When using
+voice_persona
+, the model must be
+suno-v5-beta
+, otherwise an error is returned
+
+custom_mode=true
+
+persona_id
+
+voice_persona
+
+suno-v5-beta
+
+style_persona
+
+voice_persona
+
+"style_persona"
+
+"style_persona"
+
+HTTPS callback URL for task completion notification
+
+Callback stages:
+
+Callback process has three stages:
+text
+(text generation),
+first
+(first track completed),
+complete
+(all completed)
+
+text
+
+first
+
+complete
+
+In some cases,
+text
+and
+first
+stages may be skipped, returning
+complete
+directly
+
+text
+
+first
+
+complete
+
+Security restrictions:
+
+Only HTTPS protocol supported
+
+Callbacks to internal IP addresses are prohibited
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Max
+3
+retries on failure
+
+3
+
+Callback URL returning 2xx status code is considered successful
+
+"https://your-domain.com/webhooks/suno-callback"
+
+"https://your-domain.com/webhooks/suno-callback"
+
+Response
+
+Music task created successfully
+
+Task creation timestamp
+
+1766319090
+
+1766319090
+
+Task ID, used to query task status and results
+
+"task-unified-1766319089-oqs9cue4"
+
+"task-unified-1766319089-oqs9cue4"
+
+Actual model name used
+
+"suno-v5-beta"
+
+"suno-v5-beta"
+
+Task type
+
+audio.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Audio task details
+
+Show
+child attributes
+
+Task output type
+
+audio
+
+"audio"
+
+"audio"
+
+Usage and billing information
+
+Show
+child attributes
