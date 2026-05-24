@@ -1,0 +1,780 @@
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "seedance-2.0-text-to-video",
+"prompt": "A macro lens focuses on a green glass frog on a leaf. The focus gradually shifts from its smooth skin to its completely transparent abdomen, where a bright red heart is beating powerfully and rhythmically.",
+"duration": 8,
+"quality": "720p",
+"aspect_ratio": "16:9",
+"generate_audio": true
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "seedance-2.0-text-to-video",
+"prompt": "A macro lens focuses on a green glass frog on a leaf. The focus gradually shifts from its smooth skin to its completely transparent abdomen, where a bright red heart is beating powerfully and rhythmically.",
+"duration": 8,
+"quality": "720p",
+"aspect_ratio": "16:9",
+"generate_audio": true
+}
+'
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1774857405-abc123"
+,
+"model"
+:
+"seedance-2.0-text-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+165
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+50
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1774857405-abc123"
+,
+"model"
+:
+"seedance-2.0-text-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+165
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+50
+,
+"user_group"
+:
+"default"
+}
+}
+
+Seedance 2.0 Text-to-Video
+
+Generate videos from text prompts, supports web search for enhanced timeliness
+
+Now supports AIGC realistic human materials
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "seedance-2.0-text-to-video",
+"prompt": "A macro lens focuses on a green glass frog on a leaf. The focus gradually shifts from its smooth skin to its completely transparent abdomen, where a bright red heart is beating powerfully and rhythmically.",
+"duration": 8,
+"quality": "720p",
+"aspect_ratio": "16:9",
+"generate_audio": true
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "seedance-2.0-text-to-video",
+"prompt": "A macro lens focuses on a green glass frog on a leaf. The focus gradually shifts from its smooth skin to its completely transparent abdomen, where a bright red heart is beating powerfully and rhythmically.",
+"duration": 8,
+"quality": "720p",
+"aspect_ratio": "16:9",
+"generate_audio": true
+}
+'
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1774857405-abc123"
+,
+"model"
+:
+"seedance-2.0-text-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+165
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+50
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1774857405-abc123"
+,
+"model"
+:
+"seedance-2.0-text-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+165
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+50
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All endpoints require Bearer Token authentication##
+
+Get API Key:
+
+Visit the
+API Key Management Page
+to obtain your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+seedance-2.0-text-to-video
+
+"seedance-2.0-text-to-video"
+
+"seedance-2.0-text-to-video"
+
+Text prompt describing the desired video. Supports both Chinese and English, recommended no more than 500 characters for Chinese or 1000 words for English
+
+Note:
+
+This model is text-to-video only and does not support
+image_urls
+,
+video_urls
+, or
+audio_urls
+input
+
+image_urls
+
+video_urls
+
+audio_urls
+
+"A macro lens focuses on a green glass frog on a leaf. The focus gradually shifts from its smooth skin to its completely transparent abdomen, where a bright red heart is beating powerfully and rhythmically."
+
+"A macro lens focuses on a green glass frog on a leaf. The focus gradually shifts from its smooth skin to its completely transparent abdomen, where a bright red heart is beating powerfully and rhythmically."
+
+Video duration (seconds), defaults to
+5
+seconds
+
+5
+
+Details:
+
+Supports any integer value between
+4
+–
+15
+seconds
+
+4
+
+15
+
+Duration directly affects billing
+
+4 <= x <= 15
+
+8
+
+8
+
+Video resolution, defaults to
+720p
+
+720p
+
+Options:
+
+480p
+: Lower clarity, lower cost
+
+480p
+
+720p
+: Standard clarity, this is the default
+
+720p
+
+1080p
+: Ultra HD clarity
+
+1080p
+
+480p
+
+720p
+
+1080p
+
+"720p"
+
+"720p"
+
+Video aspect ratio, defaults to
+16:9
+
+16:9
+
+Options:
+
+16:9
+(landscape),
+9:16
+(portrait),
+1:1
+(square),
+4:3
+,
+3:4
+,
+21:9
+(ultrawide)
+
+16:9
+
+9:16
+
+1:1
+
+4:3
+
+3:4
+
+21:9
+
+adaptive
+: The model intelligently selects the best aspect ratio based on the prompt
+
+adaptive
+
+Pixel values per resolution:
+
+Aspect Ratio
+480p
+720p
+1080p
+16:9
+864×496
+1280×720
+1920×1080
+4:3
+752×560
+1112×834
+1664×1248
+1:1
+640×640
+960×960
+1440×1440
+3:4
+560×752
+834×1112
+1248×1664
+9:16
+496×864
+720×1280
+1080×1920
+21:9
+992×432
+1470×630
+2206×946
+
+Aspect Ratio
+480p
+720p
+1080p
+
+Aspect Ratio
+
+480p
+
+720p
+
+1080p
+
+16:9
+864×496
+1280×720
+1920×1080
+
+16:9
+
+864×496
+
+1280×720
+
+1920×1080
+
+4:3
+752×560
+1112×834
+1664×1248
+
+4:3
+
+752×560
+
+1112×834
+
+1664×1248
+
+1:1
+640×640
+960×960
+1440×1440
+
+1:1
+
+640×640
+
+960×960
+
+1440×1440
+
+3:4
+560×752
+834×1112
+1248×1664
+
+3:4
+
+560×752
+
+834×1112
+
+1248×1664
+
+9:16
+496×864
+720×1280
+1080×1920
+
+9:16
+
+496×864
+
+720×1280
+
+1080×1920
+
+21:9
+992×432
+1470×630
+2206×946
+
+21:9
+
+992×432
+
+1470×630
+
+2206×946
+
+16:9
+
+9:16
+
+1:1
+
+4:3
+
+3:4
+
+21:9
+
+adaptive
+
+"16:9"
+
+"16:9"
+
+Whether to generate synchronized audio, defaults to
+true
+
+true
+
+Options:
+
+true
+: Video includes synchronized audio (voice, sound effects, background music) at no additional charge. It is recommended to place dialogue within double quotes to optimize audio generation
+
+true
+
+false
+: Output silent video
+
+false
+
+true
+
+true
+
+Model extension parameters
+
+Show
+child attributes
+
+HTTPS callback URL for task completion
+
+Callback timing:
+
+Triggered when the task is completed, failed, or cancelled
+
+Sent after billing confirmation is complete
+
+Security restrictions:
+
+Only HTTPS protocol is supported
+
+Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (at
+1
+/
+2
+/
+4
+seconds after failure respectively)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format is consistent with the task query endpoint response format
+
+A 2xx status code is considered successful; other status codes trigger retries
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1761313744
+
+1761313744
+
+Task ID
+
+"task-unified-1774857405-abc123"
+
+"task-unified-1774857405-abc123"
+
+Actual model name used
+
+"seedance-2.0-text-to-video"
+
+"seedance-2.0-text-to-video"
+
+Specific type of the task
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task details
+
+Show
+child attributes
+
+Output type of the task
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
