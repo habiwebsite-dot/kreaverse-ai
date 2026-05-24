@@ -1,0 +1,591 @@
+cURL
+
+first_frame
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-o3-image-to-video",
+"prompt": "The person in the image slowly turns their head and smiles",
+"image_start": "https://example.com/portrait.jpg",
+"duration": 5,
+"quality": "720p"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-o3-image-to-video",
+"prompt": "The person in the image slowly turns their head and smiles",
+"image_start": "https://example.com/portrait.jpg",
+"duration": 5,
+"quality": "720p"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-o3-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-o3-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+Kling-O3 Image to Video
+
+Kling-O3 Image to Video (kling-o3-image-to-video) generates videos based on input images, powered by the Kling AI kling-v3-omni model
+
+Supports first frame, last frame, reference images, element control, multi-shot, and sound effects
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+first_frame
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-o3-image-to-video",
+"prompt": "The person in the image slowly turns their head and smiles",
+"image_start": "https://example.com/portrait.jpg",
+"duration": 5,
+"quality": "720p"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-o3-image-to-video",
+"prompt": "The person in the image slowly turns their head and smiles",
+"image_start": "https://example.com/portrait.jpg",
+"duration": 5,
+"quality": "720p"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-o3-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-o3-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+All APIs require Bearer Token authentication
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+kling-o3-image-to-video
+
+"kling-o3-image-to-video"
+
+"kling-o3-image-to-video"
+
+Text prompt. Required when multi_shot=false (default), provided by multi_prompt for each shot when multi_shot=true
+
+Note:
+
+Maximum
+2500
+characters
+
+2500
+
+Use
+<<<element_1>>>
+to reference elements,
+<<<image_1>>>
+to reference images
+
+<<<element_1>>>
+
+<<<image_1>>>
+
+2500
+
+First frame image URL
+
+Image format requirements:
+
+Format: JPG / JPEG / PNG
+
+Size: <= 10MB
+
+Dimensions: width and height >= 300px, aspect ratio between 1:2.5 and 2.5:1
+
+Image URL must be directly accessible by the server or trigger a direct download when accessed
+
+Last frame image URL
+
+Constraints:
+
+Last frame requires a first frame
+
+Last frame not supported when total image count exceeds 2
+
+Image URL must be directly accessible by the server or trigger a direct download when accessed
+
+Reference image URL array (not first/last frame, for style/scene/element reference)
+
+Note:
+
+Image URLs must be directly accessible by the server or trigger a direct download when accessed
+
+Video duration (seconds), integer in range 3-15
+
+3 <= x <= 15
+
+Video aspect ratio
+
+16:9
+
+9:16
+
+1:1
+
+Resolution tier
+
+Options:
+
+720p
+: Standard 720P
+
+720p
+
+1080p
+: High quality 1080P
+
+1080p
+
+4k
+: Ultra-high definition 4K
+
+4k
+
+720p
+
+1080p
+
+4k
+
+Sound effect control
+
+on
+
+off
+
+Model extension parameters
+
+Show
+child attributes
+
+HTTPS callback URL for task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security Restrictions:
+
+HTTPS protocol only
+
+Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Maximum
+3
+retries after failure (at
+1
+/
+2
+/
+4
+seconds after failure)
+
+3
+
+1
+
+2
+
+4
+
+Callback response format is consistent with task query API
+
+2xx status code is considered successful, other codes trigger retry
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"kling-o3-image-to-video"
+
+"kling-o3-image-to-video"
+
+Task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task details
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
