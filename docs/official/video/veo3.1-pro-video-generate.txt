@@ -1,0 +1,602 @@
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "veo3.1-pro-beta",
+"prompt": "A cat playing piano"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "veo3.1-pro-beta",
+"prompt": "A cat playing piano"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"veo3.1-pro-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+180
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+25.7
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"veo3.1-pro-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+180
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+25.7
+,
+"user_group"
+:
+"default"
+}
+}
+
+Veo3.1-Pro Video Generation Beta
+
+Veo 3.1 Pro (veo3.1-pro-beta) model supports text-to-video, first-and-last-frame image-to-video and other modes
+
+Asynchronous processing mode, use the returned task ID to
+query
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "veo3.1-pro-beta",
+"prompt": "A cat playing piano"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "veo3.1-pro-beta",
+"prompt": "A cat playing piano"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"veo3.1-pro-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+180
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+25.7
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"veo3.1-pro-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+180
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+25.7
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+Backward Compatible:
+The previously integrated model name
+veo3.1-pro
+is still supported and will be automatically mapped to
+veo3.1-pro-beta
+
+veo3.1-pro
+
+veo3.1-pro-beta
+
+veo3.1-pro-beta
+
+"veo3.1-pro-beta"
+
+"veo3.1-pro-beta"
+
+Prompt describing what kind of video to generate, limited to 2000 tokens
+
+2000
+
+"A cat playing piano"
+
+"A cat playing piano"
+
+Video aspect ratio. When set to
+auto
+: image-to-video will automatically select based on the input image ratio, text-to-video will automatically select based on the prompt content
+
+auto
+
+auto
+
+16:9
+
+9:16
+
+"auto"
+
+"auto"
+
+Reference image URL list for image-to-video feature
+
+Note:
+
+Single request supports up to
+2
+images (1 image for first-frame video generation, 2 images for first-and-last-frame video generation)
+
+2
+
+Image size: no more than
+10MB
+
+10MB
+
+Supported file formats:
+.jpg
+,
+.jpeg
+,
+.png
+,
+.webp
+
+.jpg
+
+.jpeg
+
+.png
+
+.webp
+
+Image URLs must be directly viewable by the server, or the image URL should trigger direct download when accessed (typically these URLs end with image file extensions, such as
+.png
+,
+.jpg
+)
+
+.png
+
+.jpg
+
+2
+
+[
+"http://example.com/image1.jpg"
+]
+
+[
+"http://example.com/image1.jpg"
+]
+
+Video resolution, default is
+720p
+
+720p
+
+720p
+
+1080p
+
+4k
+
+Video generation mode, default matches based on image count, manual selection recommended. Available modes:
+
+TEXT
+: Text to video
+
+TEXT
+
+FIRST&LAST
+: First and last frame to video, supports
+1
+~
+2
+images
+
+FIRST&LAST
+
+1
+
+2
+
+TEXT
+
+FIRST&LAST
+
+Whether to automatically translate the prompt to English. When enabled, non-English prompts will be automatically translated to English for better generation results
+
+true
+
+true
+
+HTTPS callback address after task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation is completed
+
+Security Restrictions:
+
+Only HTTPS protocol is supported
+
+Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Maximum
+3
+retries on failure (retries after
+1
+second/
+2
+seconds/
+4
+seconds)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format is consistent with the task query API response format
+
+Callback address returning 2xx status code is considered successful, other status codes will trigger retry
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"veo3.1-pro-beta"
+
+"veo3.1-pro-beta"
+
+Specific task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task detailed information
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
