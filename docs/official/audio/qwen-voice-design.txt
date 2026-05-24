@@ -1,0 +1,709 @@
+cURL
+
+minimal
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "qwen-voice-design",
+"voice_prompt": "A calm middle-aged male news anchor with a deep, resonant voice, rich in magnetism, steady pace, and clear articulation",
+"preview_text": "Good evening, listeners. Welcome to the evening news broadcast.",
+"preferred_name": "announcer"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "qwen-voice-design",
+"voice_prompt": "A calm middle-aged male news anchor with a deep, resonant voice, rich in magnetism, steady pace, and clear articulation",
+"preview_text": "Good evening, listeners. Welcome to the evening news broadcast.",
+"preferred_name": "announcer"
+}
+'
+
+{
+"created"
+:
+1775123456
+,
+"id"
+:
+"task-unified-1775123456-abcd1234"
+,
+"model"
+:
+"qwen-voice-design"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+15
+,
+"audio_type"
+:
+"voice_design"
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"credits_reserved"
+:
+2
+}
+}
+
+{
+"created"
+:
+1775123456
+,
+"id"
+:
+"task-unified-1775123456-abcd1234"
+,
+"model"
+:
+"qwen-voice-design"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+15
+,
+"audio_type"
+:
+"voice_design"
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"credits_reserved"
+:
+2
+}
+}
+
+Qwen Voice Design
+
+Create a custom voice profile from a text description and receive the voice name and a preview audio clip
+
+Qwen3 TTS VD
+speech synthesis
+must use a voice created by this API
+— system built-in voices are not supported
+
+Asynchronous processing mode; use the returned task ID to
+query the result
+
+Generated audio links are valid for 24 hours — save them promptly
+
+Workflow:
+
+Call this API to create a voice
+
+Poll the task result to obtain
+result_data.voice
+(the voice name)
+
+result_data.voice
+
+Call
+Qwen3 TTS VD
+with the
+voice
+parameter for speech synthesis
+
+voice
+
+cURL
+
+minimal
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "qwen-voice-design",
+"voice_prompt": "A calm middle-aged male news anchor with a deep, resonant voice, rich in magnetism, steady pace, and clear articulation",
+"preview_text": "Good evening, listeners. Welcome to the evening news broadcast.",
+"preferred_name": "announcer"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "qwen-voice-design",
+"voice_prompt": "A calm middle-aged male news anchor with a deep, resonant voice, rich in magnetism, steady pace, and clear articulation",
+"preview_text": "Good evening, listeners. Welcome to the evening news broadcast.",
+"preferred_name": "announcer"
+}
+'
+
+{
+"created"
+:
+1775123456
+,
+"id"
+:
+"task-unified-1775123456-abcd1234"
+,
+"model"
+:
+"qwen-voice-design"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+15
+,
+"audio_type"
+:
+"voice_design"
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"credits_reserved"
+:
+2
+}
+}
+
+{
+"created"
+:
+1775123456
+,
+"id"
+:
+"task-unified-1775123456-abcd1234"
+,
+"model"
+:
+"qwen-voice-design"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+15
+,
+"audio_type"
+:
+"voice_design"
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"credits_reserved"
+:
+2
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All endpoints require Bearer Token authentication##
+
+Get your API Key:
+
+Visit the
+API Key management page
+to obtain your API Key
+
+Add the following header to every request:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name
+
+qwen-voice-design
+
+"qwen-voice-design"
+
+"qwen-voice-design"
+
+A text description of the voice characteristics used to define the voice profile
+
+Constraints:
+
+Maximum
+2048
+characters
+
+2048
+
+Supports Chinese and English only
+
+Suggested dimensions:
+
+Gender: male, female, neutral
+
+Age: child (5-12), teen (13-18), young adult (19-35), middle-aged (36-55), senior (55+)
+
+Pitch: high, medium, low
+
+Pace: fast, moderate, slow
+
+Emotion: cheerful, calm, gentle, serious, lively, composed
+
+Character: magnetic, crisp, husky, mellow, sweet, deep
+
+Use case: news broadcasting, commercial narration, audiobook, animation character, voice assistant
+
+Example descriptions:
+
+A calm middle-aged male with a slow pace, deep magnetic voice, suitable for news reading or documentary narration
+
+A calm middle-aged male with a slow pace, deep magnetic voice, suitable for news reading or documentary narration
+
+A cute child voice, approximately an 8-year-old girl, slightly childlike speech, suitable for animated character dubbing
+
+A cute child voice, approximately an 8-year-old girl, slightly childlike speech, suitable for animated character dubbing
+
+A gentle and intellectual female, around 30 years old, calm tone, suitable for audiobook narration
+
+A gentle and intellectual female, around 30 years old, calm tone, suitable for audiobook narration
+
+2048
+
+"A calm middle-aged male news anchor with a deep, resonant voice, rich in magnetism, steady pace, and clear articulation"
+
+"A calm middle-aged male news anchor with a deep, resonant voice, rich in magnetism, steady pace, and clear articulation"
+
+Preview text used to generate a sample audio clip
+
+Constraints:
+
+Maximum
+1024
+characters
+
+1024
+
+Supports 10 languages: Chinese, English, Japanese, Korean, German, French, Italian, Russian, Portuguese, Spanish
+
+Recommended to match the
+language
+field
+
+language
+
+1024
+
+"Good evening, listeners. Welcome to the evening news broadcast."
+
+"Good evening, listeners. Welcome to the evening news broadcast."
+
+Voice name prefix
+
+Constraints:
+
+Only digits, English letters, and underscores
+
+No more than
+16
+characters
+
+16
+
+The generated full voice name format:
+qwen-tts-vd-{preferred_name}-voice-{timestamp}
+
+qwen-tts-vd-{preferred_name}-voice-{timestamp}
+
+For example, passing
+announcer
+results in a voice name like:
+qwen-tts-vd-announcer-voice-20260402-a1b2
+
+announcer
+
+qwen-tts-vd-announcer-voice-20260402-a1b2
+
+16
+
+^[a-zA-Z0-9_]+$
+
+"announcer"
+
+"announcer"
+
+Language preference for the voice profile; recommended to match
+preview_text
+
+preview_text
+
+Defaults to
+zh
+if not provided
+
+zh
+
+zh
+
+en
+
+ja
+
+ko
+
+de
+
+fr
+
+it
+
+ru
+
+pt
+
+es
+
+"zh"
+
+"zh"
+
+Preview audio sample rate (Hz)
+
+Defaults to
+24000
+if not provided
+
+24000
+
+8000
+
+16000
+
+24000
+
+48000
+
+24000
+
+24000
+
+Preview audio format
+
+Defaults to
+wav
+if not provided
+
+wav
+
+pcm
+
+wav
+
+mp3
+
+opus
+
+"wav"
+
+"wav"
+
+The TTS model that will drive the created voice
+
+Important:
+The
+target_model
+specified when creating the voice must match the model used in subsequent speech synthesis; otherwise synthesis will fail
+
+target_model
+
+Value
+Description
+qwen3-tts-vd-2026-01-26
+Qwen3-TTS-VD non-streaming (default)
+qwen3-tts-vd-realtime-2026-01-15
+Qwen3-TTS-VD-Realtime bidirectional streaming (new)
+qwen3-tts-vd-realtime-2025-12-16
+Qwen3-TTS-VD-Realtime bidirectional streaming (legacy)
+
+Value
+Description
+
+Value
+
+Description
+
+qwen3-tts-vd-2026-01-26
+Qwen3-TTS-VD non-streaming (default)
+
+qwen3-tts-vd-2026-01-26
+
+qwen3-tts-vd-2026-01-26
+
+Qwen3-TTS-VD non-streaming (default)
+
+qwen3-tts-vd-realtime-2026-01-15
+Qwen3-TTS-VD-Realtime bidirectional streaming (new)
+
+qwen3-tts-vd-realtime-2026-01-15
+
+qwen3-tts-vd-realtime-2026-01-15
+
+Qwen3-TTS-VD-Realtime bidirectional streaming (new)
+
+qwen3-tts-vd-realtime-2025-12-16
+Qwen3-TTS-VD-Realtime bidirectional streaming (legacy)
+
+qwen3-tts-vd-realtime-2025-12-16
+
+qwen3-tts-vd-realtime-2025-12-16
+
+Qwen3-TTS-VD-Realtime bidirectional streaming (legacy)
+
+Currently this platform supports
+qwen3-tts-vd-2026-01-26
+(non-streaming); realtime models are not yet integrated but voices can be pre-created
+
+qwen3-tts-vd-2026-01-26
+
+qwen3-tts-vd-2026-01-26
+
+qwen3-tts-vd-realtime-2026-01-15
+
+qwen3-tts-vd-realtime-2025-12-16
+
+"qwen3-tts-vd-2026-01-26"
+
+"qwen3-tts-vd-2026-01-26"
+
+HTTPS callback URL invoked when the task completes
+
+Trigger conditions:
+
+Triggered when the task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security restrictions:
+
+HTTPS only
+
+Internal IP addresses are blocked (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback behavior:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (at 1s / 2s / 4s intervals)
+
+3
+
+Response body format matches the task query API response
+
+A 2xx status code is considered success; other codes trigger a retry
+
+"https://your-domain.com/webhooks/voice-design-completed"
+
+"https://your-domain.com/webhooks/voice-design-completed"
+
+Response
+
+Voice design task created successfully
+
+Task creation timestamp
+
+1775123456
+
+1775123456
+
+Task ID
+
+"task-unified-1775123456-abcd1234"
+
+"task-unified-1775123456-abcd1234"
+
+Actual model name used
+
+"qwen-voice-design"
+
+"qwen-voice-design"
+
+Specific task type
+
+audio.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Audio task details
+
+Show
+child attributes
+
+Task output type
+
+audio
+
+"audio"
+
+"audio"
+
+Usage and billing information
+
+Show
+child attributes
