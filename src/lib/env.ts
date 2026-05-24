@@ -1,6 +1,4 @@
-const required = [
-  'JWT_SECRET',
-] as const;
+const required = ['JWT_SECRET'] as const;
 
 for (const key of required) {
   if (!process.env[key]) {
@@ -16,6 +14,7 @@ export const env = {
   adminEmail: process.env.ADMIN_EMAIL || '',
   adminPasswordHash: process.env.ADMIN_PASSWORD_HASH || '',
   adminTotpSecret: process.env.ADMIN_TOTP_SECRET || '',
+  adminWhatsappCode: process.env.ADMIN_WHATSAPP_CODE || '628511',
   githubToken: process.env.GITHUB_TOKEN || '',
   githubRepo: process.env.GITHUB_REPO || '',
   githubBranch: process.env.GITHUB_BRANCH || 'main',
