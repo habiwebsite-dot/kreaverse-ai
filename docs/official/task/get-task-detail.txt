@@ -1,0 +1,388 @@
+cURL
+
+curl
+--request
+GET
+\
+--url
+https://api.evolink.ai/v1/tasks/{task_id}
+\
+--header
+'Authorization: Bearer <token>'
+
+curl
+--request
+GET
+\
+--url
+https://api.evolink.ai/v1/tasks/{task_id}
+\
+--header
+'Authorization: Bearer <token>'
+
+{
+"created"
+:
+1756817821
+,
+"id"
+:
+"task-unified-1756817821-4x3rx6ny"
+,
+"model"
+:
+"gemini-3.1-flash-image-preview"
+,
+"object"
+:
+"image.generation.task"
+,
+"progress"
+:
+100
+,
+"results"
+: [
+"http://example.com/image.jpg"
+],
+"status"
+:
+"completed"
+,
+"error"
+: {
+"code"
+:
+"content_policy_violation"
+,
+"message"
+:
+"Content policy violation.
+\n
+Your request was blocked by safety filters."
+,
+"type"
+:
+"task_error"
+},
+"task_info"
+: {
+"can_cancel"
+:
+false
+},
+"type"
+:
+"image"
+}
+
+{
+"created"
+:
+1756817821
+,
+"id"
+:
+"task-unified-1756817821-4x3rx6ny"
+,
+"model"
+:
+"gemini-3.1-flash-image-preview"
+,
+"object"
+:
+"image.generation.task"
+,
+"progress"
+:
+100
+,
+"results"
+: [
+"http://example.com/image.jpg"
+],
+"status"
+:
+"completed"
+,
+"error"
+: {
+"code"
+:
+"content_policy_violation"
+,
+"message"
+:
+"Content policy violation.
+\n
+Your request was blocked by safety filters."
+,
+"type"
+:
+"task_error"
+},
+"task_info"
+: {
+"can_cancel"
+:
+false
+},
+"type"
+:
+"image"
+}
+
+Query Task Status
+
+Query the status, progress, and result information of asynchronous tasks by task ID
+
+cURL
+
+curl
+--request
+GET
+\
+--url
+https://api.evolink.ai/v1/tasks/{task_id}
+\
+--header
+'Authorization: Bearer <token>'
+
+curl
+--request
+GET
+\
+--url
+https://api.evolink.ai/v1/tasks/{task_id}
+\
+--header
+'Authorization: Bearer <token>'
+
+{
+"created"
+:
+1756817821
+,
+"id"
+:
+"task-unified-1756817821-4x3rx6ny"
+,
+"model"
+:
+"gemini-3.1-flash-image-preview"
+,
+"object"
+:
+"image.generation.task"
+,
+"progress"
+:
+100
+,
+"results"
+: [
+"http://example.com/image.jpg"
+],
+"status"
+:
+"completed"
+,
+"error"
+: {
+"code"
+:
+"content_policy_violation"
+,
+"message"
+:
+"Content policy violation.
+\n
+Your request was blocked by safety filters."
+,
+"type"
+:
+"task_error"
+},
+"task_info"
+: {
+"can_cancel"
+:
+false
+},
+"type"
+:
+"image"
+}
+
+{
+"created"
+:
+1756817821
+,
+"id"
+:
+"task-unified-1756817821-4x3rx6ny"
+,
+"model"
+:
+"gemini-3.1-flash-image-preview"
+,
+"object"
+:
+"image.generation.task"
+,
+"progress"
+:
+100
+,
+"results"
+: [
+"http://example.com/image.jpg"
+],
+"status"
+:
+"completed"
+,
+"error"
+: {
+"code"
+:
+"content_policy_violation"
+,
+"message"
+:
+"Content policy violation.
+\n
+Your request was blocked by safety filters."
+,
+"type"
+:
+"task_error"
+},
+"task_info"
+: {
+"can_cancel"
+:
+false
+},
+"type"
+:
+"image"
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Path Parameters
+
+Task ID, ignore {} when querying, append the id from the async task response body at the end of the path
+
+Response
+
+Task status details
+
+Task creation timestamp
+
+1756817821
+
+1756817821
+
+Task ID
+
+"task-unified-1756817821-4x3rx6ny"
+
+"task-unified-1756817821-4x3rx6ny"
+
+Model used
+
+"gemini-3.1-flash-image-preview"
+
+"gemini-3.1-flash-image-preview"
+
+Task type
+
+image.generation.task
+
+video.generation.task
+
+audio.generation.task
+
+"image.generation.task"
+
+"image.generation.task"
+
+Task progress percentage
+
+0 <= x <= 100
+
+100
+
+100
+
+Task result list (provided when completed)
+
+[
+"http://example.com/image.jpg"
+]
+
+[
+"http://example.com/image.jpg"
+]
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"completed"
+
+"completed"
+
+Error information when the task fails (only present when status is "failed"). Note: error.code here is a string-type business error code, different from HTTP status codes. See the Error Codes Reference for the complete list.
+
+Show
+child attributes
+
+Task detailed information
+
+Show
+child attributes
+
+Task type
+
+image
+
+video
+
+audio
+
+text
+
+"image"
+
+"image"
