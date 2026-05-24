@@ -1,0 +1,387 @@
+cURL
+
+first_frame
+
+{
+"created": 1757169743,
+"id": "task-unified-1757169743-7cvnl5zw",
+"model": "kling-o1-image-to-video",
+"progress": 0,
+"status": "pending",
+"task_info": {
+"can_cancel": true,
+"estimated_time": 300,
+"video_duration": 9
+},
+"type": "video",
+"usage": {
+"billing_rule": "per_call",
+"credits_reserved": 7,
+"user_group": "default"
+}
+}
+
+{
+"created": 1757169743,
+"id": "task-unified-1757169743-7cvnl5zw",
+"model": "kling-o1-image-to-video",
+"progress": 0,
+"status": "pending",
+"task_info": {
+"can_cancel": true,
+"estimated_time": 300,
+"video_duration": 9
+},
+"type": "video",
+"usage": {
+"billing_rule": "per_call",
+"credits_reserved": 7,
+"user_group": "default"
+}
+}
+
+Kling-O1 Image to Video
+
+Kling-O1 Image to Video (kling-o1-image-to-video) model supports image-to-video generation
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+first_frame
+
+{
+"created": 1757169743,
+"id": "task-unified-1757169743-7cvnl5zw",
+"model": "kling-o1-image-to-video",
+"progress": 0,
+"status": "pending",
+"task_info": {
+"can_cancel": true,
+"estimated_time": 300,
+"video_duration": 9
+},
+"type": "video",
+"usage": {
+"billing_rule": "per_call",
+"credits_reserved": 7,
+"user_group": "default"
+}
+}
+
+{
+"created": 1757169743,
+"id": "task-unified-1757169743-7cvnl5zw",
+"model": "kling-o1-image-to-video",
+"progress": 0,
+"status": "pending",
+"task_info": {
+"can_cancel": true,
+"estimated_time": 300,
+"video_duration": 9
+},
+"type": "video",
+"usage": {
+"billing_rule": "per_call",
+"credits_reserved": 7,
+"user_group": "default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+All APIs require Bearer Token authentication
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+kling-o1-image-to-video
+
+"kling-o1-image-to-video"
+
+"kling-o1-image-to-video"
+
+Prompt describing what video to generate
+
+5000
+
+"A cat walking gracefully"
+
+"A cat walking gracefully"
+
+Reference image URL list for image-to-video generation
+
+Note:
+
+Supports
+1
+to
+2
+images per request (
+1
+image for first-frame video generation,
+2
+images for first-and-last-frame video generation)
+
+1
+
+2
+
+1
+
+2
+
+Image size: up to
+10MB
+
+10MB
+
+Supported formats:
+.jpg
+,
+.jpeg
+,
+.png
+,
+.webp
+
+.jpg
+
+.jpeg
+
+.png
+
+.webp
+
+Image URL must be directly accessible by the server, or the URL should trigger a direct download when accessed (typically URLs ending with image extensions like
+.png
+,
+.jpg
+)
+
+.png
+
+.jpg
+
+1 - 2
+
+["https://example.com/image1.jpg"]
+
+["https://example.com/image1.jpg"]
+
+Video aspect ratio
+
+Options:
+
+16:9
+: Landscape video
+
+16:9
+
+9:16
+: Portrait video
+
+9:16
+
+1:1
+: Square video
+
+1:1
+
+16:9
+
+9:16
+
+1:1
+
+"16:9"
+
+"16:9"
+
+Video duration in seconds, defaults to
+5
+seconds
+
+5
+
+Note:
+
+Only supports
+5
+or
+10
+values, representing
+5 seconds
+or
+10 seconds
+
+5
+
+10
+
+5 seconds
+
+10 seconds
+
+Billing is based on the
+duration
+value, longer duration costs more
+
+duration
+
+5
+
+10
+
+5
+
+5
+
+HTTPS callback URL for task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security Restrictions:
+
+HTTPS protocol only
+
+Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Maximum
+3
+retries after failure (at
+1
+/
+2
+/
+4
+seconds after failure)
+
+3
+
+1
+
+2
+
+4
+
+Callback response format is consistent with task query API
+
+2xx status code is considered successful, other codes trigger retry
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"kling-o1-image-to-video"
+
+"kling-o1-image-to-video"
+
+Task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task details
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
