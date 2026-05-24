@@ -1,0 +1,643 @@
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "grok-imagine-image-to-video-beta",
+"prompt": "The person starts dancing",
+"image_urls": [
+"https://example.com/image.jpg"
+],
+"duration": 6,
+"mode": "normal",
+"quality": "480p"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "grok-imagine-image-to-video-beta",
+"prompt": "The person starts dancing",
+"image_urls": [
+"https://example.com/image.jpg"
+],
+"duration": 6,
+"mode": "normal",
+"quality": "480p"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"grok-imagine-image-to-video-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+4.8
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"grok-imagine-image-to-video-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+4.8
+,
+"user_group"
+:
+"default"
+}
+}
+
+Grok Imagine Image to Video Beta
+
+Grok Imagine (grok-imagine-image-to-video-beta) model supports image-to-video mode
+
+Asynchronous processing mode, use the returned task ID to
+query
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "grok-imagine-image-to-video-beta",
+"prompt": "The person starts dancing",
+"image_urls": [
+"https://example.com/image.jpg"
+],
+"duration": 6,
+"mode": "normal",
+"quality": "480p"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "grok-imagine-image-to-video-beta",
+"prompt": "The person starts dancing",
+"image_urls": [
+"https://example.com/image.jpg"
+],
+"duration": 6,
+"mode": "normal",
+"quality": "480p"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"grok-imagine-image-to-video-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+4.8
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"grok-imagine-image-to-video-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+4.8
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name
+
+Backward Compatible:
+The previously integrated model name
+grok-imagine-image-to-video
+is still supported and will be automatically mapped to
+grok-imagine-image-to-video-beta
+
+grok-imagine-image-to-video
+
+grok-imagine-image-to-video-beta
+
+grok-imagine-image-to-video-beta
+
+"grok-imagine-image-to-video-beta"
+
+"grok-imagine-image-to-video-beta"
+
+Video description prompt
+
+"The person starts dancing"
+
+"The person starts dancing"
+
+Reference image URL list
+
+Requirements:
+
+Supports
+1
+~
+7
+images per request
+
+1
+
+7
+
+Image size: max
+10MB
+
+10MB
+
+Supported formats: JPEG, PNG, WebP
+
+1 - 7
+
+[
+"https://example.com/image.jpg"
+]
+
+[
+"https://example.com/image.jpg"
+]
+
+Video duration (seconds), any integer between
+6
+and
+30
+seconds
+
+6
+
+30
+
+6 <= x <= 30
+
+6
+
+6
+
+Generation style
+
+Options:
+
+fun
+: Fun style
+
+fun
+
+normal
+: Normal style (default)
+
+normal
+
+spicy
+: Spicy style
+
+spicy
+
+fun
+
+normal
+
+spicy
+
+"normal"
+
+"normal"
+
+Aspect ratio (only effective in multi-image mode; in single-image mode, video size follows the input image)
+
+Options:
+
+16:9
+: Landscape (default)
+
+16:9
+
+9:16
+: Portrait
+
+9:16
+
+1:1
+: Square
+
+1:1
+
+3:2
+: Landscape 3:2
+
+3:2
+
+2:3
+: Portrait 2:3
+
+2:3
+
+16:9
+
+9:16
+
+1:1
+
+3:2
+
+2:3
+
+"16:9"
+
+"16:9"
+
+Video resolution, default is
+480p
+
+480p
+
+Options:
+
+480p
+: Standard definition (default)
+
+480p
+
+720p
+: High definition
+
+720p
+
+480p
+
+720p
+
+"480p"
+
+"480p"
+
+HTTPS callback URL after task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security Restrictions:
+
+Only HTTPS protocol supported
+
+Callback to internal IPs prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Max
+3
+retries on failure (after
+1
+/
+2
+/
+4
+seconds)
+
+3
+
+1
+
+2
+
+4
+
+Response format matches task query API
+
+2xx status code = success, others trigger retry
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"grok-imagine-image-to-video-beta"
+
+"grok-imagine-image-to-video-beta"
+
+Specific task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task detailed information
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
