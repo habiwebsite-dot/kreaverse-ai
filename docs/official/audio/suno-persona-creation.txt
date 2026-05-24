@@ -1,0 +1,462 @@
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "suno-persona",
+"model_params": {
+"source_task_id": "task-unified-1774169216-ocqaqde7",
+"result_id": "4fcc4507-a7ae-4441-ad8a-465c2f61d5bb",
+"name": "Electronic Pop Singer",
+"description": "Modern electronic style with energetic beats and synthesizer tones for dance music"
+}
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "suno-persona",
+"model_params": {
+"source_task_id": "task-unified-1774169216-ocqaqde7",
+"result_id": "4fcc4507-a7ae-4441-ad8a-465c2f61d5bb",
+"name": "Electronic Pop Singer",
+"description": "Modern electronic style with energetic beats and synthesizer tones for dance music"
+}
+}
+'
+
+200
+
+Example
+
+{
+"created"
+:
+1774170584
+,
+"id"
+:
+"task-unified-1774170584-su75smg7"
+,
+"model"
+:
+"suno-persona"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+false
+,
+"estimated_time"
+:
+15
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1774170584
+,
+"id"
+:
+"task-unified-1774170584-su75smg7"
+,
+"model"
+:
+"suno-persona"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+false
+,
+"estimated_time"
+:
+15
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1
+,
+"user_group"
+:
+"default"
+}
+}
+
+Suno Persona Creation Beta
+
+Extract reusable Persona (vocal/style characteristics) from completed Suno music generation tasks
+
+After successful creation, a
+persona_id
+is returned, which can be applied in subsequent
+Suno Music Generation
+via
+persona_id
+and
+persona_model
+parameters
+
+persona_id
+
+persona_id
+
+persona_model
+
+Source task model version must be
+suno-v4 or above
+(v3.5 not supported)
+
+Each song (result_id) can only create
+one Persona
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Cannot create a new Persona from a Persona task
+
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "suno-persona",
+"model_params": {
+"source_task_id": "task-unified-1774169216-ocqaqde7",
+"result_id": "4fcc4507-a7ae-4441-ad8a-465c2f61d5bb",
+"name": "Electronic Pop Singer",
+"description": "Modern electronic style with energetic beats and synthesizer tones for dance music"
+}
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "suno-persona",
+"model_params": {
+"source_task_id": "task-unified-1774169216-ocqaqde7",
+"result_id": "4fcc4507-a7ae-4441-ad8a-465c2f61d5bb",
+"name": "Electronic Pop Singer",
+"description": "Modern electronic style with energetic beats and synthesizer tones for dance music"
+}
+}
+'
+
+200
+
+Example
+
+{
+"created"
+:
+1774170584
+,
+"id"
+:
+"task-unified-1774170584-su75smg7"
+,
+"model"
+:
+"suno-persona"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+false
+,
+"estimated_time"
+:
+15
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1774170584
+,
+"id"
+:
+"task-unified-1774170584-su75smg7"
+,
+"model"
+:
+"suno-persona"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+false
+,
+"estimated_time"
+:
+15
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name, fixed as
+suno-persona
+
+suno-persona
+
+suno-persona
+
+"suno-persona"
+
+"suno-persona"
+
+Persona creation parameters
+
+Show
+child attributes
+
+Response
+
+Persona creation task submitted successfully
+
+Task creation timestamp
+
+1774170584
+
+1774170584
+
+Task ID, used to query task status and results
+
+"task-unified-1774170584-su75smg7"
+
+"task-unified-1774170584-su75smg7"
+
+Actual model name used
+
+"suno-persona"
+
+"suno-persona"
+
+Task type
+
+audio.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Task details
+
+Show
+child attributes
+
+Task output type
+
+audio
+
+"audio"
+
+"audio"
+
+Usage and billing information
+
+Show
+child attributes
