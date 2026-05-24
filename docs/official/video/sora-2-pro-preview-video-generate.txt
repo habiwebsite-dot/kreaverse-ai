@@ -1,0 +1,638 @@
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "sora-2-pro-preview",
+"prompt": "A cat playing piano"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "sora-2-pro-preview",
+"prompt": "A cat playing piano"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"sora-2-pro-preview"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"sora-2-pro-preview"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+Sora-2-Pro Video Generation
+
+Sora 2 Pro (sora-2-pro-preview) model supports text-to-video, image-to-video and other modes
+
+Asynchronous processing mode, use the returned task ID to
+query
+
+Generated video links are valid for 24 hours, please save them promptly
+
+Note:
+
+Currently Sora2’s content moderation mechanism is very strict, tasks may fail due to this
+
+Image input containing real human figures is not currently supported
+
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "sora-2-pro-preview",
+"prompt": "A cat playing piano"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "sora-2-pro-preview",
+"prompt": "A cat playing piano"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"sora-2-pro-preview"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"sora-2-pro-preview"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+sora-2-pro-preview
+
+"sora-2-pro-preview"
+
+"sora-2-pro-preview"
+
+Prompt describing what kind of video to generate, limited to 5000 tokens
+
+5000
+
+"A cat playing piano"
+
+"A cat playing piano"
+
+Video aspect ratio,
+16:9
+generates landscape video,
+9:16
+generates portrait video
+
+16:9
+
+9:16
+
+16:9
+
+9:16
+
+"16:9"
+
+"16:9"
+
+Specifies the generated video duration (seconds), supports
+4
+,
+8
+,
+12
+values, representing
+4 seconds
+,
+8 seconds
+,
+12 seconds
+
+4
+
+8
+
+12
+
+4 seconds
+
+8 seconds
+
+12 seconds
+
+Note:
+
+Currently only supports
+4
+,
+8
+,
+12
+values
+
+4
+
+8
+
+12
+
+Billing is based on the
+duration
+value, longer duration costs more
+
+duration
+
+4
+
+4
+
+Video quality
+
+Note:
+
+720p
+: Standard quality, standard pricing
+
+720p
+
+1080p
+: High quality, pricing is
+1.667x
+the standard price
+
+1080p
+
+1.667x
+
+720p
+
+1080p
+
+"720p"
+
+"720p"
+
+Reference image URL list for image-to-video feature
+
+Note:
+
+Images containing real human figures are not supported
+
+Single request supports input image quantity:
+1
+image
+
+1
+
+Image size: no more than
+10MB
+
+10MB
+
+Supported file formats:
+.jpg
+,
+.jpeg
+,
+.png
+,
+.webp
+
+.jpg
+
+.jpeg
+
+.png
+
+.webp
+
+Image URLs must be directly viewable by the server, or the image URL should trigger direct download when accessed (typically these URLs end with image file extensions, such as
+.png
+,
+.jpg
+)
+
+.png
+
+.jpg
+
+1
+
+[
+"http://example.com/image1.jpg"
+]
+
+[
+"http://example.com/image1.jpg"
+]
+
+HTTPS callback address after task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation is completed
+
+Security Restrictions:
+
+Only HTTPS protocol is supported
+
+Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Maximum
+3
+retries on failure (retries after
+1
+second/
+2
+seconds/
+4
+seconds)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format is consistent with the task query API response format
+
+Callback address returning 2xx status code is considered successful, other status codes will trigger retry
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"sora-2-pro-preview"
+
+"sora-2-pro-preview"
+
+Specific task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task detailed information
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
