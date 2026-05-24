@@ -1,0 +1,435 @@
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/stream
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: multipart/form-data'
+\
+--form
+file='@example-file'
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/stream
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: multipart/form-data'
+\
+--form
+file='@example-file'
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"photo.png"
+,
+"original_name"
+:
+"photo.png"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/png"
+,
+"upload_path"
+:
+"photos"
+,
+"file_url"
+:
+"https://files.evolink.ai/photos/photo.png"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"photo.png"
+,
+"original_name"
+:
+"photo.png"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/png"
+,
+"upload_path"
+:
+"photos"
+,
+"file_url"
+:
+"https://files.evolink.ai/photos/photo.png"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+File Stream Upload
+
+Upload files using multipart/form-data format
+
+Supports both underscore and camelCase parameter naming
+
+Suitable for uploading local files directly
+
+Files will expire after 72 hours
+
+Current user quota is limited. Uploads will fail when quota is exhausted. Please save locally if persistent storage is needed
+
+Note:
+The file upload API base URL is
+https://files-api.evolink.ai
+
+https://files-api.evolink.ai
+
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/stream
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: multipart/form-data'
+\
+--form
+file='@example-file'
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/stream
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: multipart/form-data'
+\
+--form
+file='@example-file'
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"photo.png"
+,
+"original_name"
+:
+"photo.png"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/png"
+,
+"upload_path"
+:
+"photos"
+,
+"file_url"
+:
+"https://files.evolink.ai/photos/photo.png"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"photo.png"
+,
+"original_name"
+:
+"photo.png"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/png"
+,
+"upload_path"
+:
+"photos"
+,
+"file_url"
+:
+"https://files.evolink.ai/photos/photo.png"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+File binary data
+
+Note:
+
+Upload via form-data format
+
+System will automatically identify file type
+
+Maximum
+1
+image per request
+
+1
+
+Currently supports uploading files in:
+image/jpeg
+,
+image/png
+,
+image/gif
+,
+image/webp
+formats only
+
+image/jpeg
+
+image/png
+
+image/gif
+
+image/webp
+
+Custom upload path
+
+Note:
+
+Supports underscore naming:
+upload_path
+
+upload_path
+
+Supports camelCase naming:
+uploadPath
+
+uploadPath
+
+If not specified, system will automatically categorize based on file type
+
+"photos"
+
+"photos"
+
+Custom file name
+
+Note:
+
+Supports underscore naming:
+file_name
+
+file_name
+
+Supports camelCase naming:
+fileName
+
+fileName
+
+If not specified, system will automatically generate a unique file name
+
+"photo.png"
+
+"photo.png"
+
+Response
+
+File uploaded successfully
+
+Whether the request was successful
+
+true
+
+true
+
+Response status code
+
+200
+
+200
+
+Response message
+
+"File uploaded successfully"
+
+"File uploaded successfully"
+
+Show
+child attributes
