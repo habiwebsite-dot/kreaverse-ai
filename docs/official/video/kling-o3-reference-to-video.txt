@@ -1,0 +1,639 @@
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-o3-reference-to-video",
+"prompt": "Keep the same motion style, change to a snowy background",
+"video_url": "https://example.com/reference.mp4",
+"duration": 5,
+"aspect_ratio": "16:9",
+"quality": "720p"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-o3-reference-to-video",
+"prompt": "Keep the same motion style, change to a snowy background",
+"video_url": "https://example.com/reference.mp4",
+"duration": 5,
+"aspect_ratio": "16:9",
+"quality": "720p"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-o3-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-o3-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+Kling-O3 Reference to Video
+
+Kling-O3 Reference to Video (kling-o3-reference-to-video) generates new videos based on the style and motion characteristics of a reference video, powered by the Kling AI kling-v3-omni model
+
+The reference video serves as a feature reference (not direct editing), and can be combined with text, reference images, and elements for creation
+
+Sound effect generation is not supported when video input is provided (sound is forced off)
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-o3-reference-to-video",
+"prompt": "Keep the same motion style, change to a snowy background",
+"video_url": "https://example.com/reference.mp4",
+"duration": 5,
+"aspect_ratio": "16:9",
+"quality": "720p"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-o3-reference-to-video",
+"prompt": "Keep the same motion style, change to a snowy background",
+"video_url": "https://example.com/reference.mp4",
+"duration": 5,
+"aspect_ratio": "16:9",
+"quality": "720p"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-o3-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-o3-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+9
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+7
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+All APIs require Bearer Token authentication
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+kling-o3-reference-to-video
+
+"kling-o3-reference-to-video"
+
+"kling-o3-reference-to-video"
+
+Text prompt, max 2500 characters
+
+Reference syntax:
+You can reference elements, images, and videos in the prompt using
+<<<xxx>>>
+syntax, for example:
+<<<element_1>>> walking in the scene style of <<<video_1>>>
+
+<<<xxx>>>
+
+<<<element_1>>> walking in the scene style of <<<video_1>>>
+
+2500
+
+"Keep the same motion style, change to a snowy background"
+
+"Keep the same motion style, change to a snowy background"
+
+Reference video URL
+
+Video format requirements:
+
+Format: MP4 / MOV
+
+Size: <= 200MB
+
+Duration: >= 3 seconds
+
+Dimensions: width and height 720px ~ 2160px
+
+Frame rate: 24fps ~ 60fps
+
+Video URL must be directly accessible by the server
+
+"https://example.com/reference.mp4"
+
+"https://example.com/reference.mp4"
+
+Whether to keep original sound from reference video
+
+Options:
+
+true
+: Keep the original video sound (default)
+
+true
+
+false
+: Do not keep the original video sound
+
+false
+
+true
+
+true
+
+Reference image URL array (style/scene reference)
+
+Constraint:
+Image count + element count <= 4 when video is provided
+
+Note:
+
+Image URLs must be directly accessible by the server or trigger a direct download when accessed
+
+[
+"https://example.com/style.jpg"
+]
+
+[
+"https://example.com/style.jpg"
+]
+
+Video duration (seconds), range 3~10
+
+Note:
+Shorter than the 15-second maximum for text-to-video/image-to-video, max supported duration is 10 seconds
+
+3 <= x <= 10
+
+5
+
+5
+
+Video aspect ratio
+
+Options:
+
+16:9
+: Landscape video
+
+16:9
+
+9:16
+: Portrait video
+
+9:16
+
+1:1
+: Square video
+
+1:1
+
+16:9
+
+9:16
+
+1:1
+
+"16:9"
+
+"16:9"
+
+Resolution tier
+
+Options:
+
+720p
+: Standard 720P
+
+720p
+
+1080p
+: High quality 1080P
+
+1080p
+
+720p
+
+1080p
+
+"720p"
+
+"720p"
+
+Advanced parameters
+
+Show
+child attributes
+
+HTTPS callback URL for task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security Restrictions:
+
+HTTPS protocol only
+
+Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Maximum
+3
+retries after failure (at
+1
+/
+2
+/
+4
+seconds after failure)
+
+3
+
+1
+
+2
+
+4
+
+Callback response format is consistent with task query API
+
+2xx status code is considered successful, other codes trigger retry
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"kling-o3-reference-to-video"
+
+"kling-o3-reference-to-video"
+
+Task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task details
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
