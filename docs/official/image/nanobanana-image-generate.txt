@@ -1,0 +1,551 @@
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "nano-banana-beta",
+"prompt": "A cat playing on the grass"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "nano-banana-beta",
+"prompt": "A cat playing on the grass"
+}
+'
+
+{
+"created"
+:
+1757165031
+,
+"id"
+:
+"task-unified-1757165031-uyujaw3d"
+,
+"model"
+:
+"nano-banana-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+45
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.6
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757165031
+,
+"id"
+:
+"task-unified-1757165031-uyujaw3d"
+,
+"model"
+:
+"nano-banana-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+45
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.6
+,
+"user_group"
+:
+"default"
+}
+}
+
+Nanobanana Image Generation Beta
+
+Nano Banana (nano-banana-beta) model supports text-to-image, image-to-image, image editing and other generation modes
+
+Asynchronous processing mode, use the returned task ID to
+query
+
+Generated image links are valid for 24 hours, please save them promptly
+
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "nano-banana-beta",
+"prompt": "A cat playing on the grass"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "nano-banana-beta",
+"prompt": "A cat playing on the grass"
+}
+'
+
+{
+"created"
+:
+1757165031
+,
+"id"
+:
+"task-unified-1757165031-uyujaw3d"
+,
+"model"
+:
+"nano-banana-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+45
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.6
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757165031
+,
+"id"
+:
+"task-unified-1757165031-uyujaw3d"
+,
+"model"
+:
+"nano-banana-beta"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+45
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.6
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Image generation model name
+
+Backward Compatible:
+The previously integrated model name
+gemini-2.5-flash-image
+is still supported and will be automatically mapped to
+nano-banana-beta
+
+gemini-2.5-flash-image
+
+nano-banana-beta
+
+nano-banana-beta
+
+"nano-banana-beta"
+
+"nano-banana-beta"
+
+Prompt describing the image to be generated, or describing how to edit the input image, limited to 2000 tokens
+
+2000
+
+"A cat playing in the grass"
+
+"A cat playing in the grass"
+
+Aspect ratio of the generated image, default value is
+auto
+
+auto
+
+auto
+
+1:1
+
+2:3
+
+3:2
+
+4:3
+
+3:4
+
+16:9
+
+9:16
+
+Reference image URL list for image-to-image and image editing functions
+
+Note:
+
+Maximum number of input images per request:
+5
+
+5
+
+Image size: not exceeding
+10MB
+
+10MB
+
+Supported file formats:
+.jpeg
+,
+.jpg
+,
+.png
+,
+.webp
+
+.jpeg
+
+.jpg
+
+.png
+
+.webp
+
+Image URLs must be directly accessible by the server, or the image URL should directly download when accessed (typically these URLs end with image file extensions, such as
+.png
+,
+.jpg
+)
+
+.png
+
+.jpg
+
+[
+"https://example.com/image1.png"
+,
+"https://example.com/image2.png"
+]
+
+[
+"https://example.com/image1.png"
+,
+"https://example.com/image2.png"
+]
+
+HTTPS callback address after task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation is completed
+
+Security Restrictions:
+
+Only HTTPS protocol is supported
+
+Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Maximum
+3
+retries on failure (retries after
+1
+second/
+2
+seconds/
+4
+seconds)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format is consistent with the task query API response format
+
+Callback address returning 2xx status code is considered successful, other status codes will trigger retry
+
+"https://your-domain.com/webhooks/image-task-completed"
+
+"https://your-domain.com/webhooks/image-task-completed"
+
+Response
+
+Image generation task created successfully
+
+Task creation timestamp
+
+1757165031
+
+1757165031
+
+Task ID
+
+"task-unified-1757165031-uyujaw3d"
+
+"task-unified-1757165031-uyujaw3d"
+
+Actual model name used
+
+"nano-banana-beta"
+
+"nano-banana-beta"
+
+Specific task type
+
+image.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Asynchronous task information
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"image"
+
+"image"
+
+Usage and billing information
+
+Show
+child attributes
