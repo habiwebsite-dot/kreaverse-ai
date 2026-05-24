@@ -1,0 +1,159 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============= USERS =============
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  name          String?
+  isActive      Boolean   @default(true)
+  isAdmin       Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  devices       Device[]
+  apiKey        ApiKey?
+  tasks         Task[]
+  results       Result[]
+  sessions      Session[]
+
+  @@map("users")
+}
+
+// ============= DEVICE LOCK =============
+model Device {
+  id            String    @id @default(cuid())
+  userId        String
+  fingerprint   String    @unique // Device identifier
+  userAgent     String
+  ipAddress     String
+  lastActiveAt  DateTime  @default(now())
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("devices")
+}
+
+// ============= SESSION =============
+model Session {
+  id            String    @id @default(cuid())
+  userId        String
+  token         String    @unique
+  deviceId      String?
+  expiresAt     DateTime
+  createdAt     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+// ============= API KEY MANAGEMENT =============
+model ApiKey {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  key           String    @unique
+  isActive      Boolean   @default(true)
+  creditsUsed   Int       @default(0)
+  creditsLimit  Int       @default(0) // 0 = unlimited (admin mode)
+  createdAt     DateTime  @default(now())
+  lastUsedAt    DateTime?
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("api_keys")
+}
+
+// ============= API KEY POOL (ADMIN) =============
+model AdminApiKeyPool {
+  id            String    @id @default(cuid())
+  key           String    @unique
+  provider      String    // 'evolink', 'auphonic'
+  isActive      Boolean   @default(true)
+  failureCount  Int       @default(0)
+  lastFailedAt  DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("admin_api_key_pool")
+}
+
+// ============= TASKS (ASYNC GENERATION) =============
+model Task {
+  id            String    @id @default(cuid())
+  userId        String
+  type          String    // 'music_cover', 'image_gen', 'video_gen', 'mastering'
+  provider      String    // 'suno', 'nanobanana', 'seedance', 'auphonic'
+  externalTaskId String?  // Task ID from Evolink/Auphonic
+  status        String    @default("pending") // pending, processing, completed, failed
+  progress      Int       @default(0) // 0-100
+  inputData     Json
+  outputData    Json?
+  errorMessage  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  completedAt   DateTime?
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  result        Result?
+
+  @@index([userId])
+  @@index([status])
+  @@map("tasks")
+}
+
+// ============= RESULTS (GENERATED CONTENT) =============
+model Result {
+  id            String    @id @default(cuid())
+  userId        String
+  taskId        String    @unique
+  type          String    // 'image', 'audio', 'video'
+  title         String?
+  description   String?
+  cloudinaryUrl String    // Public URL
+  cloudinaryId  String    // For deletion
+  metadata      Json?     // Additional info (duration, dimensions, etc)
+  isStarred     Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task          Task      @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([type])
+  @@map("results")
+}
+
+// ============= SITE CONFIG (FOR ADMIN ASSET EDITOR) =============
+model SiteConfig {
+  id            String    @id @default(cuid())
+  key           String    @unique
+  value         Json
+  updatedAt     DateTime  @updatedAt
+
+  @@map("site_config")
+}
+
+// ============= WATERMARK TRACKING =============
+model WatermarkTrack {
+  id            String    @id @default(cuid())
+  deviceFingerprint String
+  lastShownAt   DateTime  @default(now())
+  count         Int       @default(1)
+
+  @@unique([deviceFingerprint])
+  @@map("watermark_track")
+}
