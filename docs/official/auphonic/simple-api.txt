@@ -1,0 +1,964 @@
+Auphonic Web Service
+
+Audio Algorithms
+
+Auphonic API
+Auphonic Simple API
+Start a Production and Upload a File
+Upload Files with HTTP
+Upload Files with External Services (SFTP/FTP/Dropbox/etc.)
+Detailed Audio Metadata
+Adding Chapter Marks
+Audio Algorithms
+Overview of all Parameters
+JSON API: Start Productions using Presets
+JSON API: Details of Productions and Presets
+Query Data
+Update and Delete existing Resources
+Multitrack Productions and Presets
+Authentication
+Webhooks
+External Service Integration using the Auphonic API
+API Examples
+
+Auphonic Simple API
+Start a Production and Upload a File
+Upload Files with HTTP
+Upload Files with External Services (SFTP/FTP/Dropbox/etc.)
+Detailed Audio Metadata
+Adding Chapter Marks
+Audio Algorithms
+Overview of all Parameters
+
+Start a Production and Upload a File
+
+Upload Files with HTTP
+
+Upload Files with External Services (SFTP/FTP/Dropbox/etc.)
+
+Detailed Audio Metadata
+
+Adding Chapter Marks
+
+Audio Algorithms
+
+Overview of all Parameters
+
+JSON API: Start Productions using Presets
+
+JSON API: Details of Productions and Presets
+
+Query Data
+
+Update and Delete existing Resources
+
+Multitrack Productions and Presets
+
+Authentication
+
+Webhooks
+
+External Service Integration using the Auphonic API
+
+API Examples
+
+Further Resources
+
+Auphonic API
+
+Auphonic Simple API
+
+Auphonic Simple API
+
+
+The Auphonic Simple API should be used for small scripts like batch
+processing of multiple files.
+It is possible to upload files, set metadata, reference an existing
+Preset
+,
+save and start productions in a single
+multipart/form-data
+HTTP request.
+This makes it ideal for quick shell scripts and easy integrations.
+
+multipart/form-data
+
+Also take a look at our
+Zapier Interface
+, which helps
+in automating podcast workflows and integrates hundreds of web services without any coding.
+For a more convenient command-line experience, check out the
+Auphonic CLI
+.
+
+Start a Production and Upload a File
+
+
+The following
+POST request
+creates a new production and references an existing
+Preset
+:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+simple
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"preset=My Podcast Preset"
+\
+-
+F
+"title=My First Production"
+\
+-
+F
+"input_file=@/home/user/your_audio_or_video_file.mp3"
+\
+-
+F
+"action=start"
+
+api_key
+: your Auphonic API Key, please see
+API Key Authentication
+,
+HTTP Basic Authentication
+and
+OAuth 2.0 Authentication
+
+api_key
+: your Auphonic API Key, please see
+API Key Authentication
+,
+HTTP Basic Authentication
+and
+OAuth 2.0 Authentication
+
+api_key
+
+preset
+: UUID or name of the preset to use as template, you can find available presets on the
+Preset Page
+. If multiple presets share the same name, the most recently created personal preset takes priority over shared presets and Auphonic presets.
+
+preset
+: UUID or name of the preset to use as template, you can find available presets on the
+Preset Page
+. If multiple presets share the same name, the most recently created personal preset takes priority over shared presets and Auphonic presets.
+
+preset
+
+title
+: the title metadata tag of the production
+
+title
+: the title metadata tag of the production
+
+title
+
+input_file
+: the local audio or video file you want to upload
+
+input_file
+: the local audio or video file you want to upload
+
+input_file
+
+action
+: can be
+start
+to start your production, or
+save
+to just save the data without starting the production
+
+action
+: can be
+start
+to start your production, or
+save
+to just save the data without starting the production
+
+action
+
+Note
+
+When uploading files,
+curl
+needs an “@” in front of the filename!
+
+This request returns JSON data containing details about the newly created production,
+for a detailed description of the response see
+Details about a Production
+.
+See also
+how to download result media files
+!
+
+Upload Files with HTTP
+
+
+It’s also possible to fetch a file from an external HTTP server as input audio:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+simple
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"preset=ceigtvDv8jH6NaK52Z5eXH"
+\
+-
+F
+"title=My First HTTP Production"
+\
+-
+F
+"input_file=https://your_server.com/somefile.mp3"
+\
+-
+F
+"action=start"
+
+Just set the HTTP URL using the parameter
+input_file
+, everything else
+stays the same.
+
+input_file
+
+Upload Files with External Services (SFTP/FTP/Dropbox/etc.)
+
+
+When fetching files from SFTP, FTP, Dropbox, Amazon S3, SoundCloud
+or other
+External Services
+,
+it’s necessary to reference the external service:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+simple
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"preset=My Podcast Preset"
+\
+-
+F
+"service=pmefeNCzkyT4TbRbDmoCDf"
+\
+-
+F
+"input_file=my_dropbox_file.mp3"
+\
+-
+F
+"title=My First Dropbox Production"
+\
+-
+F
+"action=start"
+
+service
+: the UUID of your registered external service (SFTP, FTP, Dropbox, SoundCloud, etc.), see
+Services Page
+
+service
+: the UUID of your registered external service (SFTP, FTP, Dropbox, SoundCloud, etc.), see
+Services Page
+
+service
+
+input_file
+: the filename of the input file (e.g. on the Dropbox server, in the auphonic path)
+
+input_file
+: the filename of the input file (e.g. on the Dropbox server, in the auphonic path)
+
+input_file
+
+preset
+: the UUID or name of the preset you want to use. If multiple presets share the same name, the most recently created personal preset takes priority over shared presets and Auphonic presets.
+
+preset
+: the UUID or name of the preset you want to use. If multiple presets share the same name, the most recently created personal preset takes priority over shared presets and Auphonic presets.
+
+preset
+
+Detailed Audio Metadata
+
+
+Various
+Metadata Tags
+can be set and they overwrite metadata values from presets.
+Metadata tags, chapters and cover images from input files are also imported if not set in a production or preset:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+simple
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"preset=ceigtvDv8jH6NaK52Z5eXH"
+\
+-
+F
+"title=My First Production"
+\
+-
+F
+"artist=The Artist"
+\
+-
+F
+"album=Our Album"
+\
+-
+F
+"track=1"
+\
+-
+F
+"subtitle=Our subtitle"
+\
+-
+F
+"append_chapters=true"
+\
+-
+F
+"summary=Our very long summary."
+\
+-
+F
+"genre=Podcast"
+\
+-
+F
+"year=2012"
+\
+-
+F
+"publisher=that's me"
+\
+-
+F
+"url=https://auphonic.com"
+\
+-
+F
+"license=Creative Commons Attribution 3.0 Austria"
+\
+-
+F
+"license_url=http://creativecommons.org/licenses/by/3.0/at/"
+\
+-
+F
+"tags=podcast, auphonic api, metadata"
+\
+-
+F
+"image=@/home/user/your_image.jpg"
+\
+-
+F
+"input_file=@/home/user/your_audio_or_video_file.mp3"
+\
+-
+F
+"action=start"
+
+The parameters are the same as on the
+Auphonic Production Page
+.
+Metadata fields can make use of
+Variables and Placeholders
+.
+
+You may upload a cover image file using the parameter
+image
+- note that
+it’s also possible to upload the cover image by just referencing a valid picture URL:
+-F
+"image=http://bla.com/myimage.png"
+!
+
+image
+
+-F
+"image=http://bla.com/myimage.png"
+
+Adding Chapter Marks
+
+
+You can upload an additional text file with
+Chapter Marks
+for your production:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+simple
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"preset=My Podcast Preset"
+\
+-
+F
+"title=Production with Chapters"
+\
+-
+F
+"input_file=@/home/user/your_audio_or_video_file.mp3"
+\
+-
+F
+"chapters=@/home/user/chapters.txt"
+\
+-
+F
+"action=start"
+
+The text file must contain the start time in
+HH:MM:ss[.mmm]
+and a
+title
+for each chapter - a chapter URL is also possible.
+
+title
+
+An example:
+
+00
+:
+00
+:
+00.000
+Intro1
+<
+http
+:
+//
+url1
+.
+com
+>
+00
+:
+00
+:
+10.000
+Baby
+prepares
+to
+rock
+00
+:
+00
+:
+30.000
+Baby
+rocks
+the
+house
+00
+:
+01
+:
+00.000
+One
+Minute
+00
+:
+01
+:
+30.000
+End
+<
+http
+:
+//
+url2
+.
+at
+/
+ha
+>
+
+You can also import various other marker file formats from your favourite
+audio editor, see
+How to Import Chapter Marks
+.
+
+Note
+
+Chapter marks from your input audio files are imported automatically!
+
+If you don’t want to upload a file, just send your data as string with a newline after each chapter:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+simple
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"preset=ceigtvDv8jH6NaK52Z5eXH"
+\
+-
+F
+"title=Production with Chapters"
+\
+-
+F
+"input_file=@/home/user/your_audio_or_video_file.mp3"
+\
+-
+F
+"chapters=00:00:00.000 Intro1 <http://url1.com>
+\n
+00:00:10.000 Baby prepares to rock
+\n
+00:00:30.000 Baby rocks the house
+\n
+..."
+\
+-
+F
+"action=start"
+
+Alternatively you can also reference a chapters file from a publicly available URL:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+simple
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"preset=My Podcast Preset"
+\
+-
+F
+"title=Production with Chapters"
+\
+-
+F
+"input_file=@/home/user/your_audio_or_video_file.mp3"
+\
+-
+F
+"chapters=https://example.com/chapters.txt"
+\
+-
+F
+"action=start"
+
+Audio Algorithms
+
+
+Audio algorithms can be enabled, disabled and parameters can be set:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+simple
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"preset=ceigtvDv8jH6NaK52Z5eXH"
+\
+-
+F
+"title=Production with Detailed Algorithms"
+\
+-
+F
+"input_file=@/home/user/your_audio_or_video_file.mp3"
+\
+-
+F
+"filtering=true"
+\
+-
+F
+"leveler=false"
+\
+-
+F
+"normloudness=true"
+\
+-
+F
+"loudnesstarget=-24"
+\
+-
+F
+"maxpeak=-2"
+\
+-
+F
+"denoise=false"
+\
+-
+F
+"denoiseamount=100"
+\
+-
+F
+"silence_cutter=true"
+\
+-
+F
+"filler_cutter=true"
+\
+-
+F
+"cough_cutter=true"
+\
+-
+F
+"music_cutter=true"
+\
+-
+F
+"action=start"
+
+This works exactly as in the production/preset form!
+For details about API audio algorithm parameters see
+API Algorithm Parameters
+and
+More Settings for API Algorithms
+.
+
+Overview of all Parameters
+
+
+Here is an overview of all the previously discussed parameters:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+simple
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"preset=My Podcast Preset"
+\
+-
+F
+"service=pmefeNCzkyT4TbRbDmoCDf"
+\
+-
+F
+"input_file=my_dropbox_file.mp3"
+\
+-
+F
+"title=Big Request with Details"
+\
+-
+F
+"artist=The Artist"
+\
+-
+F
+"album=Our Album"
+\
+-
+F
+"track=1"
+\
+-
+F
+"subtitle=Our subtitle"
+\
+-
+F
+"append_chapters=true"
+\
+-
+F
+"summary=Our very long summary."
+\
+-
+F
+"genre=Podcast"
+\
+-
+F
+"year=2012"
+\
+-
+F
+"publisher=that's me"
+\
+-
+F
+"url=https://auphonic.com"
+\
+-
+F
+"license=Creative Commons Attribution 3.0 Austria"
+\
+-
+F
+"license_url=http://creativecommons.org/licenses/by/3.0/at/"
+\
+-
+F
+"tags=podcast, auphonic api, metadata"
+\
+-
+F
+"image=@/home/user/your_image.jpg"
+\
+-
+F
+"output_basename=basename"
+\
+-
+F
+"chapters=@/home/user/chapters.txt"
+\
+-
+F
+"filtering=false"
+\
+-
+F
+"leveler=false"
+\
+-
+F
+"normloudness=false"
+\
+-
+F
+"loudnesstarget=-18"
+\
+-
+F
+"denoise=true"
+\
+-
+F
+"denoiseamount=12"
+\
+-
+F
+"silence_cutter=true"
+\
+-
+F
+"filler_cutter=true"
+\
+-
+F
+"cough_cutter=true"
+\
+-
+F
+"music_cutter=true"
+\
+-
+F
+"cut_mode=apply_cuts"
+\
+-
+F
+"webhook=https://example.com/auphonic/webhook"
+\
+-
+F
+"action=start"
+
+© Copyright 2026, Auphonic.
