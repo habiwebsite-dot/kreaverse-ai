@@ -1,0 +1,525 @@
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.5-text-to-image",
+"prompt": "A serene lake reflecting the beautiful sunset scenery"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.5-text-to-image",
+"prompt": "A serene lake reflecting the beautiful sunset scenery"
+}
+'
+
+{
+"created"
+:
+1757156493
+,
+"id"
+:
+"task-unified-1757156493-imcg5zqt"
+,
+"model"
+:
+"wan2.5-text-to-image"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+30
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757156493
+,
+"id"
+:
+"task-unified-1757156493-imcg5zqt"
+,
+"model"
+:
+"wan2.5-text-to-image"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+30
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1
+,
+"user_group"
+:
+"default"
+}
+}
+
+Wan2.5 Text to Image
+
+WAN2.5 (wan2.5-text-to-image) model supports text-to-image generation mode
+
+Asynchronous processing mode, use the returned task ID to
+query
+
+Generated image links are valid for 24 hours, please save them promptly
+
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.5-text-to-image",
+"prompt": "A serene lake reflecting the beautiful sunset scenery"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.5-text-to-image",
+"prompt": "A serene lake reflecting the beautiful sunset scenery"
+}
+'
+
+{
+"created"
+:
+1757156493
+,
+"id"
+:
+"task-unified-1757156493-imcg5zqt"
+,
+"model"
+:
+"wan2.5-text-to-image"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+30
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757156493
+,
+"id"
+:
+"task-unified-1757156493-imcg5zqt"
+,
+"model"
+:
+"wan2.5-text-to-image"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+30
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name
+
+wan2.5-text-to-image
+
+"wan2.5-text-to-image"
+
+"wan2.5-text-to-image"
+
+Prompt describing the image to generate, limited to 2000 tokens
+
+2000
+
+"A peaceful lake reflecting the beautiful sunset"
+
+"A peaceful lake reflecting the beautiful sunset"
+
+Size of the generated image, currently only supports
+pixel format
+:
+
+Width x Height, such as:
+768x768
+,
+1280x1280
+,
+1440x1440
+and other values within the range
+
+768x768
+
+1280x1280
+
+1440x1440
+
+Total pixel range:
+[768x768, 1440x1440]
+
+[768x768, 1440x1440]
+
+Aspect ratio range:
+[1/4, 4]
+
+[1/4, 4]
+
+"1280x1280"
+
+"1280x1280"
+
+Number of images to generate, supports any integer value between
+[1,4]
+
+[1,4]
+
+Note:
+
+A single request will be pre-charged based on the value of
+n
+, and the actual charge will be based on the number of generated images
+
+n
+
+1
+
+1
+
+Whether to enable intelligent prompt rewriting. When enabled, a large language model will optimize the prompt. This is particularly effective for prompts that lack detail or are too simple. Default value is
+true
+
+true
+
+true
+
+true
+
+HTTPS callback address after task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation is completed
+
+Security Restrictions:
+
+Only HTTPS protocol is supported
+
+Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Maximum
+3
+retries on failure (retries after
+1
+second/
+2
+seconds/
+4
+seconds)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format is consistent with the task query API response format
+
+Callback address returning 2xx status code is considered successful, other status codes will trigger retry
+
+"https://your-domain.com/webhooks/image-task-completed"
+
+"https://your-domain.com/webhooks/image-task-completed"
+
+Response
+
+Image task created successfully
+
+Task creation timestamp
+
+1757156493
+
+1757156493
+
+Task ID
+
+"task-unified-1757156493-imcg5zqt"
+
+"task-unified-1757156493-imcg5zqt"
+
+Actual model name used
+
+"wan2.5-text-to-image"
+
+"wan2.5-text-to-image"
+
+Specific task type
+
+image.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Asynchronous task information
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"image"
+
+"image"
+
+Usage and billing information
+
+Show
+child attributes
