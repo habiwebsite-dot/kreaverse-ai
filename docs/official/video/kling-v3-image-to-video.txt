@@ -1,0 +1,691 @@
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-v3-image-to-video",
+"prompt": "The person in the scene slowly turns their head and smiles",
+"image_start": "https://example.com/portrait.jpg",
+"duration": 5,
+"quality": "720p"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-v3-image-to-video",
+"prompt": "The person in the scene slowly turns their head and smiles",
+"image_start": "https://example.com/portrait.jpg",
+"duration": 5,
+"quality": "720p"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-v3-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+5
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+270000
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-v3-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+5
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+270000
+,
+"user_group"
+:
+"default"
+}
+}
+
+Kling-V3 Image to Video
+
+Kling-V3 Image to Video (kling-v3-image-to-video) model supports image-to-video generation
+
+Supports first frame, last frame, element control, multi-shot, and sound effects
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-v3-image-to-video",
+"prompt": "The person in the scene slowly turns their head and smiles",
+"image_start": "https://example.com/portrait.jpg",
+"duration": 5,
+"quality": "720p"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-v3-image-to-video",
+"prompt": "The person in the scene slowly turns their head and smiles",
+"image_start": "https://example.com/portrait.jpg",
+"duration": 5,
+"quality": "720p"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-v3-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+5
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+270000
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-v3-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+5
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+270000
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+All APIs require Bearer Token authentication
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+kling-v3-image-to-video
+
+"kling-v3-image-to-video"
+
+"kling-v3-image-to-video"
+
+First frame image URL for image-to-video generation (
+required
+)
+
+Note:
+
+Image size: up to
+10MB
+
+10MB
+
+Supported formats:
+.jpg
+,
+.jpeg
+,
+.png
+
+.jpg
+
+.jpeg
+
+.png
+
+Image dimensions: width and height >=
+300px
+, aspect ratio between
+1:2.5
+and
+2.5:1
+
+300px
+
+1:2.5
+
+2.5:1
+
+Image URL must be directly accessible by the server or trigger a direct download when accessed
+
+"https://example.com/portrait.jpg"
+
+"https://example.com/portrait.jpg"
+
+Last frame image URL
+
+Note:
+
+image_start
+(first frame) must be provided when using last frame
+
+image_start
+
+Supported formats:
+.jpg
+,
+.jpeg
+,
+.png
+
+.jpg
+
+.jpeg
+
+.png
+
+Image size: up to
+10MB
+
+10MB
+
+Image URL must be directly accessible by the server or trigger a direct download when accessed
+
+"https://example.com/night.jpg"
+
+"https://example.com/night.jpg"
+
+Text prompt describing what video to generate
+
+Note:
+
+Maximum
+2500
+characters
+
+2500
+
+Can be empty when
+multi_shot=true
+and
+shot_type=customize
+
+multi_shot=true
+
+shot_type=customize
+
+Use
+<<<element_1>>>
+reference syntax to reference elements in the prompt
+
+<<<element_1>>>
+
+2500
+
+"The person in the scene slowly turns their head and smiles"
+
+"The person in the scene slowly turns their head and smiles"
+
+Negative prompt describing content you do not want in the video
+
+"text, watermark"
+
+"text, watermark"
+
+Video duration in seconds, defaults to
+5
+seconds
+
+5
+
+Note:
+
+Range: integer from
+3
+to
+15
+
+3
+
+15
+
+Billing is based on the
+duration
+value, longer duration costs more
+
+duration
+
+3 <= x <= 15
+
+5
+
+5
+
+Resolution tier
+
+Options:
+
+720p
+: Standard quality (std)
+
+720p
+
+1080p
+: High quality (pro)
+
+1080p
+
+4k
+: Ultra-high definition 4K
+
+4k
+
+720p
+
+1080p
+
+4k
+
+"720p"
+
+"720p"
+
+Sound effect control
+
+Options:
+
+on
+: Generate sound effects
+
+on
+
+off
+: No sound effects
+
+off
+
+on
+
+off
+
+"off"
+
+"off"
+
+Advanced parameters for multi-shot, element control, and watermark
+
+Show
+child attributes
+
+HTTPS callback URL for task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security Restrictions:
+
+HTTPS protocol only
+
+Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Maximum
+3
+retries after failure (at
+1
+/
+2
+/
+4
+seconds after failure)
+
+3
+
+1
+
+2
+
+4
+
+Callback response format is consistent with task query API
+
+2xx status code is considered successful, other codes trigger retry
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"kling-v3-image-to-video"
+
+"kling-v3-image-to-video"
+
+Task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task details
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
