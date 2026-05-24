@@ -30,6 +30,13 @@ export function getDocEntry(docId: string) {
   return entry;
 }
 
+function requireEndpoint(doc: EvolinkDoc) {
+  if (!doc.endpoint) {
+    throw new Error(`DOC_ENDPOINT_MISSING:${doc.id}`);
+  }
+  return doc.endpoint;
+}
+
 export function detectGenerationType(endpoint: string): GenerationType {
   if (endpoint.includes('/images/')) return GenerationType.IMAGE;
   if (endpoint.includes('/audios/')) return GenerationType.AUDIO;
@@ -93,13 +100,16 @@ async function fetchWithKey(url: string, init: RequestInit, key: ResolvedKey) {
     },
     cache: 'no-store',
   });
+
   const text = await response.text();
   let data: unknown = text;
+
   try {
     data = JSON.parse(text);
   } catch {
     // keep text
   }
+
   return { response, data, key };
 }
 
@@ -113,19 +123,30 @@ export async function runWithFailover(options: {
 
   for (const key of keys) {
     const result = await fetchWithKey(options.url, options.init, key);
+
     if (result.response.ok) {
       if (key.source === 'DB') {
-        await prisma.apiKeyPool.update({ where: { id: key.id }, data: { lastUsedAt: new Date() } }).catch(() => undefined);
+        await prisma.apiKeyPool
+          .update({
+            where: { id: key.id },
+            data: { lastUsedAt: new Date() },
+          })
+          .catch(() => undefined);
       }
       return result;
     }
+
     tried.push({ key: key.label, status: result.response.status });
+
     if (key.source === 'DB') {
-      await prisma.apiKeyPool.update({
-        where: { id: key.id },
-        data: { failureCount: { increment: 1 }, lastFailureAt: new Date() },
-      }).catch(() => undefined);
+      await prisma.apiKeyPool
+        .update({
+          where: { id: key.id },
+          data: { failureCount: { increment: 1 }, lastFailureAt: new Date() },
+        })
+        .catch(() => undefined);
     }
+
     if (!RETRYABLE_STATUS.has(result.response.status)) {
       return result;
     }
@@ -153,8 +174,10 @@ export async function createEvolinkTask(args: {
   deviceSession?: string;
 }) {
   const doc = getDocEntry(args.docId);
+  const endpoint = requireEndpoint(doc);
+
   const result = await runWithFailover({
-    url: doc.endpoint,
+    url: endpoint,
     init: {
       method: doc.method || 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -165,60 +188,88 @@ export async function createEvolinkTask(args: {
 
   const data = result.data as Record<string, any>;
 
-  await prisma.generation.create({
-    data: {
-      userId: args.userId,
-      taskId: typeof data?.id === 'string' ? data.id : null,
-      provider: 'evolink',
-      model: String(args.payload.model || data?.model || args.docId),
-      type: detectGenerationType(doc.endpoint),
-      status: String(data?.status || (result.response.ok ? 'pending' : 'failed')),
-      requestJson: args.payload,
-      responseJson: typeof data === 'string' ? { raw: data } : data,
-      resultUrls: [],
-      deviceSession: args.deviceSession,
-    },
-  }).catch(() => undefined);
+  await prisma.generation
+    .create({
+      data: {
+        userId: args.userId,
+        taskId: typeof data?.id === 'string' ? data.id : null,
+        provider: 'evolink',
+        model: String(args.payload.model || data?.model || args.docId),
+        type: detectGenerationType(endpoint),
+        status: String(data?.status || (result.response.ok ? 'pending' : 'failed')),
+        requestJson: args.payload as any,
+        responseJson: (typeof data === 'string' ? { raw: data } : data) as any,
+        resultUrls: [],
+        deviceSession: args.deviceSession,
+      },
+    })
+    .catch(() => undefined);
 
   return { response: result.response, data, doc };
 }
 
 export async function getCredits(userId?: string) {
   const doc = getDocEntry('get-credits');
-  const result = await runWithFailover({ url: doc.endpoint, init: { method: 'GET' }, userId });
+  const result = await runWithFailover({
+    url: requireEndpoint(doc),
+    init: { method: 'GET' },
+    userId,
+  });
+
   return { response: result.response, data: result.data };
 }
 
 export async function getTaskDetail(taskId: string, userId?: string) {
   const doc = getDocEntry('get-task-detail');
-  const url = doc.endpoint.replace('{task_id}', taskId);
-  const result = await runWithFailover({ url, init: { method: 'GET' }, userId });
+  const url = requireEndpoint(doc).replace('{task_id}', taskId);
+
+  const result = await runWithFailover({
+    url,
+    init: { method: 'GET' },
+    userId,
+  });
+
   const data = result.data as Record<string, any>;
 
-  await prisma.generation.updateMany({
-    where: { taskId },
-    data: {
-      status: String(data?.status || 'unknown'),
-      responseJson: typeof data === 'string' ? { raw: data } : data,
-      resultUrls: Array.isArray(data?.results) ? data.results.filter((item: unknown) => typeof item === 'string') : [],
-      previewUrl: Array.isArray(data?.results) && data.results[0] ? String(data.results[0]) : undefined,
-      errorMessage: data?.error?.message ? String(data.error.message) : undefined,
-    },
-  }).catch(() => undefined);
+  await prisma.generation
+    .updateMany({
+      where: { taskId },
+      data: {
+        status: String(data?.status || 'unknown'),
+        responseJson: (typeof data === 'string' ? { raw: data } : data) as any,
+        resultUrls: Array.isArray(data?.results)
+          ? data.results.filter((item: unknown) => typeof item === 'string')
+          : [],
+        previewUrl:
+          Array.isArray(data?.results) && data.results[0]
+            ? String(data.results[0])
+            : undefined,
+        errorMessage: data?.error?.message
+          ? String(data.error.message)
+          : undefined,
+      },
+    })
+    .catch(() => undefined);
 
   return { response: result.response, data };
 }
 
 export async function getFileQuota(userId?: string) {
   const doc = getDocEntry('quota');
-  const result = await runWithFailover({ url: doc.endpoint, init: { method: 'GET' }, userId });
+  const result = await runWithFailover({
+    url: requireEndpoint(doc),
+    init: { method: 'GET' },
+    userId,
+  });
+
   return { response: result.response, data: result.data };
 }
 
 export async function uploadFileByUrl(fileUrl: string, userId?: string) {
   const doc = getDocEntry('upload-url');
+
   const result = await runWithFailover({
-    url: doc.endpoint,
+    url: requireEndpoint(doc),
     init: {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -226,5 +277,6 @@ export async function uploadFileByUrl(fileUrl: string, userId?: string) {
     },
     userId,
   });
+
   return { response: result.response, data: result.data };
 }
