@@ -17,7 +17,7 @@ export function middleware(request: NextRequest) {
   const payload = readJwtPayload(token);
   const { pathname } = request.nextUrl;
 
-  const requiresAuth = ['/results', '/settings'];
+  const requiresAuth = ['/results', '/settings', '/profile'];
   if (requiresAuth.some((path) => pathname.startsWith(path)) && !payload) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
@@ -35,5 +35,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/results/:path*', '/settings/:path*'],
+  matcher: ['/admin/:path*', '/results/:path*', '/settings/:path*', '/profile/:path*'],
 };
