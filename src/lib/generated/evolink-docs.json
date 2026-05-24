@@ -1,0 +1,4311 @@
+{
+  "suno-music-generation": {
+    "id": "suno-music-generation",
+    "url": "https://docs.evolink.ai/en/api-manual/audio-series/suno/suno-music-generation",
+    "title": "Suno Music Generation Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/audios/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "required Model name Backward compatibility: Previously integrated model names (e.g. suno-v5 , suno-v4.5 , suno-v4.5plus"
+      },
+      {
+        "anchor": "#body-custom-mode",
+        "name": "custom_mode",
+        "type": "boolean",
+        "summary": "required Enable custom mode Description: false : Simple mode, only provide prompt , AI auto-generates lyrics and style true : Custom mode, allows fine control over"
+      },
+      {
+        "anchor": "#body-instrumental",
+        "name": "instrumental",
+        "type": "boolean",
+        "summary": "required Generate instrumental music (no vocals) Description: false : Generate music with vocals true : Generate instrumental/background music without vocals Note: In non-custom mode, this parameter doesn't affect required fields"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "Prompt describing the desired music content Non-custom mode ( custom_mode=false ): Required, serves as music description, AI auto-generates lyrics and style Max length: 500 characters Custom mode ("
+      },
+      {
+        "anchor": "#body-style",
+        "name": "style",
+        "type": "string",
+        "summary": "Music style specification Description: Required in custom mode ( custom_mode=true ) Defines the genre, mood, or artistic direction of the music Recommended to use comma-separated tags in English Character limits: V4: Max"
+      },
+      {
+        "anchor": "#body-title",
+        "name": "title",
+        "type": "string",
+        "summary": "Song title Description: Required in custom mode ( custom_mode=true ) Will be displayed in the player interface and filename Max length: 80 characters"
+      },
+      {
+        "anchor": "#body-negative-tags",
+        "name": "negative_tags",
+        "type": "string",
+        "summary": "Excluded styles, specify music styles or features to avoid Examples: heavy metal, screaming, sad rap, fast tempo Example : \"heavy metal, screaming\""
+      },
+      {
+        "anchor": "#body-vocal-gender",
+        "name": "vocal_gender",
+        "type": "enum<string>",
+        "summary": "Vocal gender preference Options: m : Male voice f : Female voice Note: Only effective when custom_mode=true"
+      },
+      {
+        "anchor": "#body-style-weight",
+        "name": "style_weight",
+        "type": "number",
+        "summary": "Style weight, controls adherence to the specified style Range: 0.0 ~ 1.0 , one decimal place Description: Higher values result in closer adherence to specified style Value of"
+      },
+      {
+        "anchor": "#body-weirdness-constraint",
+        "name": "weirdness_constraint",
+        "type": "number",
+        "summary": "Weirdness constraint, controls the creativity/experimental degree of the output Range: 0.0 ~ 1.0 , one decimal place Description: Higher values result in more creative and experimental output Lower values result in more traditional and conservative output"
+      },
+      {
+        "anchor": "#body-audio-weight",
+        "name": "audio_weight",
+        "type": "number",
+        "summary": "Audio weight, controls the weight of audio features Range: 0.0 ~ 1.0 , one decimal place Description: Value of 0"
+      },
+      {
+        "anchor": "#body-persona-id",
+        "name": "persona_id",
+        "type": "string",
+        "summary": "Persona ID to apply a previously created Persona style to this music generation Only available when custom_mode=true . Obtained via the Suno Persona Creation API, preserves consistent vocal and style characteristics How to obtain: After the Persona creation task completes, retrieve from result_data.persona_id"
+      },
+      {
+        "anchor": "#body-persona-model",
+        "name": "persona_model",
+        "type": "enum<string>",
+        "summary": "Persona application mode Options: style_persona : Style-oriented, emphasizes musical style characteristics (arrangement, rhythm, timbre), supports all model versions voice_persona : Voice-oriented, emphasizes vocal characteristics (timbre, singing style, voice), V5 only Only available when custom_mode=true"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion notification Callback stages: Callback process has three stages: text (text generation), first (first track completed), complete (all completed)"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1766319090"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID, used to query task status and results Example : \"task-unified-1766319089-oqs9cue4\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"suno-v5-beta\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task type Available options : audio.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Audio task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : audio Example : \"audio\""
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "suno-persona-creation": {
+    "id": "suno-persona-creation",
+    "url": "https://docs.evolink.ai/en/api-manual/audio-series/suno/suno-persona-creation",
+    "title": "Suno Persona Creation Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/audios/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "required Model name, fixed as suno-persona Available options : suno-persona Example : \"suno-persona\""
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "required Persona creation parameters Show child attributes"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1774170584"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID, used to query task status and results Example : \"task-unified-1774170584-su75smg7\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"suno-persona\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task type Available options : audio.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : audio Example : \"audio\""
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "qwen-voice-design": {
+    "id": "qwen-voice-design",
+    "url": "https://docs.evolink.ai/en/api-manual/audio-series/qwen-tts/qwen-voice-design",
+    "title": "Qwen Voice Design - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/audios/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: qwen-voice-design required Model name Available options : qwen-voice-design Example :"
+      },
+      {
+        "anchor": "#body-voice-prompt",
+        "name": "voice_prompt",
+        "type": "string",
+        "summary": "required A text description of the voice characteristics used to define the voice profile Constraints: Maximum 2048 characters Supports Chinese and English only Suggested dimensions: Gender: male, female, neutral"
+      },
+      {
+        "anchor": "#body-preview-text",
+        "name": "preview_text",
+        "type": "string",
+        "summary": "required Preview text used to generate a sample audio clip Constraints: Maximum 1024 characters Supports 10 languages: Chinese, English, Japanese, Korean, German, French, Italian, Russian, Portuguese, Spanish Recommended to match the language"
+      },
+      {
+        "anchor": "#body-preferred-name",
+        "name": "preferred_name",
+        "type": "string",
+        "summary": "required Voice name prefix Constraints: Only digits, English letters, and underscores No more than 16 characters The generated full voice name format: qwen-tts-vd-{preferred_name}-voice-{timestamp}"
+      },
+      {
+        "anchor": "#body-language",
+        "name": "language",
+        "type": "enum<string>",
+        "summary": "Language preference for the voice profile; recommended to match preview_text Defaults to zh if not provided Available options : zh ,"
+      },
+      {
+        "anchor": "#body-sample-rate",
+        "name": "sample_rate",
+        "type": "enum<integer>",
+        "summary": "Preview audio sample rate (Hz) Defaults to 24000 if not provided Available options : 8000 , 16000"
+      },
+      {
+        "anchor": "#body-response-format",
+        "name": "response_format",
+        "type": "enum<string>",
+        "summary": "Preview audio format Defaults to wav if not provided Available options : pcm , wav"
+      },
+      {
+        "anchor": "#body-target-model",
+        "name": "target_model",
+        "type": "enum<string>",
+        "summary": "default: qwen3-tts-vd-2026-01-26 The TTS model that will drive the created voice Important: The target_model specified when creating the voice must match the model used in subsequent speech synthesis; otherwise synthesis will fail Value Description"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL invoked when the task completes Trigger conditions: Triggered when the task is completed, failed, or cancelled Sent after billing confirmation Security restrictions: HTTPS only Internal IP addresses are blocked (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1775123456"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1775123456-abcd1234\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"qwen-voice-design\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : audio.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Audio task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : audio Example : \"audio\""
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "qwen3-tts-vd": {
+    "id": "qwen3-tts-vd",
+    "url": "https://docs.evolink.ai/en/api-manual/audio-series/qwen-tts/qwen3-tts-vd",
+    "title": "Qwen3 TTS VD - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/audios/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: qwen3-tts-vd required Model name Available options : qwen3-tts-vd Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text to synthesize Constraints: Maximum 600 characters Maximum string length: 600 Example"
+      },
+      {
+        "anchor": "#body-voice",
+        "name": "voice",
+        "type": "string",
+        "summary": "required Voice name Must first create a voice via Qwen Voice Design Obtain the value from result_data.voice in the Voice Design task result System built-in voices are not supported Example"
+      },
+      {
+        "anchor": "#body-language-type",
+        "name": "language_type",
+        "type": "enum<string>",
+        "summary": "Language hint to help the model select pronunciation rules Auto-detected if not provided Available options : Auto , Chinese , English"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL invoked when the task completes Trigger conditions: Triggered when the task is completed, failed, or cancelled Sent after billing confirmation Security restrictions: HTTPS only Internal IP addresses are blocked (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1775122733"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1775122733-lozyt2i5\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"qwen3-tts-vd\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : audio.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Audio task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : audio Example : \"audio\""
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "nanobanana-2-beta-image-generate": {
+    "id": "nanobanana-2-beta-image-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/image-series/nanobanana/nanobanana-2-beta-image-generate",
+    "title": "Nanobanana-2 Image Generation Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/images/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: nano-banana-2-beta required Image generation model name Available options : nano-banana-2-beta Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the image to be generated, or describing how to edit the input image, limited to 2000 tokens Maximum string length: 2000 Example : \"A cat playing in the grass\""
+      },
+      {
+        "anchor": "#body-size",
+        "name": "size",
+        "type": "enum<string>",
+        "summary": "Aspect ratio of the generated image, default is auto Available options : auto , 1:1 , 1:4"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "Quality of the generated image, default is 2K Note: Different quality levels have different pricing Available options : 1K , 2K"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL list for image-to-image and image editing functions Note: Maximum number of input images per request: 14 Image size: not exceeding 10MB Supported file formats: .jpeg ,"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "Model extension parameters Show child attributes"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback address after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation is completed Security Restrictions: Only HTTPS protocol is supported Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757165031"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757165031-uyujaw3d\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"nano-banana-2-beta\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : image.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Asynchronous task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "nanobanana-pro-beta-image-generate": {
+    "id": "nanobanana-pro-beta-image-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/image-series/nanobanana/nanobanana-pro-beta-image-generate",
+    "title": "Nanobanana Pro Image Generation Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/images/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: nano-banana-pro-beta required Image generation model name Backward Compatible: The previously integrated model name nano-banana-2-lite is still supported and will be automatically mapped to nano-banana-pro-beta"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the image you want to generate, or describing how to edit the input image, limited to 2000 tokens Maximum string length: 2000 Example : \"A cat playing on the grass\""
+      },
+      {
+        "anchor": "#body-size",
+        "name": "size",
+        "type": "enum<string>",
+        "summary": "Aspect ratio of generated image, default is auto Available options : auto , 1:1 , 2:3"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "Quality of generated image, default is 2K Note: 4K quality will incur additional charges Available options : 1K ,"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL list for image-to-image and image editing features Note: Single request supports input image quantity: 10 images Image size: no more than 10MB Supported file formats: .jpeg"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback address after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation is completed Security Restrictions: Only HTTPS protocol is supported Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757165031"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757165031-uyujaw3d\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"nano-banana-pro-beta\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : image.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Async task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "nanobanana-image-generate": {
+    "id": "nanobanana-image-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/image-series/nanobanana/nanobanana-image-generate",
+    "title": "Nanobanana Image Generation Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/images/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: nano-banana-beta required Image generation model name Backward Compatible: The previously integrated model name gemini-2.5-flash-image is still supported and will be automatically mapped to nano-banana-beta"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the image to be generated, or describing how to edit the input image, limited to 2000 tokens Maximum string length: 2000 Example : \"A cat playing in the grass\""
+      },
+      {
+        "anchor": "#body-size",
+        "name": "size",
+        "type": "enum<string>",
+        "summary": "Aspect ratio of the generated image, default value is auto Available options : auto , 1:1 , 2:3"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL list for image-to-image and image editing functions Note: Maximum number of input images per request: 5 Image size: not exceeding 10MB Supported file formats: .jpeg ,"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback address after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation is completed Security Restrictions: Only HTTPS protocol is supported Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757165031"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757165031-uyujaw3d\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"nano-banana-beta\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : image.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Asynchronous task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "mj-v7-image-generate": {
+    "id": "mj-v7-image-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/image-series/midjourney/mj-v7-image-generate",
+    "title": "Midjourney V7 Image Generation - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/images/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: mj-v7 required Model name Available options : mj-v7"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt, supports all Midjourney V7 native parameter syntax (e.g. --ar 16:9 --s 500). Image-to-Image: Place image URLs at the beginning of the prompt. Supported formats: .png, .gif, .webp, .jpg, .jpeg Image-to-Image Rules: 1 image + no text = invalid (will return error) 1 image + text description = valid"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "Model parameters Show child attributes"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security restrictions: HTTPS protocol only Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757165031"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757165031-mjv7\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"mj-v7\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task object type Available options : image.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Async task info Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing info Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "gpt-4o-image-generation": {
+    "id": "gpt-4o-image-generation",
+    "url": "https://docs.evolink.ai/en/api-manual/image-series/gpt-4o/gpt-4o-image-generation",
+    "title": "GPT-4O Image Generation Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/images/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: gpt-4o-image-beta required Image generation model name Backward Compatible: The previously integrated model name gpt-4o-image is still supported and will be automatically mapped to gpt-4o-image-beta"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the desired image to generate, or describing how to edit the input image, limited to 2000 tokens Maximum string length: 2000 Example : \"A beautiful sunset over the ocean with vibrant colors\""
+      },
+      {
+        "anchor": "#body-size",
+        "name": "size",
+        "type": "enum<string>",
+        "summary": "Size of the generated image, supports two formats: Simplified ratio format: Supports 1:1 , 2:3 , 3:2 values"
+      },
+      {
+        "anchor": "#body-n",
+        "name": "n",
+        "type": "integer",
+        "summary": "Number of images to generate, currently only supports 1 , 2 , 4 values. Note: A single request will be pre-charged based on the value of"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL list for image-to-image and image editing features Note: Maximum number of input images per request: 5 images Single image size: no more than 10MB Supported file formats: .jpeg"
+      },
+      {
+        "anchor": "#body-mask-url",
+        "name": "mask_url",
+        "type": "string<uri>",
+        "summary": "Mask image URL Note: When using this parameter, the mask image and reference image must be in PNG format with the same dimensions Mask image size cannot exceed 4MB This parameter cannot be used when the image_urls parameter contains more than 1 image Example :"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback address after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation is completed Security Restrictions: Only HTTPS protocol is supported Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757156493"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757156493-imcg5zqt\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"gpt-4o-image-beta\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : image.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Asynchronous task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "gpt-image-2-beta-image-generation": {
+    "id": "gpt-image-2-beta-image-generation",
+    "url": "https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-beta-image-generation",
+    "title": "GPT Image 2 Image Generation Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/images/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: gpt-image-2-beta required Image generation model name Available options : gpt-image-2-beta Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the image you want to generate, or describing how to edit the input image. Limited to 2000 tokens Maximum string length: 2000 Example : \"A beautiful colorful sunset over the ocean\""
+      },
+      {
+        "anchor": "#body-size",
+        "name": "size",
+        "type": "string",
+        "summary": "default: auto Aspect ratio of the generated image. Choose one of the supported ratios, or use auto to let the model decide: auto : Determined automatically by the model (default), billed at the 1K tier 1:1 : Square"
+      },
+      {
+        "anchor": "#body-resolution",
+        "name": "resolution",
+        "type": "enum<string>",
+        "summary": "default: 1K Resolution tier, only effective when size is a ratio. When ignored: size=auto : billed at the 1K tier (no need to pass this parameter) size"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL list for image-to-image and image editing features Notes: Up to 16 reference images per request Supported formats: .jpeg , .jpg"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: HTTPS protocol only Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757156493"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757156493-imcg5zqt\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"gpt-image-2-beta\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task object type Available options : image.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Async task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "seedream-5.0-lite-image-generate": {
+    "id": "seedream-5.0-lite-image-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/image-series/seedream/seedream-5.0-lite-image-generate",
+    "title": "Seedream 5.0 Lite Image Generation - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/images/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: doubao-seedream-5.0-lite required Image generation model name Available options : doubao-seedream-5.0-lite Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the image you want to generate, or describing how to edit the input image, limited to 2000 tokens Maximum string length: 2000 Example : \"A serene lake reflecting the beautiful sunset\""
+      },
+      {
+        "anchor": "#body-n",
+        "name": "n",
+        "type": "integer",
+        "summary": "Maximum number of images to generate, supports any integer value between [1,15] Note: To generate multiple images, include prompts like: \"generate 2 different images\" in your prompt Reference image count + final generated image count \u2264 15 images If: reference image count + images requested in prompt > 15, and images requested in prompt \u2264 parameter n value, then final generated images = 15 - reference image count Each request will pre-charge based on the value of n , actual charges based on the number of images generated"
+      },
+      {
+        "anchor": "#body-size",
+        "name": "size",
+        "type": "string",
+        "summary": "Size of generated image, supports two formats: Method 1 - Ratio format: auto , 1:1 , 2:3 , 3:2"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "Resolution tier, used in combination with ratio format of size Options: 2K : 2K resolution 3K : 3K resolution Works with ratio format of size"
+      },
+      {
+        "anchor": "#body-prompt-priority",
+        "name": "prompt_priority",
+        "type": "enum<string>",
+        "summary": "default: standard Prompt optimization strategy, used to set the mode for prompt optimization Options: standard : Standard mode, higher quality output, longer processing time Available options : standard"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL list for image-to-image and image editing features Note: Single request supports input image quantity: 14 images Image size: no more than 10MB Supported image formats: .jpeg"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "Supported parameters: output_format : Output image format tools : Web search tool Show child attributes"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback address after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation is completed Security Restrictions: Only HTTPS protocol is supported Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757165031"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757165031-seedream5lite\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"doubao-seedream-5.0-lite\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : image.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Async task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "wan2.5-image-to-image": {
+    "id": "wan2.5-image-to-image",
+    "url": "https://docs.evolink.ai/en/api-manual/image-series/wan2.5/wan2.5-image-to-image",
+    "title": "Wan2.5 Image to Image - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/images/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: wan2.5-image-to-image required Model name Available options : wan2.5-image-to-image Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the image to generate or how to edit the input image, limited to 2000 tokens Maximum string length: 2000 Example : \"Replace the background with a starry sky\""
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "required Reference image URL list for image-to-image and image editing functions Note: Maximum number of input images per request: 2 images Image size: no more than 10MB Supported image formats:"
+      },
+      {
+        "anchor": "#body-n",
+        "name": "n",
+        "type": "integer",
+        "summary": "Number of images to generate, supports any integer value between [1,4] Note: A single request will be pre-charged based on the value of n , and the actual charge will be based on the number of generated images Example : 1"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback address after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation is completed Security Restrictions: Only HTTPS protocol is supported Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757156493"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757156493-imcg5zqt\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"wan2.5-image-to-image\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : image.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Asynchronous task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "wan2.5-text-to-image": {
+    "id": "wan2.5-text-to-image",
+    "url": "https://docs.evolink.ai/en/api-manual/image-series/wan2.5/wan2.5-text-to-image",
+    "title": "Wan2.5 Text to Image - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/images/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: wan2.5-text-to-image required Model name Available options : wan2.5-text-to-image Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the image to generate, limited to 2000 tokens Maximum string length: 2000 Example : \"A peaceful lake reflecting the beautiful sunset\""
+      },
+      {
+        "anchor": "#body-size",
+        "name": "size",
+        "type": "string",
+        "summary": "Size of the generated image, currently only supports pixel format : Width x Height, such as: 768x768 , 1280x1280 , 1440x1440"
+      },
+      {
+        "anchor": "#body-n",
+        "name": "n",
+        "type": "integer",
+        "summary": "Number of images to generate, supports any integer value between [1,4] Note: A single request will be pre-charged based on the value of n , and the actual charge will be based on the number of generated images Example : 1"
+      },
+      {
+        "anchor": "#body-prompt-extend",
+        "name": "prompt_extend",
+        "type": "boolean",
+        "summary": "default: true Whether to enable intelligent prompt rewriting. When enabled, a large language model will optimize the prompt. This is particularly effective for prompts that lack detail or are too simple. Default value is true Example : true"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback address after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation is completed Security Restrictions: Only HTTPS protocol is supported Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757156493"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757156493-imcg5zqt\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"wan2.5-text-to-image\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : image.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Asynchronous task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "seedance-2.0-text-to-video": {
+    "id": "seedance-2.0-text-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/seedance2.0/seedance-2.0-text-to-video",
+    "title": "Seedance 2.0 Text-to-Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: seedance-2.0-text-to-video required Video generation model name Available options : seedance-2.0-text-to-video Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt describing the desired video. Supports both Chinese and English, recommended no more than 500 characters for Chinese or 1000 words for English Note: This model is text-to-video only and does not support image_urls , video_urls , or audio_urls"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Video duration (seconds), defaults to 5 seconds Details: Supports any integer value between 4 \u2013"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Video resolution, defaults to 720p Options: 480p : Lower clarity, lower cost 720p : Standard clarity, this is the default"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Video aspect ratio, defaults to 16:9 Options: 16:9 (landscape), 9:16 (portrait),"
+      },
+      {
+        "anchor": "#body-generate-audio",
+        "name": "generate_audio",
+        "type": "boolean",
+        "summary": "default: true Whether to generate synchronized audio, defaults to true Options: true : Video includes synchronized audio (voice, sound effects, background music) at no additional charge. It is recommended to place dialogue within double quotes to optimize audio generation false : Output silent video"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "Model extension parameters Show child attributes"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback timing: Triggered when the task is completed, failed, or cancelled Sent after billing confirmation is complete Security restrictions: Only HTTPS protocol is supported Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1761313744"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1774857405-abc123\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"seedance-2.0-text-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific type of the task Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Output type of the task Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "seedance-2.0-image-to-video": {
+    "id": "seedance-2.0-image-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/seedance2.0/seedance-2.0-image-to-video",
+    "title": "Seedance 2.0 Image-to-Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: seedance-2.0-image-to-video required Video generation model name Available options : seedance-2.0-image-to-video Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt describing the desired video. Supports both Chinese and English, recommended no more than 500 characters for Chinese or 1000 words for English Note: This model does not support video_urls or audio_urls input Example"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "required Image URL array, 1\u20132 images Image count and behavior: Image Count Behavior Role 1 image First-frame image-to-video"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Video duration (seconds), defaults to 5 seconds Details: Supports any integer value between 4 \u2013"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Video resolution, defaults to 720p Options: 480p : Lower clarity, lower cost 720p : Standard clarity, this is the default"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Video aspect ratio, defaults to 16:9 Options: 16:9 (landscape), 9:16 (portrait),"
+      },
+      {
+        "anchor": "#body-generate-audio",
+        "name": "generate_audio",
+        "type": "boolean",
+        "summary": "default: true Whether to generate synchronized audio, defaults to true Options: true : Video includes synchronized audio at no additional charge false : Output silent video"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback timing: Triggered when the task is completed, failed, or cancelled Sent after billing confirmation is complete Security restrictions: Only HTTPS protocol is supported Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1761313744"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1774857405-abc123\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"seedance-2.0-image-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific type of the task Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Output type of the task Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "seedance-2.0-reference-to-video": {
+    "id": "seedance-2.0-reference-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/seedance2.0/seedance-2.0-reference-to-video",
+    "title": "Seedance 2.0 Reference-to-Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: seedance-2.0-reference-to-video required Video generation model name Available options : seedance-2.0-reference-to-video Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt describing the desired video. Supports both Chinese and English, recommended no more than 500 characters for Chinese Details: You can use natural language to specify the purpose of each material, e.g., \"use image 1 as the first frame\", \"use the camera movement from video 1 throughout\", \"use audio 1 as background music\" The model will automatically understand the correspondence between material numbers and their intended uses Example : \"Use the first-person perspective framing of video 1 throughout, use audio 1 as background music throughout. First-person perspective fruit tea promotional video...\""
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL array, 0\u20139 images Role description: Media Type Role Typical Usage Image reference_image Style reference, product image, first/last frame (specified via prompt)"
+      },
+      {
+        "anchor": "#body-video-urls",
+        "name": "video_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference video URL array, 0\u20133 videos Role description: Media Type Role Typical Usage Video reference_video Camera movement reference, motion reference, original video for editing/extension"
+      },
+      {
+        "anchor": "#body-audio-urls",
+        "name": "audio_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference audio URL array, 0\u20133 clips Role description: Media Type Role Typical Usage Audio reference_audio Background music, sound effects, voice/dialogue reference"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Output video duration (seconds), defaults to 5 seconds Details: Supports any integer value between 4 \u2013"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Video resolution, defaults to 720p Options: 480p : Lower clarity, lower cost 720p : Standard clarity, this is the default"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Video aspect ratio, defaults to 16:9 Options: 16:9 (landscape), 9:16 (portrait),"
+      },
+      {
+        "anchor": "#body-generate-audio",
+        "name": "generate_audio",
+        "type": "boolean",
+        "summary": "default: true Whether to generate synchronized audio, defaults to true Options: true : Video includes synchronized audio at no additional charge false : Output silent video"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback timing: Triggered when the task is completed, failed, or cancelled Sent after billing confirmation is complete Security restrictions: Only HTTPS protocol is supported Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1761313744"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1774857405-abc123\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"seedance-2.0-reference-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific type of the task Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Output type of the task Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "happyhorse-1.0-text-to-video": {
+    "id": "happyhorse-1.0-text-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/happyhorse1.0/happyhorse-1.0-text-to-video",
+    "title": "HappyHorse 1.0 Text-to-Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: happyhorse-1.0-text-to-video required Video generation model name Available options : happyhorse-1.0-text-to-video Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt, required Length limits: Chinese: up to 2500 characters Non-Chinese: up to 5000"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Video resolution tier, defaults to 720p Options: 720p : Standard clarity, this is the default 1080p : HD clarity"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Video aspect ratio, defaults to 16:9 Options: 16:9 (landscape) 9:16 (portrait)"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Video duration (seconds), defaults to 5 seconds Range: Integer 3 ~"
+      },
+      {
+        "anchor": "#body-seed",
+        "name": "seed",
+        "type": "integer",
+        "summary": "Random seed, default is random Details: Range: 1 ~ 2147483647 A fixed seed reduces parameter-induced variation when iterating on prompts and improves reproducibility Required range :"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback timing: Triggered when the task is completed, failed, or cancelled Sent after billing confirmation is complete Security restrictions: Only HTTPS protocol is supported Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1761313744"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1761313744-h1t2vab8\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"happyhorse-1.0-text-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific type of the task Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Output type of the task Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "happyhorse-1.0-image-to-video": {
+    "id": "happyhorse-1.0-image-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/happyhorse1.0/happyhorse-1.0-image-to-video",
+    "title": "HappyHorse 1.0 Image-to-Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: happyhorse-1.0-image-to-video required Video generation model name Available options : happyhorse-1.0-image-to-video Example :"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "required First-frame image URL, required (the first item of the array is taken as the first frame) Image requirements: Supported formats: JPEG, JPG, PNG, WEBP Resolution: width and height \u2265 300 px"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "Text prompt, optional (when omitted, the first frame drives free interpretation) Length limits: Chinese: up to 2500 characters Non-Chinese: up to 5000"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Video resolution tier, defaults to 720p Options: 720p : Standard clarity, this is the default 1080p : HD clarity"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Video duration (seconds), defaults to 5 seconds Range: Integer 3 ~"
+      },
+      {
+        "anchor": "#body-seed",
+        "name": "seed",
+        "type": "integer",
+        "summary": "Random seed, default is random Details: Range: 1 ~ 2147483647 A fixed seed reduces parameter-induced variation when iterating on prompts and improves reproducibility Required range :"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback timing: Triggered when the task is completed, failed, or cancelled Sent after billing confirmation is complete Security restrictions: Only HTTPS protocol is supported Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1761313744"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1761313744-h1i2vcd9\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"happyhorse-1.0-image-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific type of the task Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Output type of the task Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "happyhorse-1.0-reference-to-video": {
+    "id": "happyhorse-1.0-reference-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/happyhorse1.0/happyhorse-1.0-reference-to-video",
+    "title": "HappyHorse 1.0 Reference-to-Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: happyhorse-1.0-reference-to-video required Video generation model name Available options : happyhorse-1.0-reference-to-video Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt, required Length limits: Chinese: up to 2500 characters Non-Chinese: up to 5000"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "required Reference image URL array, required , 1 ~ 9 images Image requirements: Supported formats: JPEG, JPG, PNG, WEBP Resolution: short edge \u2265 400"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Video resolution tier, defaults to 720p Options: 720p : Standard clarity, this is the default 1080p : HD clarity"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Video aspect ratio, defaults to 16:9 Options: 16:9 (landscape) 9:16 (portrait)"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Video duration (seconds), defaults to 5 seconds Range: Integer 3 ~"
+      },
+      {
+        "anchor": "#body-seed",
+        "name": "seed",
+        "type": "integer",
+        "summary": "Random seed, default is random Details: Range: 1 ~ 2147483647 A fixed seed reduces parameter-induced variation when iterating on prompts and improves reproducibility Required range :"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback timing: Triggered when the task is completed, failed, or cancelled Sent after billing confirmation is complete Security restrictions: Only HTTPS protocol is supported Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1761313744"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1761313744-h1r2vef0\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"happyhorse-1.0-reference-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific type of the task Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Output type of the task Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "sora-2-preview-video-generate": {
+    "id": "sora-2-preview-video-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/sora2/sora-2-preview-video-generate",
+    "title": "Sora-2 Video Generation - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "string",
+        "summary": "default: sora-2-preview required Video generation model name Example : \"sora-2-preview\""
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the video to generate, max 5000 tokens Maximum string length: 5000 Example : \"A cat playing piano\""
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "Video aspect ratio. 1280x720 generates landscape video, 720x1280 generates portrait video Available options : 1280x720 ,"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "Video duration (seconds), default 4 Note: Only supports 4 , 8 , 12"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URLs for image-to-video Note: Real person images not supported Max 1 image per request Max size: 10MB Formats: .jpg, .jpeg, .png, .webp Image pixel dimensions must exactly match the selected aspect_ratio (e.g., if aspect_ratio is 1280x720"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: HTTPS protocol only Private IP addresses not allowed (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length max 2048 characters Callback Mechanism:"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Model name used Example : \"sora-2-preview\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "sora-2-pro-preview-video-generate": {
+    "id": "sora-2-pro-preview-video-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/sora2pro/sora-2-pro-preview-video-generate",
+    "title": "Sora-2-Pro Video Generation - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: sora-2-pro-preview required Video generation model name Available options : sora-2-pro-preview Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing what kind of video to generate, limited to 5000 tokens Maximum string length: 5000 Example : \"A cat playing piano\""
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "Video aspect ratio, 16:9 generates landscape video, 9:16 generates portrait video Available options : 16:9 ,"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "Specifies the generated video duration (seconds), supports 4 , 8 , 12 values, representing 4 seconds ,"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "Video quality Note: 720p : Standard quality, standard pricing 1080p : High quality, pricing is 1.667x the standard price Available options"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL list for image-to-video feature Note: Images containing real human figures are not supported Single request supports input image quantity: 1 image Image size: no more than 10MB Supported file formats:"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback address after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation is completed Security Restrictions: Only HTTPS protocol is supported Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"sora-2-pro-preview\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task detailed information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "veo-3.1-generate-preview-generate": {
+    "id": "veo-3.1-generate-preview-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/veo3.1/veo-3.1-generate-preview-generate",
+    "title": "Veo3.1-Pro Video Generation - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "string",
+        "summary": "default: veo-3.1-generate-preview required"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt, max 2000 tokens Maximum string length: 2000"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference images, max 3, max 10MB each Maximum array length: 3"
+      },
+      {
+        "anchor": "#body-generation-type",
+        "name": "generation_type",
+        "type": "enum<string>",
+        "summary": "Mode: TEXT : Text-to-video FIRST&LAST : First-last frame, 1-2 images REFERENCE : Reference image, max 3 images, duration fixed at 8s, aspect ratio fixed at 16:9, except generate_audio , other advanced params not supported"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "Video aspect ratio. When set to auto : image-to-video will automatically select based on the input image ratio, text-to-video will automatically select based on the prompt content Available options : auto , 16:9 ,"
+      },
+      {
+        "anchor": "#body-generate-audio",
+        "name": "generate_audio",
+        "type": "boolean",
+        "summary": "Generate audio (extra cost), default true"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "enum<integer>",
+        "summary": "Duration (seconds), default 4 Available options : 4 , 6 , 8"
+      },
+      {
+        "anchor": "#body-n",
+        "name": "n",
+        "type": "integer",
+        "summary": "Number of videos, default 1 Required range : 1 <= x <= 4"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "Resolution, default 720p Available options : 720p , 1080p , 4k"
+      },
+      {
+        "anchor": "#body-seed",
+        "name": "seed",
+        "type": "integer",
+        "summary": "Required range : 1 <= x <= 4294967295"
+      },
+      {
+        "anchor": "#body-negative-prompt",
+        "name": "negative_prompt",
+        "type": "string",
+        "summary": ""
+      },
+      {
+        "anchor": "#body-person-generation",
+        "name": "person_generation",
+        "type": "enum<string>",
+        "summary": "Person generation control, default allow_adult . allow_adult : allow adults only; dont_allow : no people/faces Available options :"
+      },
+      {
+        "anchor": "#body-resize-mode",
+        "name": "resize_mode",
+        "type": "enum<string>",
+        "summary": "Resize mode (I2V only), default pad Available options : pad , crop"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": ""
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Example : \"veo-3.1-generate-preview\""
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Available options : pending , processing , completed , failed"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "veo-3.1-fast-generate-preview-generate": {
+    "id": "veo-3.1-fast-generate-preview-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/veo3.1/veo-3.1-fast-generate-preview-generate",
+    "title": "Veo3.1-Fast Video Generation - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "string",
+        "summary": "default: veo-3.1-fast-generate-preview required Example : \"veo-3.1-fast-generate-preview\""
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing the video, max 2000 tokens Maximum string length: 2000 Example : \"A cat playing piano\""
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URLs, max 3 images (FIRST&LAST mode supports 1-2, REFERENCE mode supports up to 3), max 10MB each Maximum array length: 3"
+      },
+      {
+        "anchor": "#body-generation-type",
+        "name": "generation_type",
+        "type": "enum<string>",
+        "summary": "Generation mode: TEXT : Text-to-video FIRST&LAST : First-last frame, 1-2 images REFERENCE : Reference image, max 3 images, duration fixed at 8s, aspect ratio fixed at 16:9, except generate_audio , other advanced params not supported"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "Video aspect ratio. When set to auto : image-to-video will automatically select based on the input image ratio, text-to-video will automatically select based on the prompt content Available options : auto , 16:9 ,"
+      },
+      {
+        "anchor": "#body-generate-audio",
+        "name": "generate_audio",
+        "type": "boolean",
+        "summary": "Generate audio (extra cost), default true"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "enum<integer>",
+        "summary": "Duration (seconds), default 4 Available options : 4 , 6 , 8"
+      },
+      {
+        "anchor": "#body-n",
+        "name": "n",
+        "type": "integer",
+        "summary": "Number of videos, default 1 Required range : 1 <= x <= 4"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "Resolution, default 720p Available options : 720p , 1080p , 4k"
+      },
+      {
+        "anchor": "#body-seed",
+        "name": "seed",
+        "type": "integer",
+        "summary": "Required range : 1 <= x <= 4294967295"
+      },
+      {
+        "anchor": "#body-negative-prompt",
+        "name": "negative_prompt",
+        "type": "string",
+        "summary": ""
+      },
+      {
+        "anchor": "#body-person-generation",
+        "name": "person_generation",
+        "type": "enum<string>",
+        "summary": "Person generation control, default allow_adult Available options : allow_adult , dont_allow"
+      },
+      {
+        "anchor": "#body-resize-mode",
+        "name": "resize_mode",
+        "type": "enum<string>",
+        "summary": "Resize mode (I2V only), default pad Available options : pad , crop"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": ""
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Example : \"veo-3.1-fast-generate-preview\""
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Available options : pending , processing , completed , failed"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "veo3.1-pro-video-generate": {
+    "id": "veo3.1-pro-video-generate",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/veo3.1/veo3.1-pro-video-generate",
+    "title": "Veo3.1-Pro Video Generation Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: veo3.1-pro-beta required Video generation model name Backward Compatible: The previously integrated model name veo3.1-pro is still supported and will be automatically mapped to veo3.1-pro-beta"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing what kind of video to generate, limited to 2000 tokens Maximum string length: 2000 Example : \"A cat playing piano\""
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: auto Video aspect ratio. When set to auto : image-to-video will automatically select based on the input image ratio, text-to-video will automatically select based on the prompt content Available options : auto ,"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL list for image-to-video feature Note: Single request supports up to 2 images (1 image for first-frame video generation, 2 images for first-and-last-frame video generation) Image size: no more than 10MB Supported file formats: .jpg"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "Video resolution, default is 720p Available options : 720p , 1080p , 4k"
+      },
+      {
+        "anchor": "#body-generation-type",
+        "name": "generation_type",
+        "type": "enum<string>",
+        "summary": "Video generation mode, default matches based on image count, manual selection recommended. Available modes: TEXT : Text to video FIRST&LAST : First and last frame to video, supports 1 ~ 2 images"
+      },
+      {
+        "anchor": "#body-enhance-prompt",
+        "name": "enhance_prompt",
+        "type": "boolean",
+        "summary": "default: true Whether to automatically translate the prompt to English. When enabled, non-English prompts will be automatically translated to English for better generation results Example : true"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback address after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation is completed Security Restrictions: Only HTTPS protocol is supported Callback to internal IP addresses is prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"veo3.1-pro-beta\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task detailed information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "wan2.7-text-to-video": {
+    "id": "wan2.7-text-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/wan2.7/wan2.7-text-to-video",
+    "title": "Wan2.7 Text to Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "required Model name, must be wan2.7-text-to-video Available options : wan2.7-text-to-video Example : \"wan2.7-text-to-video\""
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt for video generation. Supports both Chinese and English; each character/letter counts as 1, with overflow auto-truncated. Maximum length: 5000 characters Multi-shot narrative: Control shot structure via natural language Single shot: state \"generate a single-shot video\" in the prompt Multi shot: use \"generate a multi-shot video\" or timestamped shot lists (e.g. \"Shot 1 [0-3s]\") Maximum string length: 5000 Example"
+      },
+      {
+        "anchor": "#body-negative-prompt",
+        "name": "negative_prompt",
+        "type": "string",
+        "summary": "Negative prompt describing what should not appear in the video. Supports both Chinese and English. Maximum length 500 characters; overflow is auto-truncated Maximum string length: 500 Example : \"Blurry, low quality\""
+      },
+      {
+        "anchor": "#body-audio-urls",
+        "name": "audio_urls",
+        "type": "string<uri>[]",
+        "summary": "Driving audio URL array (optional). Currently supports only 1 element Behavior: Provided: the model uses this audio as the driving source Omitted: the model auto-generates background music or sound effects matching the visual content Format requirements: Supported formats: wav ,"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Video quality, defaults to 720p Options: 720p : Standard definition, standard price, this is the default 1080p : High definition, higher price"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Video aspect ratio, defaults to 16:9 Output resolution per quality tier: Quality 16:9 9:16 1:1"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "number",
+        "summary": "default: 5 Video duration in seconds, range 2-15 Note: Any integer value between 2~15 seconds is supported Final billing is based on the actual generated video duration Required range"
+      },
+      {
+        "anchor": "#body-seed",
+        "name": "seed",
+        "type": "integer",
+        "summary": "Random seed, defaults to random Notes: Range: 1 ~ 2147483647 Fixing the seed reduces variation when iterating on prompts and improves reproducibility Required range :"
+      },
+      {
+        "anchor": "#body-prompt-extend",
+        "name": "prompt_extend",
+        "type": "boolean",
+        "summary": "default: false Whether to enable intelligent prompt rewriting. When enabled, a large model will optimize the prompt, which significantly improves results for simple or insufficiently descriptive prompts. Note: Default is false . Omitting the field or sending false will not trigger rewriting; explicitly send"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: Only HTTPS protocol is supported Callbacks to internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"wan2.7-text-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Detailed video task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "wan2.7-image-to-video": {
+    "id": "wan2.7-image-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/wan2.7/wan2.7-image-to-video",
+    "title": "Wan2.7 Image to Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "required Model name, must be wan2.7-image-to-video Available options : wan2.7-image-to-video Example : \"wan2.7-image-to-video\""
+      },
+      {
+        "anchor": "#body-generation-mode",
+        "name": "generation_mode",
+        "type": "enum<string>",
+        "summary": "Generation mode that determines which material combinations are valid. Explicitly specifying it is recommended Values: first_frame : First-frame to video. Required: image_start . Optional: audio_urls . Not accepted:"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "Text prompt for video generation. Supports both Chinese and English; each character/letter counts as 1, with overflow auto-truncated. Maximum length: 5000 characters Maximum string length: 5000 Example : \"A cat playing piano\""
+      },
+      {
+        "anchor": "#body-negative-prompt",
+        "name": "negative_prompt",
+        "type": "string",
+        "summary": "Negative prompt describing what should not appear in the video. Supports both Chinese and English. Maximum length 500 characters; overflow is auto-truncated Maximum string length: 500 Example : \"Blurry, low quality\""
+      },
+      {
+        "anchor": "#body-image-start",
+        "name": "image_start",
+        "type": "string<uri>",
+        "summary": "First-frame image URL Mode constraints: first_frame mode: required first_last_frame mode: required video_continuation"
+      },
+      {
+        "anchor": "#body-image-end",
+        "name": "image_end",
+        "type": "string<uri>",
+        "summary": "Ending-frame image URL Mode constraints: first_last_frame mode: required video_continuation mode: optional (acts as the ending frame for the continuation) first_frame mode:"
+      },
+      {
+        "anchor": "#body-video-urls",
+        "name": "video_urls",
+        "type": "string<uri>[]",
+        "summary": "Video continuation URL array. Only 1 element is supported Mode constraints: video_continuation mode: required first_frame / first_last_frame"
+      },
+      {
+        "anchor": "#body-audio-urls",
+        "name": "audio_urls",
+        "type": "string<uri>[]",
+        "summary": "Driving audio URL array. Currently supports only 1 element . The model will use this audio as the driving source for video generation (e.g. lip sync, motion alignment) Mode constraints: first_frame mode: optional first_last_frame mode: optional video_continuation"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Video quality, defaults to 720p Options: 720p : Standard definition, standard price, this is the default 1080p : High definition, higher price"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "number",
+        "summary": "default: 5 Video duration in seconds (integer). Range 2 ~ 15 , default 5 Meaning: first_frame /"
+      },
+      {
+        "anchor": "#body-seed",
+        "name": "seed",
+        "type": "integer",
+        "summary": "Random seed, defaults to random Notes: Range: 1 ~ 2147483647 Fixing the seed reduces variation when iterating on prompts and improves reproducibility Required range :"
+      },
+      {
+        "anchor": "#body-prompt-extend",
+        "name": "prompt_extend",
+        "type": "boolean",
+        "summary": "default: false Whether to enable intelligent prompt rewriting. When enabled, a large model will optimize the prompt, which significantly improves results for simple or insufficiently descriptive prompts. Note: Default is false . Omitting the field or sending false will not trigger rewriting; explicitly send"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: Only HTTPS protocol is supported Callbacks to internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"wan2.7-image-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Detailed video task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "wan2.7-reference-video": {
+    "id": "wan2.7-reference-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/wan2.7/wan2.7-reference-video",
+    "title": "Wan2.7 Reference Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "required Model name, must be wan2.7-reference-video Available options : wan2.7-reference-video Example : \"wan2.7-reference-video\""
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt for video generation. Supports Chinese and English; each character / letter / punctuation counts as 1, with overflow auto-truncated. Maximum length 5000 characters Character indexing rules: Chinese: use \"\u56fe1, \u56fe2 / \u89c6\u98911, \u89c6\u98912\" \u2014 corresponds 1-based to the order of image_urls / video_urls English: use \"Image 1\", \"Video 1\" (capitalised, with a space between word and digit) Images and videos are counted independently, so \"Image 1\" and \"Video 1\" can coexist"
+      },
+      {
+        "anchor": "#body-negative-prompt",
+        "name": "negative_prompt",
+        "type": "string",
+        "summary": "Negative prompt describing what should not appear in the video. Supports both Chinese and English. Maximum length 500 characters; overflow is auto-truncated Maximum string length: 500 Example : \"Blurry, low quality\""
+      },
+      {
+        "anchor": "#body-image-start",
+        "name": "image_start",
+        "type": "string<uri>",
+        "summary": "Starting-frame image URL, used as the first frame of the generated video. Does not count toward the image_urls + video_urls \u2264 5 limit. Does not accept voice binding (the starting frame itself is not assigned a voice)"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL array. Can supply subjects (people / animals / objects) or scene backgrounds; when a subject is included, each image should contain a single character Quantity limits: image_urls + video_urls total \u2264 5 At least one of"
+      },
+      {
+        "anchor": "#body-video-urls",
+        "name": "video_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference video URL array. The video should ideally feature a subject (person / animal / object); empty or pure-background footage is discouraged. When a subject is included, each video should contain a single character. Audio in the video can be used as a voice reference Quantity limits: image_urls + video_urls total \u2264 5 At least one of"
+      },
+      {
+        "anchor": "#body-audio-urls",
+        "name": "audio_urls",
+        "type": "string<uri>[]",
+        "summary": "[Compatibility field \u2014 prefer model_params.voice_bindings ] Reference voice URL array. Bound positionally to reference materials in this order: first match against video_urls , then against image_urls (in their array order, one-to-one). Up to 5 elements Priority:"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "Advanced parameter container (recommended) Show child attributes"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Video quality, defaults to 720p Options: 720p : Standard definition, standard price, this is the default 1080p : High definition, higher price"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Video aspect ratio, defaults to 16:9 Behavior: image_start not provided: video is generated using the specified aspect_ratio image_start"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "number",
+        "summary": "default: 5 Video duration in seconds (integer) Range: Without video_urls : 2 ~ 15 , default"
+      },
+      {
+        "anchor": "#body-seed",
+        "name": "seed",
+        "type": "integer",
+        "summary": "Random seed, defaults to random Notes: Range: 1 ~ 2147483647 Fixing the seed reduces variation when iterating on prompts and improves reproducibility Required range :"
+      },
+      {
+        "anchor": "#body-prompt-extend",
+        "name": "prompt_extend",
+        "type": "boolean",
+        "summary": "default: false Whether to enable intelligent prompt rewriting. When enabled, a large model will optimize the prompt, which significantly improves results for simple or insufficiently descriptive prompts. Note: Default is false . Omitting the field or sending false will not trigger rewriting; explicitly send"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: Only HTTPS protocol is supported Callbacks to internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"wan2.7-reference-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Detailed video task information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "kling-o3-text-to-video": {
+    "id": "kling-o3-text-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/kling/kling-o3-text-to-video",
+    "title": "Kling-O3 Text to Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: kling-o3-text-to-video required Video generation model name Available options : kling-o3-text-to-video Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt describing what video to generate Note: Maximum 2500 characters Can be empty when multi_shot=true and"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Video duration in seconds, defaults to 5 seconds Note: Supports integers from 3 to"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Video aspect ratio Options: 16:9 : Landscape video 9:16 : Portrait video 1:1"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Resolution quality Options: 720p : Standard 720P 1080p : High quality 1080P 4k"
+      },
+      {
+        "anchor": "#body-sound",
+        "name": "sound",
+        "type": "enum<string>",
+        "summary": "default: off Sound effect control Options: on : Enable sound effects off : Disable sound effects Available options"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "Model extension parameters Constraint: Maximum 7 elements Show child attributes"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: HTTPS protocol only Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"kling-o3-text-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "kling-o3-image-to-video": {
+    "id": "kling-o3-image-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/kling/kling-o3-image-to-video",
+    "title": "Kling-O3 Image to Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: kling-o3-image-to-video required Video generation model name Available options : kling-o3-image-to-video Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt. Required when multi_shot=false (default), provided by multi_prompt for each shot when multi_shot=true Note: Maximum 2500 characters Use <<<element_1>>> to reference elements,"
+      },
+      {
+        "anchor": "#body-image-start",
+        "name": "image_start",
+        "type": "string<uri>",
+        "summary": "First frame image URL Image format requirements: Format: JPG / JPEG / PNG Size: <= 10MB Dimensions: width and height >= 300px, aspect ratio between 1:2.5 and 2.5:1 Image URL must be directly accessible by the server or trigger a direct download when accessed"
+      },
+      {
+        "anchor": "#body-image-end",
+        "name": "image_end",
+        "type": "string<uri>",
+        "summary": "Last frame image URL Constraints: Last frame requires a first frame Last frame not supported when total image count exceeds 2 Image URL must be directly accessible by the server or trigger a direct download when accessed"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL array (not first/last frame, for style/scene/element reference) Note: Image URLs must be directly accessible by the server or trigger a direct download when accessed"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Video duration (seconds), integer in range 3-15 Required range : 3 <= x <= 15"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "Video aspect ratio Available options : 16:9 , 9:16 , 1:1"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "Resolution tier Options: 720p : Standard 720P 1080p : High quality 1080P 4k : Ultra-high definition 4K Available options"
+      },
+      {
+        "anchor": "#body-sound",
+        "name": "sound",
+        "type": "enum<string>",
+        "summary": "default: off Sound effect control Available options : on , off"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "Model extension parameters Show child attributes"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: HTTPS protocol only Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"kling-o3-image-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "kling-o3-reference-to-video": {
+    "id": "kling-o3-reference-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/kling/kling-o3-reference-to-video",
+    "title": "Kling-O3 Reference to Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: kling-o3-reference-to-video required Video generation model name Available options : kling-o3-reference-to-video Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Text prompt, max 2500 characters Reference syntax: You can reference elements, images, and videos in the prompt using <<<xxx>>> syntax, for example: <<<element_1>>> walking in the scene style of <<<video_1>>> Maximum string length: 2500"
+      },
+      {
+        "anchor": "#body-video-url",
+        "name": "video_url",
+        "type": "string<uri>",
+        "summary": "Reference video URL Video format requirements: Format: MP4 / MOV Size: <= 200MB Duration: >= 3 seconds Dimensions: width and height 720px ~ 2160px Frame rate: 24fps ~ 60fps Video URL must be directly accessible by the server Example"
+      },
+      {
+        "anchor": "#body-keep-original-sound",
+        "name": "keep_original_sound",
+        "type": "boolean",
+        "summary": "default: true Whether to keep original sound from reference video Options: true : Keep the original video sound (default) false : Do not keep the original video sound Example"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "Reference image URL array (style/scene reference) Constraint: Image count + element count <= 4 when video is provided Note: Image URLs must be directly accessible by the server or trigger a direct download when accessed Example : [ \"https://example.com/style.jpg\""
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Video duration (seconds), range 3~10 Note: Shorter than the 15-second maximum for text-to-video/image-to-video, max supported duration is 10 seconds Required range : 3 <= x <= 10 Example"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "Video aspect ratio Options: 16:9 : Landscape video 9:16 : Portrait video 1:1 : Square video Available options"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Resolution tier Options: 720p : Standard 720P 1080p : High quality 1080P Available options"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "Advanced parameters Show child attributes"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: HTTPS protocol only Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"kling-o3-reference-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "kling-v3-image-to-video": {
+    "id": "kling-v3-image-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/kling/kling-v3-image-to-video",
+    "title": "Kling-V3 Image to Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: kling-v3-image-to-video required Video generation model name Available options : kling-v3-image-to-video Example :"
+      },
+      {
+        "anchor": "#body-image-start",
+        "name": "image_start",
+        "type": "string<uri>",
+        "summary": "required First frame image URL for image-to-video generation ( required ) Note: Image size: up to 10MB Supported formats: .jpg"
+      },
+      {
+        "anchor": "#body-image-end",
+        "name": "image_end",
+        "type": "string<uri>",
+        "summary": "Last frame image URL Note: image_start (first frame) must be provided when using last frame Supported formats: .jpg , .jpeg ,"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "Text prompt describing what video to generate Note: Maximum 2500 characters Can be empty when multi_shot=true and shot_type=customize"
+      },
+      {
+        "anchor": "#body-negative-prompt",
+        "name": "negative_prompt",
+        "type": "string",
+        "summary": "Negative prompt describing content you do not want in the video Example : \"text, watermark\""
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 5 Video duration in seconds, defaults to 5 seconds Note: Range: integer from 3 to"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Resolution tier Options: 720p : Standard quality (std) 1080p : High quality (pro) 4k"
+      },
+      {
+        "anchor": "#body-sound",
+        "name": "sound",
+        "type": "enum<string>",
+        "summary": "default: off Sound effect control Options: on : Generate sound effects off : No sound effects Available options"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "Advanced parameters for multi-shot, element control, and watermark Show child attributes"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: HTTPS protocol only Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"kling-v3-image-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "kling-v3-motion-control": {
+    "id": "kling-v3-motion-control",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/kling/kling-v3-motion-control",
+    "title": "Kling-V3 Motion Control - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: kling-v3-motion-control required Video generation model name Available options : kling-v3-motion-control Example :"
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "required Array of reference image URLs, used to provide the appearance source of the character/object Note: Provide one reference image Image size: no larger than 10MB Supported file formats: .jpg ,"
+      },
+      {
+        "anchor": "#body-video-urls",
+        "name": "video_urls",
+        "type": "string<uri>[]",
+        "summary": "required Array of reference video URLs to provide motion trajectory Note: Provide one reference video Video duration: 3 to 30 seconds"
+      },
+      {
+        "anchor": "#body-model-params",
+        "name": "model_params",
+        "type": "object",
+        "summary": "required Model-specific parameters (required), used for motion control configuration Show child attributes"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "Text prompt (optional), used to guide the generated content Note: Maximum 2500 characters Can be left empty; the model will automatically generate based on the reference image and video Maximum string length: 2500 Example"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 720p Resolution tier Details: 720p : Standard quality (std) 1080p : High quality (pro) Available options"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL triggered upon task completion Callback Timing: Triggered when the task is completed, failed, or cancelled Sent after billing confirmation is complete Security Restrictions: Only HTTPS protocol is supported Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"kling-v3-motion-control\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific type of the task Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Output type of the task Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "kling-o1-image-to-video": {
+    "id": "kling-o1-image-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/kling/kling-o1-image-to-video",
+    "title": "Kling-O1 Image to Video - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: kling-o1-image-to-video required Video generation model name Available options : kling-o1-image-to-video Example :"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Prompt describing what video to generate Maximum string length: 5000 Example : \"A cat walking gracefully\""
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "required Reference image URL list for image-to-video generation Note: Supports 1 to 2 images per request ( 1"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "Video aspect ratio Options: 16:9 : Landscape video 9:16 : Portrait video 1:1 : Square video Available options"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "enum<integer>",
+        "summary": "default: 5 Video duration in seconds, defaults to 5 seconds Note: Only supports 5 or"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL for task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: HTTPS protocol only Internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"kling-o1-image-to-video\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task details Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "grok-imagine-text-to-video": {
+    "id": "grok-imagine-text-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/grok/grok-imagine-text-to-video",
+    "title": "Grok Imagine Text to Video Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: grok-imagine-text-to-video-beta required Model name Backward Compatible: The previously integrated model name grok-imagine-text-to-video is still supported and will be automatically mapped to grok-imagine-text-to-video-beta"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Video description prompt Example : \"A cat playing piano in a jazz club\""
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 6 Video duration (seconds), any integer between 6 and 30 seconds Required range :"
+      },
+      {
+        "anchor": "#body-mode",
+        "name": "mode",
+        "type": "enum<string>",
+        "summary": "default: normal Generation style Options: fun : Fun style normal : Normal style (default) spicy"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Aspect ratio Options: 16:9 : Landscape (default) 9:16 : Portrait 1:1"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 480p Video resolution, default is 480p Options: 480p : Standard definition (default) 720p : High definition"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: Only HTTPS protocol supported Callback to internal IPs prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"grok-imagine-text-to-video-beta\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task detailed information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "grok-imagine-image-to-video": {
+    "id": "grok-imagine-image-to-video",
+    "url": "https://docs.evolink.ai/en/api-manual/video-series/grok/grok-imagine-image-to-video",
+    "title": "Grok Imagine Image to Video Beta - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://api.evolink.ai/v1/videos/generations",
+    "bodyFields": [
+      {
+        "anchor": "#body-model",
+        "name": "model",
+        "type": "enum<string>",
+        "summary": "default: grok-imagine-image-to-video-beta required Model name Backward Compatible: The previously integrated model name grok-imagine-image-to-video is still supported and will be automatically mapped to grok-imagine-image-to-video-beta"
+      },
+      {
+        "anchor": "#body-prompt",
+        "name": "prompt",
+        "type": "string",
+        "summary": "required Video description prompt Example : \"The person starts dancing\""
+      },
+      {
+        "anchor": "#body-image-urls",
+        "name": "image_urls",
+        "type": "string<uri>[]",
+        "summary": "required Reference image URL list Requirements: Supports 1 ~ 7 images per request Image size: max"
+      },
+      {
+        "anchor": "#body-duration",
+        "name": "duration",
+        "type": "integer",
+        "summary": "default: 6 Video duration (seconds), any integer between 6 and 30 seconds Required range :"
+      },
+      {
+        "anchor": "#body-mode",
+        "name": "mode",
+        "type": "enum<string>",
+        "summary": "default: normal Generation style Options: fun : Fun style normal : Normal style (default) spicy"
+      },
+      {
+        "anchor": "#body-aspect-ratio",
+        "name": "aspect_ratio",
+        "type": "enum<string>",
+        "summary": "default: 16:9 Aspect ratio (only effective in multi-image mode; in single-image mode, video size follows the input image) Options: 16:9 : Landscape (default) 9:16 : Portrait 1:1"
+      },
+      {
+        "anchor": "#body-quality",
+        "name": "quality",
+        "type": "enum<string>",
+        "summary": "default: 480p Video resolution, default is 480p Options: 480p : Standard definition (default) 720p : High definition"
+      },
+      {
+        "anchor": "#body-callback-url",
+        "name": "callback_url",
+        "type": "string<uri>",
+        "summary": "HTTPS callback URL after task completion Callback Timing: Triggered when task is completed, failed, or cancelled Sent after billing confirmation Security Restrictions: Only HTTPS protocol supported Callback to internal IPs prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.) URL length must not exceed 2048"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1757169743"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1757169743-7cvnl5zw\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Actual model name used Example : \"grok-imagine-image-to-video-beta\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Specific task type Available options : video.generation.task"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage (0-100) Required range : 0 <= x <= 100 Example : 0"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Video task detailed information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task output type Available options : text , image , audio ,"
+      },
+      {
+        "anchor": "#response-usage",
+        "name": "usage",
+        "type": "object",
+        "summary": "Usage and billing information Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "get-credits": {
+    "id": "get-credits",
+    "url": "https://docs.evolink.ai/en/api-manual/account-management/get-credits",
+    "title": "Get Credits Usage - EvoLink.AI",
+    "method": "GET",
+    "endpoint": "https://api.evolink.ai/v1/credits",
+    "bodyFields": [],
+    "responseFields": [
+      {
+        "anchor": "#response-data",
+        "name": "data",
+        "type": "object",
+        "summary": "required Show child attributes"
+      },
+      {
+        "anchor": "#response-message",
+        "name": "message",
+        "type": "string",
+        "summary": "required Response message Example : \"\""
+      },
+      {
+        "anchor": "#response-success",
+        "name": "success",
+        "type": "boolean",
+        "summary": "required Whether the request was successful Example : true"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "get-task-detail": {
+    "id": "get-task-detail",
+    "url": "https://docs.evolink.ai/en/api-manual/task-management/get-task-detail",
+    "title": "Query Task Status - EvoLink.AI",
+    "method": "GET",
+    "endpoint": "https://api.evolink.ai/v1/tasks/{task_id}",
+    "bodyFields": [],
+    "responseFields": [
+      {
+        "anchor": "#response-created",
+        "name": "created",
+        "type": "integer",
+        "summary": "Task creation timestamp Example : 1756817821"
+      },
+      {
+        "anchor": "#response-id",
+        "name": "id",
+        "type": "string",
+        "summary": "Task ID Example : \"task-unified-1756817821-4x3rx6ny\""
+      },
+      {
+        "anchor": "#response-model",
+        "name": "model",
+        "type": "string",
+        "summary": "Model used Example : \"gemini-3.1-flash-image-preview\""
+      },
+      {
+        "anchor": "#response-object",
+        "name": "object",
+        "type": "enum<string>",
+        "summary": "Task type Available options : image.generation.task , video.generation.task , audio.generation.task Example"
+      },
+      {
+        "anchor": "#response-progress",
+        "name": "progress",
+        "type": "integer",
+        "summary": "Task progress percentage Required range : 0 <= x <= 100 Example : 100"
+      },
+      {
+        "anchor": "#response-results",
+        "name": "results",
+        "type": "string<uri>[]",
+        "summary": "Task result list (provided when completed) Example : [ \"http://example.com/image.jpg\" ]"
+      },
+      {
+        "anchor": "#response-status",
+        "name": "status",
+        "type": "enum<string>",
+        "summary": "Task status Available options : pending , processing , completed ,"
+      },
+      {
+        "anchor": "#response-error-one-of-0",
+        "name": "error",
+        "type": "object",
+        "summary": "Error information when the task fails (only present when status is \"failed\"). Note: error.code here is a string-type business error code, different from HTTP status codes. See the Error Codes Reference for the complete list. Show child attributes"
+      },
+      {
+        "anchor": "#response-task-info",
+        "name": "task_info",
+        "type": "object",
+        "summary": "Task detailed information Show child attributes"
+      },
+      {
+        "anchor": "#response-type",
+        "name": "type",
+        "type": "enum<string>",
+        "summary": "Task type Available options : image , video , audio ,"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "error-codes": {
+    "id": "error-codes",
+    "url": "https://docs.evolink.ai/en/api-manual/task-management/error-codes",
+    "title": "Error Codes Reference - EvoLink.AI",
+    "method": null,
+    "endpoint": null,
+    "bodyFields": [],
+    "responseFields": [],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "upload-base64": {
+    "id": "upload-base64",
+    "url": "https://docs.evolink.ai/en/api-manual/file-series/upload-base64",
+    "title": "Base64 File Upload - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://files-api.evolink.ai/api/v1/files/upload/base64",
+    "bodyFields": [
+      {
+        "anchor": "#body-base64-data",
+        "name": "base64_data",
+        "type": "string",
+        "summary": "required Base64 encoded file data Supported Formats: Data URL format: data:image/png;base64,iVBORw0KGgo... Pure Base64 encoding: iVBORw0KGgo... Note: Maximum"
+      },
+      {
+        "anchor": "#body-upload-path",
+        "name": "upload_path",
+        "type": "string",
+        "summary": "Custom upload path Note: If not specified, system will automatically categorize based on file type Example : \"avatars\""
+      },
+      {
+        "anchor": "#body-file-name",
+        "name": "file_name",
+        "type": "string",
+        "summary": "Custom file name Note: If not specified, system will automatically generate a unique file name Example : \"avatar.png\""
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-success",
+        "name": "success",
+        "type": "boolean",
+        "summary": "Whether the request was successful Example : true"
+      },
+      {
+        "anchor": "#response-code",
+        "name": "code",
+        "type": "integer",
+        "summary": "Response status code Example : 200"
+      },
+      {
+        "anchor": "#response-msg",
+        "name": "msg",
+        "type": "string",
+        "summary": "Response message Example : \"File uploaded successfully\""
+      },
+      {
+        "anchor": "#response-data",
+        "name": "data",
+        "type": "object",
+        "summary": "Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "upload-stream": {
+    "id": "upload-stream",
+    "url": "https://docs.evolink.ai/en/api-manual/file-series/upload-stream",
+    "title": "File Stream Upload - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://files-api.evolink.ai/api/v1/files/upload/stream",
+    "bodyFields": [
+      {
+        "anchor": "#body-file",
+        "name": "file",
+        "type": "file",
+        "summary": "required File binary data Note: Upload via form-data format System will automatically identify file type Maximum 1 image per request Currently supports uploading files in:"
+      },
+      {
+        "anchor": "#body-upload-path",
+        "name": "upload_path",
+        "type": "string",
+        "summary": "Custom upload path Note: Supports underscore naming: upload_path Supports camelCase naming: uploadPath If not specified, system will automatically categorize based on file type Example :"
+      },
+      {
+        "anchor": "#body-file-name",
+        "name": "file_name",
+        "type": "string",
+        "summary": "Custom file name Note: Supports underscore naming: file_name Supports camelCase naming: fileName If not specified, system will automatically generate a unique file name Example :"
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-success",
+        "name": "success",
+        "type": "boolean",
+        "summary": "Whether the request was successful Example : true"
+      },
+      {
+        "anchor": "#response-code",
+        "name": "code",
+        "type": "integer",
+        "summary": "Response status code Example : 200"
+      },
+      {
+        "anchor": "#response-msg",
+        "name": "msg",
+        "type": "string",
+        "summary": "Response message Example : \"File uploaded successfully\""
+      },
+      {
+        "anchor": "#response-data",
+        "name": "data",
+        "type": "object",
+        "summary": "Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "upload-url": {
+    "id": "upload-url",
+    "url": "https://docs.evolink.ai/en/api-manual/file-series/upload-url",
+    "title": "URL File Upload - EvoLink.AI",
+    "method": "POST",
+    "endpoint": "https://files-api.evolink.ai/api/v1/files/upload/url",
+    "bodyFields": [
+      {
+        "anchor": "#body-file-url",
+        "name": "file_url",
+        "type": "string<uri>",
+        "summary": "required Remote file URL Requirements: Must be a publicly accessible URL Supports HTTP and HTTPS protocols System will automatically download the file content from this URL Maximum 1 image per request"
+      },
+      {
+        "anchor": "#body-upload-path",
+        "name": "upload_path",
+        "type": "string",
+        "summary": "Custom upload path Note: If not specified, system will automatically categorize based on file type Example : \"downloads\""
+      },
+      {
+        "anchor": "#body-file-name",
+        "name": "file_name",
+        "type": "string",
+        "summary": "Custom file name Note: If not specified, system will automatically generate a unique file name Example : \"downloaded.jpg\""
+      }
+    ],
+    "responseFields": [
+      {
+        "anchor": "#response-success",
+        "name": "success",
+        "type": "boolean",
+        "summary": "Whether the request was successful Example : true"
+      },
+      {
+        "anchor": "#response-code",
+        "name": "code",
+        "type": "integer",
+        "summary": "Response status code Example : 200"
+      },
+      {
+        "anchor": "#response-msg",
+        "name": "msg",
+        "type": "string",
+        "summary": "Response message Example : \"File uploaded successfully\""
+      },
+      {
+        "anchor": "#response-data",
+        "name": "data",
+        "type": "object",
+        "summary": "Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  },
+  "quota": {
+    "id": "quota",
+    "url": "https://docs.evolink.ai/en/api-manual/file-series/quota",
+    "title": "Get File Quota - EvoLink.AI",
+    "method": "GET",
+    "endpoint": "https://files-api.evolink.ai/api/v1/files/quota",
+    "bodyFields": [],
+    "responseFields": [
+      {
+        "anchor": "#response-success",
+        "name": "success",
+        "type": "boolean",
+        "summary": "Whether the request was successful Example : true"
+      },
+      {
+        "anchor": "#response-code",
+        "name": "code",
+        "type": "integer",
+        "summary": "Response status code Example : 200"
+      },
+      {
+        "anchor": "#response-data",
+        "name": "data",
+        "type": "object",
+        "summary": "Show child attributes"
+      }
+    ],
+    "requestExample": null,
+    "responseExample": null
+  }
+}
