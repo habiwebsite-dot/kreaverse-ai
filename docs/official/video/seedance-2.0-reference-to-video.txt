@@ -1,0 +1,1142 @@
+cURL
+
+multimodal
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "seedance-2.0-reference-to-video",
+"prompt": "Use the first-person perspective framing of video 1 throughout, use audio 1 as background music throughout. First-person perspective fruit tea promotional video...",
+"image_urls": [
+"https://example.com/ref1.jpg",
+"https://example.com/ref2.jpg"
+],
+"video_urls": [
+"https://example.com/reference.mp4"
+],
+"audio_urls": [
+"https://example.com/bgm.mp3"
+],
+"duration": 10,
+"quality": "720p",
+"aspect_ratio": "16:9",
+"generate_audio": true
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "seedance-2.0-reference-to-video",
+"prompt": "Use the first-person perspective framing of video 1 throughout, use audio 1 as background music throughout. First-person perspective fruit tea promotional video...",
+"image_urls": [
+"https://example.com/ref1.jpg",
+"https://example.com/ref2.jpg"
+],
+"video_urls": [
+"https://example.com/reference.mp4"
+],
+"audio_urls": [
+"https://example.com/bgm.mp3"
+],
+"duration": 10,
+"quality": "720p",
+"aspect_ratio": "16:9",
+"generate_audio": true
+}
+'
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1774857405-abc123"
+,
+"model"
+:
+"seedance-2.0-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+165
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+50
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1774857405-abc123"
+,
+"model"
+:
+"seedance-2.0-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+165
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+50
+,
+"user_group"
+:
+"default"
+}
+}
+
+Seedance 2.0 Reference-to-Video
+
+Input reference images (0–9) + reference videos (0–3) + reference audio (0–3) + text prompt to generate video
+
+Supports various creative scenarios including new generation, video editing, and video extension
+
+Now supports AIGC realistic human materials
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+multimodal
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "seedance-2.0-reference-to-video",
+"prompt": "Use the first-person perspective framing of video 1 throughout, use audio 1 as background music throughout. First-person perspective fruit tea promotional video...",
+"image_urls": [
+"https://example.com/ref1.jpg",
+"https://example.com/ref2.jpg"
+],
+"video_urls": [
+"https://example.com/reference.mp4"
+],
+"audio_urls": [
+"https://example.com/bgm.mp3"
+],
+"duration": 10,
+"quality": "720p",
+"aspect_ratio": "16:9",
+"generate_audio": true
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "seedance-2.0-reference-to-video",
+"prompt": "Use the first-person perspective framing of video 1 throughout, use audio 1 as background music throughout. First-person perspective fruit tea promotional video...",
+"image_urls": [
+"https://example.com/ref1.jpg",
+"https://example.com/ref2.jpg"
+],
+"video_urls": [
+"https://example.com/reference.mp4"
+],
+"audio_urls": [
+"https://example.com/bgm.mp3"
+],
+"duration": 10,
+"quality": "720p",
+"aspect_ratio": "16:9",
+"generate_audio": true
+}
+'
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1774857405-abc123"
+,
+"model"
+:
+"seedance-2.0-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+165
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+50
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1761313744
+,
+"id"
+:
+"task-unified-1774857405-abc123"
+,
+"model"
+:
+"seedance-2.0-reference-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+165
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+50
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All endpoints require Bearer Token authentication##
+
+Get API Key:
+
+Visit the
+API Key Management Page
+to obtain your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+seedance-2.0-reference-to-video
+
+"seedance-2.0-reference-to-video"
+
+"seedance-2.0-reference-to-video"
+
+Text prompt describing the desired video. Supports both Chinese and English, recommended no more than 500 characters for Chinese
+
+Details:
+
+You can use natural language to specify the purpose of each material, e.g., "use image 1 as the first frame", "use the camera movement from video 1 throughout", "use audio 1 as background music"
+
+The model will automatically understand the correspondence between material numbers and their intended uses
+
+"Use the first-person perspective framing of video 1 throughout, use audio 1 as background music throughout. First-person perspective fruit tea promotional video..."
+
+"Use the first-person perspective framing of video 1 throughout, use audio 1 as background music throughout. First-person perspective fruit tea promotional video..."
+
+Reference image URL array,
+0–9 images
+
+Role description:
+
+Media Type
+Role
+Typical Usage
+Image
+reference_image
+Style reference, product image, first/last frame (specified via prompt)
+
+Media Type
+Role
+Typical Usage
+
+Media Type
+
+Role
+
+Typical Usage
+
+Image
+reference_image
+Style reference, product image, first/last frame (specified via prompt)
+
+Image
+
+reference_image
+
+reference_image
+
+Style reference, product image, first/last frame (specified via prompt)
+
+Image requirements:
+
+Supported formats:
+.jpeg
+,
+.png
+,
+.webp
+
+.jpeg
+
+.png
+
+.webp
+
+Aspect ratio (width/height):
+0.4
+~
+2.5
+
+0.4
+
+2.5
+
+Width/height pixels:
+300
+~
+6000
+px
+
+300
+
+6000
+
+Max size per image:
+30MB
+
+30MB
+
+Total request body size must not exceed
+64MB
+, do not use Base64 encoding
+
+64MB
+
+Image URLs must be directly accessible by the server
+
+Note:
+You cannot provide only
+audio_urls
+; at least 1 image (
+image_urls
+) or 1 video (
+video_urls
+) must be included
+
+audio_urls
+
+image_urls
+
+video_urls
+
+9
+
+[
+"https://example.com/ref1.jpg"
+,
+"https://example.com/ref2.jpg"
+]
+
+[
+"https://example.com/ref1.jpg"
+,
+"https://example.com/ref2.jpg"
+]
+
+Reference video URL array,
+0–3 videos
+
+Role description:
+
+Media Type
+Role
+Typical Usage
+Video
+reference_video
+Camera movement reference, motion reference, original video for editing/extension
+
+Media Type
+Role
+Typical Usage
+
+Media Type
+
+Role
+
+Typical Usage
+
+Video
+reference_video
+Camera movement reference, motion reference, original video for editing/extension
+
+Video
+
+reference_video
+
+reference_video
+
+Camera movement reference, motion reference, original video for editing/extension
+
+Video requirements:
+
+Supported formats:
+.mp4
+,
+.mov
+
+.mp4
+
+.mov
+
+Resolution: 480p, 720p, 1080p
+
+Duration per video:
+2
+~
+15
+seconds, max 3 videos, total duration of all videos ≤
+15
+seconds
+
+2
+
+15
+
+15
+
+Aspect ratio (width/height):
+0.4
+~
+2.5
+
+0.4
+
+2.5
+
+Width/height pixels:
+300
+~
+6000
+px
+
+300
+
+6000
+
+Frame pixels (width × height):
+409,600
+~
+2,086,876
+(e.g., 640×640 ~ 2206×946)
+
+409,600
+
+2,086,876
+
+Max size per video:
+50MB
+
+50MB
+
+Frame rate:
+24
+~
+60
+FPS
+
+24
+
+60
+
+Total request body size must not exceed
+64MB
+, do not use Base64 encoding
+
+64MB
+
+Using video references will increase costs (input video duration is counted in billing)
+
+Video URLs must be directly accessible by the server
+
+Note:
+You cannot provide only
+audio_urls
+; at least 1 image (
+image_urls
+) or 1 video (
+video_urls
+) must be included
+
+audio_urls
+
+image_urls
+
+video_urls
+
+3
+
+[
+"https://example.com/reference.mp4"
+]
+
+[
+"https://example.com/reference.mp4"
+]
+
+Reference audio URL array,
+0–3 clips
+
+Role description:
+
+Media Type
+Role
+Typical Usage
+Audio
+reference_audio
+Background music, sound effects, voice/dialogue reference
+
+Media Type
+Role
+Typical Usage
+
+Media Type
+
+Role
+
+Typical Usage
+
+Audio
+reference_audio
+Background music, sound effects, voice/dialogue reference
+
+Audio
+
+reference_audio
+
+reference_audio
+
+Background music, sound effects, voice/dialogue reference
+
+Audio requirements:
+
+Supported formats:
+.wav
+,
+.mp3
+
+.wav
+
+.mp3
+
+Duration per clip:
+2
+~
+15
+seconds, max 3 clips, total duration of all audio ≤
+15
+seconds
+
+2
+
+15
+
+15
+
+Max size per clip:
+15MB
+
+15MB
+
+Total request body size must not exceed
+64MB
+, do not use Base64 encoding
+
+64MB
+
+Audio URLs must be directly accessible by the server
+
+Note:
+Audio cannot be provided alone; at least 1 reference video or image must be included
+
+3
+
+[
+"https://example.com/bgm.mp3"
+]
+
+[
+"https://example.com/bgm.mp3"
+]
+
+Output video duration (seconds), defaults to
+5
+seconds
+
+5
+
+Details:
+
+Supports any integer value between
+4
+–
+15
+seconds
+
+4
+
+15
+
+Duration directly affects billing
+
+4 <= x <= 15
+
+10
+
+10
+
+Video resolution, defaults to
+720p
+
+720p
+
+Options:
+
+480p
+: Lower clarity, lower cost
+
+480p
+
+720p
+: Standard clarity, this is the default
+
+720p
+
+1080p
+: Ultra HD clarity
+
+1080p
+
+480p
+
+720p
+
+1080p
+
+"720p"
+
+"720p"
+
+Video aspect ratio, defaults to
+16:9
+
+16:9
+
+Options:
+
+16:9
+(landscape),
+9:16
+(portrait),
+1:1
+(square),
+4:3
+,
+3:4
+,
+21:9
+(ultrawide)
+
+16:9
+
+9:16
+
+1:1
+
+4:3
+
+3:4
+
+21:9
+
+adaptive
+: Determined based on prompt intent, priority: video > image > prompt
+
+adaptive
+
+Pixel values per resolution:
+
+Aspect Ratio
+480p
+720p
+1080p
+16:9
+864×496
+1280×720
+1920×1080
+4:3
+752×560
+1112×834
+1664×1248
+1:1
+640×640
+960×960
+1440×1440
+3:4
+560×752
+834×1112
+1248×1664
+9:16
+496×864
+720×1280
+1080×1920
+21:9
+992×432
+1470×630
+2206×946
+
+Aspect Ratio
+480p
+720p
+1080p
+
+Aspect Ratio
+
+480p
+
+720p
+
+1080p
+
+16:9
+864×496
+1280×720
+1920×1080
+
+16:9
+
+864×496
+
+1280×720
+
+1920×1080
+
+4:3
+752×560
+1112×834
+1664×1248
+
+4:3
+
+752×560
+
+1112×834
+
+1664×1248
+
+1:1
+640×640
+960×960
+1440×1440
+
+1:1
+
+640×640
+
+960×960
+
+1440×1440
+
+3:4
+560×752
+834×1112
+1248×1664
+
+3:4
+
+560×752
+
+834×1112
+
+1248×1664
+
+9:16
+496×864
+720×1280
+1080×1920
+
+9:16
+
+496×864
+
+720×1280
+
+1080×1920
+
+21:9
+992×432
+1470×630
+2206×946
+
+21:9
+
+992×432
+
+1470×630
+
+2206×946
+
+16:9
+
+9:16
+
+1:1
+
+4:3
+
+3:4
+
+21:9
+
+adaptive
+
+"16:9"
+
+"16:9"
+
+Whether to generate synchronized audio, defaults to
+true
+
+true
+
+Options:
+
+true
+: Video includes synchronized audio at no additional charge
+
+true
+
+false
+: Output silent video
+
+false
+
+true
+
+true
+
+HTTPS callback URL for task completion
+
+Callback timing:
+
+Triggered when the task is completed, failed, or cancelled
+
+Sent after billing confirmation is complete
+
+Security restrictions:
+
+Only HTTPS protocol is supported
+
+Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (at
+1
+/
+2
+/
+4
+seconds after failure respectively)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format is consistent with the task query endpoint response format
+
+A 2xx status code is considered successful; other status codes trigger retries
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1761313744
+
+1761313744
+
+Task ID
+
+"task-unified-1774857405-abc123"
+
+"task-unified-1774857405-abc123"
+
+Actual model name used
+
+"seedance-2.0-reference-to-video"
+
+"seedance-2.0-reference-to-video"
+
+Specific type of the task
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task details
+
+Show
+child attributes
+
+Output type of the task
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
