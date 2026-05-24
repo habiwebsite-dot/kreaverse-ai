@@ -1,0 +1,6891 @@
+Auphonic Web Service
+
+Audio Algorithms
+
+Auphonic API
+Auphonic Simple API
+JSON API: Start Productions using Presets
+JSON API: Details of Productions and Presets
+Create a Production with Detailed Audio Metadata
+Output Files
+Setting Filenames
+Cut Lists
+Outgoing File Transfers
+Reference Output Files for Outgoing File Transfers
+Audio Algorithms
+More Settings for Audio Algorithms
+Query Audio Algorithms and Parameters
+Adding Intro and Outro
+Add multiple Intros or Outros
+Overlapping Intros/Outros (Intro/Outro Offsets)
+Audio Manipulations
+Add Audio Insert Files
+Adding Cuts
+Adding Segments
+Fade In/Out Time of Audio Files
+Adding Speech Recognition
+External Speech Recognition Services
+Auphonic Whisper Speech Recognition Service
+Automatic Shownotes and Chapters
+Output Formats
+Set all Details in one Request
+Creation of Presets
+Query Data
+Update and Delete existing Resources
+Multitrack Productions and Presets
+Authentication
+Webhooks
+External Service Integration using the Auphonic API
+API Examples
+
+Auphonic Simple API
+
+JSON API: Start Productions using Presets
+
+JSON API: Details of Productions and Presets
+Create a Production with Detailed Audio Metadata
+Output Files
+Setting Filenames
+Cut Lists
+Outgoing File Transfers
+Reference Output Files for Outgoing File Transfers
+Audio Algorithms
+More Settings for Audio Algorithms
+Query Audio Algorithms and Parameters
+Adding Intro and Outro
+Add multiple Intros or Outros
+Overlapping Intros/Outros (Intro/Outro Offsets)
+Audio Manipulations
+Add Audio Insert Files
+Adding Cuts
+Adding Segments
+Fade In/Out Time of Audio Files
+Adding Speech Recognition
+External Speech Recognition Services
+Auphonic Whisper Speech Recognition Service
+Automatic Shownotes and Chapters
+Output Formats
+Set all Details in one Request
+Creation of Presets
+
+Create a Production with Detailed Audio Metadata
+
+Output Files
+Setting Filenames
+Cut Lists
+
+Setting Filenames
+
+Cut Lists
+
+Outgoing File Transfers
+Reference Output Files for Outgoing File Transfers
+
+Reference Output Files for Outgoing File Transfers
+
+Audio Algorithms
+More Settings for Audio Algorithms
+Query Audio Algorithms and Parameters
+
+More Settings for Audio Algorithms
+
+Query Audio Algorithms and Parameters
+
+Adding Intro and Outro
+Add multiple Intros or Outros
+Overlapping Intros/Outros (Intro/Outro Offsets)
+
+Add multiple Intros or Outros
+
+Overlapping Intros/Outros (Intro/Outro Offsets)
+
+Audio Manipulations
+Add Audio Insert Files
+
+Add Audio Insert Files
+
+Adding Cuts
+
+Adding Segments
+
+Fade In/Out Time of Audio Files
+
+Adding Speech Recognition
+External Speech Recognition Services
+Auphonic Whisper Speech Recognition Service
+Automatic Shownotes and Chapters
+Output Formats
+
+External Speech Recognition Services
+
+Auphonic Whisper Speech Recognition Service
+
+Automatic Shownotes and Chapters
+
+Output Formats
+
+Set all Details in one Request
+
+Creation of Presets
+
+Query Data
+
+Update and Delete existing Resources
+
+Multitrack Productions and Presets
+
+Authentication
+
+Webhooks
+
+External Service Integration using the Auphonic API
+
+API Examples
+
+Further Resources
+
+Auphonic API
+
+JSON API: Details of Productions and Presets
+
+JSON API: Details of Productions and Presets
+
+
+The basic syntax for creating and changing productions and presets is
+very similar, only the URLs are different.
+
+https://auphonic.com/api/{presets|productions}.json
+
+https://auphonic.com/api/{presets|productions}.json
+
+This creates a new
+Production
+or
+Preset
+, where
+{presets|productions}
+should be either
+presets
+or
+productions
+.
+
+{presets|productions}
+
+All details can be set in JSON format, see
+Set all Details in one Request
+for an example.
+
+https://auphonic.com/api/{preset|production}/{uuid}/upload.json
+
+https://auphonic.com/api/{preset|production}/{uuid}/upload.json
+
+Local file uploads must be handled in an additional request
+(encoded in
+multipart/form-data
+,
+not
+JSON).
+Set the field
+image
+to add a cover image
+and set
+input_file
+to upload an audio or video file (in productions only).
+
+multipart/form-data
+
+image
+
+input_file
+
+See
+Image and Audio Upload Example
+.
+
+https://auphonic.com/api/production/{uuid}/start.json
+
+https://auphonic.com/api/production/{uuid}/start.json
+
+This starts the audio post production of the
+Production
+with the given UUID.
+You can also start a production by adding
+"action":
+"start"
+as a parameter to the production create/change request (see example
+Upload Files with HTTP
+).
+
+"action":
+"start"
+
+https://auphonic.com/api/production/{uuid}/publish.json
+
+https://auphonic.com/api/production/{uuid}/publish.json
+
+Publishes the audio post production of the
+Production
+with the given UUID to all
+Outgoing File Transfers
+.
+This will only take effect if the production contains
+Outgoing File Transfers
+and
+in_review
+is
+true
+.
+
+in_review
+
+true
+
+https://auphonic.com/api/{preset|production}/{uuid}.json
+
+https://auphonic.com/api/{preset|production}/{uuid}.json
+
+Here
+{uuid}
+is the UUID of the preset/production you want to change.
+All sub-dictionaries can be changed in the same format as in the
+Set all Details in one Request
+example.
+
+{uuid}
+
+See also
+Update a Production or Preset and Reset Data
+.
+
+For the creation of multitrack productions and presets, see
+Multitrack Productions and Presets
+.
+
+Create a Production with Detailed Audio Metadata
+
+
+Audio
+Metadata
+can be set using the
+metadata
+parameter:
+
+metadata
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"metadata"
+:
+{
+"title"
+:
+"Production Title"
+,
+"artist"
+:
+"The Artist"
+,
+"album"
+:
+"Our Album"
+,
+"track"
+:
+1
+,
+"subtitle"
+:
+"Our subtitle"
+,
+"append_chapters"
+:
+true
+,
+"summary"
+:
+"Our very long summary."
+,
+"genre"
+:
+"Podcast"
+,
+"year"
+:
+2012
+,
+"publisher"
+:
+"that's me"
+,
+"url"
+:
+"https://auphonic.com"
+,
+"license"
+:
+"Creative Commons Attribution 3.0 Austria"
+,
+"license_url"
+:
+"http://creativecommons.org/licenses/by/3.0/at/"
+,
+"tags"
+:
+[
+"podcast"
+,
+"auphonic api"
+,
+"metadata"
+],
+"location"
+:
+{
+"latitude"
+:
+"47.070"
+,
+"longitude"
+:
+"15.439"
+}
+}
+}
+'
+
+Note
+
+Metadata tags, chapters and cover images from input files are
+imported automatically if they are not set here!
+
+Hint
+
+Metadata fields can make use of
+Variables and Placeholders
+.
+
+The response contains the UUID of the created production/preset:
+
+{
+"status_code"
+:
+200
+,
+...
+"data"
+:
+{
+...
+"uuid"
+:
+"KKw7AxpLrDBQKLVnQCBtCh"
+,
+...
+}
+}
+
+Now let’s add an input file and a cover image to the newly created production:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+KKw7AxpLrDBQKLVnQCBtCh
+/
+upload
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"input_file=@/home/user/your_audio_file.mp3"
+\
+-
+F
+"image=@/home/user/your_cover_image.jpeg"
+
+You may also add a cover image by just referencing a valid picture URL:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+KKw7AxpLrDBQKLVnQCBtCh
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{"image": "https://auphonic.com/static/images/logo.png"}'
+
+Output Files
+
+
+Add
+Output Files
+to an existing production:
+
+curl
+-
+H
+"Content-Type: application/json"
+-
+X
+POST
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"output_files"
+:
+[
+{
+"format"
+:
+"mp3"
+,
+"bitrate"
+:
+"96"
+},
+{
+"format"
+:
+"aac"
+,
+"bitrate"
+:
+"64"
+},
+{
+"format"
+:
+"flac"
+}
+]
+}
+'
+
+mp3
+
+mp3
+
+mp3
+
+mp3-vbr
+: MP3 with variable bitrate encoding
+
+mp3-vbr
+: MP3 with variable bitrate encoding
+
+mp3-vbr
+
+vorbis
+: Ogg Vorbis
+
+vorbis
+: Ogg Vorbis
+
+vorbis
+
+opus
+: Opus Codec
+
+opus
+: Opus Codec
+
+opus
+
+aac
+(MP4/M4A)
+
+aac
+(MP4/M4A)
+
+aac
+
+flac
+
+flac
+
+flac
+
+alac
+(MP4/M4A)
+
+alac
+(MP4/M4A)
+
+alac
+
+wav
+: uncompressed WAV 16-bit PCM
+
+wav
+: uncompressed WAV 16-bit PCM
+
+wav
+
+wav-24bit
+: uncompressed WAV 24-bit PCM
+
+wav-24bit
+: uncompressed WAV 24-bit PCM
+
+wav-24bit
+
+video
+: Video Output, format is the same as the input video
+
+video
+: Video Output, format is the same as the input video
+
+video
+
+audiogram
+: Audiogram (Waveform Video) output file
+
+audiogram
+: Audiogram (Waveform Video) output file
+
+audiogram
+
+input
+: unprocessed original input audio/video file, same format as input
+
+input
+: unprocessed original input audio/video file, same format as input
+
+input
+
+descr
+: Production Description in xml/json/yaml
+
+descr
+: Production Description in xml/json/yaml
+
+descr
+
+stats
+: Audio Processing Statistics in txt/json/yaml
+
+stats
+: Audio Processing Statistics in txt/json/yaml
+
+stats
+
+chaps
+: Chapter Marks as txt file (as used by mp4chaps)
+
+chaps
+: Chapter Marks as txt file (as used by mp4chaps)
+
+chaps
+
+psc
+: Chapter Marks in Podlove Simple Chapters format
+
+psc
+: Chapter Marks in Podlove Simple Chapters format
+
+psc
+
+cut-list
+: Filler and Silence Cuts in a list format
+
+cut-list
+: Filler and Silence Cuts in a list format
+
+cut-list
+
+image
+: a copy of the Cover Image
+
+image
+: a copy of the Cover Image
+
+image
+
+waveform
+: Waveform Image of output audio file
+
+waveform
+: Waveform Image of output audio file
+
+waveform
+
+To query all available formats, bitrates and filename endings, use the following request:
+
+curl
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+info
+/
+output_files
+.
+json
+
+which returns:
+
+{
+"status_code"
+:
+200
+,
+...
+"data"
+:
+{
+"mp3"
+:
+{
+"type"
+:
+"lossy"
+,
+"bitrates"
+:
+[
+"32"
+,
+"40"
+,
+"48"
+,
+...
+],
+"bitrate_strings"
+:
+[
+"32 kbps (~14MB/h)"
+,
+"40 kbps (~18MB/h)"
+,
+...
+],
+"display_name"
+:
+"MP3"
+,
+"default_bitrate"
+:
+"96"
+,
+"endings"
+:
+[
+"mp3"
+]
+},
+"opus"
+:
+{
+"type"
+:
+"lossy"
+,
+"bitrates"
+:
+[
+"6"
+,
+"12"
+,
+"16"
+,
+...
+],
+"bitrate_strings"
+:
+[
+"~6 kbps (~3MB/h)"
+,
+"~12 kbps (~5MB/h)"
+,
+...
+],
+"display_name"
+:
+"Opus"
+,
+"default_bitrate"
+:
+"48"
+,
+"endings"
+:
+[
+"opus"
+],
+},
+"aac"
+:
+{
+"type"
+:
+"lossy"
+,
+"bitrates"
+:
+[
+"24"
+,
+"32"
+,
+"40"
+,
+"48"
+,
+...
+],
+"bitrate_strings"
+:
+[
+"24 kbps, HE AAC (~11MB/h)"
+,
+"32 kbps, HE AAC (~14MB/h)"
+,
+...
+],
+"display_name"
+:
+"AAC (M4A, MP4, M4B)"
+,
+"default_bitrate"
+:
+"64"
+,
+"endings"
+:
+[
+"mp4"
+,
+"m4a"
+,
+"m4b"
+]
+},
+"vorbis"
+:
+{
+"type"
+:
+"lossy"
+,
+"bitrates"
+:
+[
+"32"
+,
+"40"
+,
+"48"
+,
+...
+],
+"bitrate_strings"
+:
+[
+"~32 kbps (~14MB/h)"
+,
+"~40 kbps (~18MB/h)"
+,
+...
+],
+"display_name"
+:
+"Ogg Vorbis"
+,
+"default_bitrate"
+:
+"80"
+,
+"endings"
+:
+[
+"ogg"
+,
+"oga"
+]
+},
+"flac"
+:
+{
+"type"
+:
+"lossless"
+,
+"bitrate_strings"
+:
+[
+"optimal (stereo ~125MB/h, mono ~62MB/h)"
+],
+"display_name"
+:
+"FLAC"
+,
+"endings"
+:
+[
+"flac"
+]
+},
+"alac"
+:
+{
+"type"
+:
+"lossless"
+,
+"bitrate_strings"
+:
+[
+"optimal (stereo ~130MB/h, mono ~65MB/h)"
+],
+"display_name"
+:
+"ALAC (M4A, MP4)"
+,
+"endings"
+:
+[
+"mp4"
+,
+"m4a"
+]
+},
+"mp3-vbr"
+:
+{
+"type"
+:
+"lossy"
+,
+"bitrates"
+:
+[
+"32"
+,
+"40"
+,
+"48"
+,
+...
+],
+"bitrate_strings"
+:
+[
+"~32 kbps (~14MB/h)"
+,
+"~40 kbps (~18MB/h)"
+,
+...
+],
+"display_name"
+:
+"MP3 Variable Bitrate"
+,
+"default_bitrate"
+:
+"96"
+,
+"endings"
+:
+[
+"mp3"
+]
+}
+"wav"
+:
+{
+"type"
+:
+"lossless"
+,
+"bitrate_strings"
+:
+[
+"optimal (stereo ~635MB/h, mono ~318MB/h)"
+],
+"display_name"
+:
+"WAV 16-bit PCM"
+,
+"endings"
+:
+[
+"wav"
+]
+}
+"video"
+:
+{
+"display_name"
+:
+"Video (same format as input)"
+,
+"bitrate_strings"
+:
+[
+"same bitrate as input"
+],
+"type"
+:
+"video"
+},
+"chaps"
+:
+{
+"type"
+:
+"description"
+,
+"display_name"
+:
+"Chapters File"
+,
+"endings"
+:
+[
+"chapters.txt"
+]
+},
+"psc"
+:
+{
+"type"
+:
+"description"
+,
+"display_name"
+:
+"Podlove Simple Chapters"
+,
+"endings"
+:
+[
+"psc"
+,
+"xml"
+]
+},
+"image"
+:
+{
+"type"
+:
+"description"
+,
+"display_name"
+:
+"Cover Image"
+},
+"stats"
+:
+{
+"display_name"
+:
+"Audio Processing Statistics"
+,
+"type"
+:
+"description"
+,
+"endings"
+:
+[
+"txt"
+,
+"json"
+,
+"yaml"
+]
+},
+...
+}
+}
+
+If no bitrate is specified in lossy audio formats, the
+default_bitrate
+is taken -
+type
+can be
+lossy
+for lossy audio files,
+lossless
+for lossless
+audio files,
+video
+for video output files and
+description
+for data
+about a production.
+
+default_bitrate
+
+type
+
+If you want to create a
+Mono Mixdown
+or use the
+Split On Chapters
+feature, set a flag in JSON:
+
+[
+{
+"format"
+:
+"mp3"
+,
+"bitrate"
+:
+"96"
+},
+{
+"format"
+:
+"wav"
+,
+"mono_mixdown"
+:
+true
+},
+{
+"format"
+:
+"vorbis"
+,
+"bitrate"
+:
+"64"
+,
+"split_on_chapters"
+:
+true
+,
+"mono_mixdown"
+:
+true
+},
+{
+"format"
+:
+"video"
+,
+"mono_mixdown"
+:
+true
+}
+]
+
+For further details, please see
+Output Files
+.
+
+Setting Filenames
+
+
+It’s possible to control how output filenames are constructed:
+
+{"format":"mp3",
+"bitrate":"48",
+"filename":"MyFilename.mp3",
+"mono_mixdown":true}
+
+Directly generates the file
+MyFilename.mp3
+. Must have a correct ending!
+
+{"format":"aac",
+"bitrate":"64",
+"ending":"mp4"}
+
+This will take the input file basename and adds
+mp4
+as ending,
+e.g.
+original-filename.mp4
+.
+
+{"format":"aac",
+"bitrate":"32",
+"suffix":"-small",
+"ending":"m4a"}
+
+Takes the input file basename and adds suffix and ending,
+e.g.
+original-filename-small.m4a
+.
+
+A filename in auphonic consists of an
+output_basename
+,
+suffix
+and an
+ending
+. The output basename can be set using the URL
+https://auphonic.com/api/productions.json
+or
+https://auphonic.com/api/production/{uuid}.json
+:
+
+output_basename
+
+suffix
+
+ending
+
+https://auphonic.com/api/productions.json
+
+https://auphonic.com/api/production/{uuid}.json
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+...
+"output_basename"
+:
+"production-filename"
+,
+"output_files"
+:
+[
+{
+"format"
+:
+"aac"
+,
+"bitrate"
+:
+"32"
+,
+"suffix"
+:
+"-small"
+,
+"ending"
+:
+"m4a"
+}
+{
+"format"
+:
+"aac"
+,
+"bitrate"
+:
+"128"
+,
+"ending"
+:
+"m4a"
+}
+]
+...
+}
+'
+
+This will create the output files
+production-filename-small.m4a
+and
+production-filename.m4a
+.
+
+production-filename-small.m4a
+
+production-filename.m4a
+
+It’s also possible to set the full output filename for an output format.
+The full filename has priority over the single components like
+suffix
+,
+basename
+, etc.:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+KKw7AxpLrDBQKLVnQCBtCh
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+...
+"output_basename"
+:
+"production-filename"
+,
+"output_files"
+:
+[
+{
+"format"
+:
+"mp3"
+,
+"bitrate"
+:
+"48"
+,
+"filename"
+:
+"MyFilename1.mp3"
+,
+"suffix"
+:
+"-small"
+}
+{
+"format"
+:
+"aac"
+,
+"bitrate"
+:
+"96"
+,
+"filename"
+:
+"MyFilename2.mp4"
+,
+"ending"
+:
+"m4a"
+}
+]
+...
+}
+'
+
+This will create the output files
+MyFilename1.mp3
+and
+MyFilename2.mp4
+.
+
+MyFilename1.mp3
+
+MyFilename2.mp4
+
+Cut Lists
+
+
+With the
+Cut Fillers
+and the
+Cut Silence
+algorithms you can automatically cut your audio or video file. Depending on whether you activate any cutting algorithm you can export the cuts in list form. This allows you to check if the cuts work for you.
+See
+Export Cut Lists
+for more details and all available cut list formats.
+
+In the API, you can select a specific cut list format using the
+ending
+field.
+In this example, we select Reaper regions and the DaVinci Resolve CMX3600 EDL format as the output formats:
+
+ending
+
+-
+d
+'{
+...
+"output_files"
+:
+[
+{
+"format"
+:
+"cut-list"
+,
+"ending"
+:
+"ReaperRegions.csv"
+},
+{
+"format"
+:
+"cut-list"
+,
+"ending"
+:
+"DaVinciResolve.edl"
+}
+]
+...
+}
+'
+
+Outgoing File Transfers
+
+
+Similar to
+Upload Files with External Services (SFTP/FTP/Dropbox/etc.)
+,
+External Services
+can be referenced for outgoing file transfers:
+
+curl
+-
+H
+"Content-Type: application/json"
+-
+X
+POST
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"outgoing_services"
+:
+[
+{
+"uuid"
+:
+"
+{service1_uuid}
+"
+},
+{
+"uuid"
+:
+"
+{service2_uuid}
+"
+},
+...
+],
+"review_before_publishing"
+:
+false
+}
+'
+
+where
+{service1_uuid}
+,
+{service2_uuid}
+, etc. is the UUID of
+the external service you want to add for outgoing file transfers.
+
+{service1_uuid}
+
+{service2_uuid}
+
+review_before_publishing
+
+If you set
+review_before_publishing
+to
+true
+and there are any defined
+outgoing_services
+, this will set
+in_review
+to
+true
+. After the production is done, you are able to
+Publish the production to Outgoing File Transfers
+if you are satisfied with the results.
+
+If you set
+review_before_publishing
+to
+true
+and there are any defined
+outgoing_services
+, this will set
+in_review
+to
+true
+. After the production is done, you are able to
+Publish the production to Outgoing File Transfers
+if you are satisfied with the results.
+
+review_before_publishing
+
+true
+
+outgoing_services
+
+in_review
+
+true
+
+For some outgoing file transfer services, additional parameters are available:
+
+Captivate:
+draft
+:
+true
+or
+false
+(Default:
+false
+)
+type
+:
+“normal”
+,
+“trailer”
+or
+“bonus”
+– episode type as
+documented by Apple
+
+draft
+:
+true
+or
+false
+(Default:
+false
+)
+
+draft
+:
+true
+or
+false
+(Default:
+false
+)
+
+draft
+
+type
+:
+“normal”
+,
+“trailer”
+or
+“bonus”
+– episode type as
+documented by Apple
+
+type
+:
+“normal”
+,
+“trailer”
+or
+“bonus”
+– episode type as
+documented by Apple
+
+type
+
+Facebook:
+distribution
+:
+everywhere
+(Post to News Feed: exported video is posted directly to your timeline),
+no_story
+(Exclude from News Feed: not posted to your timeline, but visible in the videos tab) or
+secret
+(only you can see the video)
+embeddable
+:
+true
+or
+false
+
+distribution
+:
+everywhere
+(Post to News Feed: exported video is posted directly to your timeline),
+no_story
+(Exclude from News Feed: not posted to your timeline, but visible in the videos tab) or
+secret
+(only you can see the video)
+
+distribution
+:
+everywhere
+(Post to News Feed: exported video is posted directly to your timeline),
+no_story
+(Exclude from News Feed: not posted to your timeline, but visible in the videos tab) or
+secret
+(only you can see the video)
+
+distribution
+
+embeddable
+:
+true
+or
+false
+
+embeddable
+:
+true
+or
+false
+
+embeddable
+
+PodBean:
+draft
+:
+true
+or
+false
+type
+:
+“public”
+,
+“premium”
+or
+“private”
+– not all of these are allowed for every Podcast and the exact set allowed values depends on your subscription model and settings on PodBean
+Note
+: There is currently no way to query the exact set of allowed values using the Auphonic API, please contact support if this is something you need!
+
+draft
+:
+true
+or
+false
+
+draft
+:
+true
+or
+false
+
+draft
+
+type
+:
+“public”
+,
+“premium”
+or
+“private”
+– not all of these are allowed for every Podcast and the exact set allowed values depends on your subscription model and settings on PodBean
+Note
+: There is currently no way to query the exact set of allowed values using the Auphonic API, please contact support if this is something you need!
+
+type
+:
+“public”
+,
+“premium”
+or
+“private”
+– not all of these are allowed for every Podcast and the exact set allowed values depends on your subscription model and settings on PodBean
+Note
+: There is currently no way to query the exact set of allowed values using the Auphonic API, please contact support if this is something you need!
+
+type
+
+SoundCloud:
+downloadable
+:
+true
+or
+false
+sharing
+:
+public
+or
+private
+track_type
+: as returned by
+Query Service Types
+(same values as documented in the
+SoundCloud API Reference
+)
+
+downloadable
+:
+true
+or
+false
+
+downloadable
+:
+true
+or
+false
+
+downloadable
+
+sharing
+:
+public
+or
+private
+
+sharing
+:
+public
+or
+private
+
+sharing
+
+track_type
+: as returned by
+Query Service Types
+(same values as documented in the
+SoundCloud API Reference
+)
+
+track_type
+: as returned by
+Query Service Types
+(same values as documented in the
+SoundCloud API Reference
+)
+
+track_type
+
+Spreaker:
+downloadable
+:
+true
+or
+false
+sharing
+:
+public
+or
+private
+show
+: one of your available shows on Spreaker, as returned by
+Query Service Types
+
+downloadable
+:
+true
+or
+false
+
+downloadable
+:
+true
+or
+false
+
+downloadable
+
+sharing
+:
+public
+or
+private
+
+sharing
+:
+public
+or
+private
+
+sharing
+
+show
+: one of your available shows on Spreaker, as returned by
+Query Service Types
+
+show
+: one of your available shows on Spreaker, as returned by
+Query Service Types
+
+show
+
+YouTube:
+privacy
+:
+public
+or
+private
+category
+: YouTube category, as returned by
+Query Service Types
+
+privacy
+:
+public
+or
+private
+
+privacy
+:
+public
+or
+private
+
+privacy
+
+category
+: YouTube category, as returned by
+Query Service Types
+
+category
+: YouTube category, as returned by
+Query Service Types
+
+category
+
+RSS.com:
+podcast
+: one of your available podcasts on RSS.com
+
+podcast
+: one of your available podcasts on RSS.com
+
+podcast
+: one of your available podcasts on RSS.com
+
+podcast
+
+For example, an outgoing file transfer to SoundCloud:
+
+curl
+-
+H
+"Content-Type: application/json"
+-
+X
+POST
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"outgoing_services"
+:
+[
+{
+"uuid"
+:
+"gxr975w3MzRS9ywnWsu6tL"
+,
+"downloadable"
+:
+true
+,
+"sharing"
+:
+"public"
+,
+"track_type"
+:
+"podcast"
+}
+]
+}
+'
+
+They support the same values as documented in the
+SoundCloud API Reference
+.
+
+It’s also possible to query all registered
+External Services
+of a user:
+
+curl
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+services
+.
+json
+-
+H
+"Authorization: bearer
+{api_key}
+"
+
+which returns:
+
+{
+"status_code"
+:
+200
+,
+...
+"data"
+:
+[
+{
+"display_name"
+:
+"Georg Holzmann"
+,
+"type"
+:
+"dropbox"
+,
+"uuid"
+:
+"UC6aoChNZNt7KYZNxJTgUn"
+,
+"email"
+:
+"georg@myserver.at"
+,
+"incoming"
+:
+true
+,
+"outgoing"
+:
+true
+},
+{
+"display_name"
+:
+"my soundcloud account"
+,
+"type"
+:
+"soundcloud"
+,
+"uuid"
+:
+"Asu5PxueRRxtqfZhe7zdia"
+,
+"incoming"
+:
+true
+,
+"outgoing"
+:
+true
+},
+{
+"display_name"
+:
+"my youtube vids"
+,
+"type"
+:
+"youtube"
+,
+"uuid"
+:
+"esSfxaPe6U2bNX2K9GGMeT"
+,
+"incoming"
+:
+false
+,
+"outgoing"
+:
+true
+},
+{
+"display_name"
+:
+"Auphonic Spreaker Account"
+,
+"type"
+:
+"spreaker"
+,
+"uuid"
+:
+"UL7MZvjR3tntbCvbxu5Jsi"
+,
+"outgoing"
+:
+true
+,
+"incoming"
+:
+true
+},
+{
+"display_name"
+:
+"my ftp server"
+,
+"path"
+:
+"mirror/"
+,
+"host"
+:
+"ftp.myserver.at"
+,
+"type"
+:
+"ftp"
+,
+"uuid"
+:
+"r6MSycBwyeWFAJYqUKtGeX"
+,
+"port"
+:
+21
+,
+"base_url"
+:
+""
+,
+"permissions"
+:
+""
+,
+"incoming"
+:
+true
+,
+"outgoing"
+:
+true
+},
+{
+"display_name"
+:
+"myserver.at SFTP"
+"path"
+:
+"/home/user/path"
+,
+"host"
+:
+"myserver.at"
+,
+"type"
+:
+"sftp"
+,
+"uuid"
+:
+"jm7yLuiyGwQe27gQUz869K"
+,
+"port"
+:
+22
+,
+"base_url"
+:
+"http://myserver.at/audiofiles/"
+,
+"permissions"
+:
+"664"
+,
+"incoming"
+:
+true
+,
+"outgoing"
+:
+true
+},
+{
+"outgoing"
+:
+true
+,
+"display_name"
+:
+"mypodcast /quickcast"
+,
+"uuid"
+:
+"h9KHD96Mks5JyfFuXYPXHk"
+,
+"libsyn_show_slug"
+:
+"mypodcast"
+,
+"base_url"
+:
+"http://traffic.libsyn.com/mypodcast/"
+,
+"port"
+:
+21
+,
+"host"
+:
+"ftp-server.libsyn.com"
+,
+"path"
+:
+"/mypodcast/quickcast"
+,
+"incoming"
+:
+false
+,
+"type"
+:
+"libsyn"
+,
+"libsyn_directory"
+:
+"quickcast"
+},
+{
+"outgoing"
+:
+true
+,
+"display_name"
+:
+"auphonic bucket 1"
+,
+"uuid"
+:
+"gRNT7i5NVxPiGCG8TmhpgF"
+,
+"type"
+:
+"amazons3"
+,
+"bucket"
+:
+"auphonic1"
+,
+"incoming"
+:
+true
+,
+"canned_acl"
+:
+"public-read"
+,
+"key_prefix"
+:
+"my-podcast/"
+},
+{
+"type"
+:
+"archiveorg"
+,
+"outgoing"
+:
+true
+,
+"display_name"
+:
+"archive"
+,
+"uuid"
+:
+"PQaZpL58TqvK9NvDnHu5Hj"
+,
+"incoming"
+:
+false
+},
+{
+"outgoing"
+:
+true
+,
+"display_name"
+:
+"My WebDAV Server"
+,
+"uuid"
+:
+"9k27BXTmvsKCdeoyXkHjVB"
+,
+"url"
+:
+"https://mywebdav.com/myfiles/"
+,
+"base_url"
+:
+"http://files.mywebdav.com/myfiles/"
+,
+"incoming"
+:
+true
+,
+"type"
+:
+"webdav"
+},
+{
+"outgoing"
+:
+true
+,
+"display_name"
+:
+"Auphonic Blubrry Account"
+,
+"uuid"
+:
+"xJTES9PCAu3uvLE3gwSjAN"
+,
+"program_keyword"
+:
+"auphonic_blubrry_account"
+,
+"base_url"
+:
+"http://content.blubrry.com/auphonic_blubrry_account"
+,
+"incoming"
+:
+false
+,
+"type"
+:
+"blubrry"
+},
+{
+"uuid"
+:
+"mggo5JuLNLhVBkSpEA4tsg"
+,
+"display_name"
+:
+"Auphonic PodBean Account"
+,
+"type"
+:
+"oauthhoster.podbean"
+,
+"incoming"
+:
+false
+,
+"outgoing"
+:
+true
+,
+"podcast"
+:
+{
+"id"
+:
+"JYJGk5T2gI3G"
+,
+"title"
+:
+"Auphonic Podcast"
+,
+"url"
+:
+"https://yourpodcast.podbean.com"
+,
+"image"
+:
+[
+{
+"url"
+:
+"https://djrpnl90t7dii.cloudfront.net/podbean-logo/podcast_standard_logo_v2.png"
+}
+],
+"description"
+:
+"Podcast Description"
+}
+}
+]
+}
+
+The response contains different datasets for each external service,
+but each service will have a
+type
+and a
+uuid
+.
+incoming
+and
+outgoing
+indicates, if the service can be used for
+incoming and/or outgoing file transfers.
+
+type
+
+uuid
+
+incoming
+
+outgoing
+
+All possible external service types on
+auphonic.com
+and their parameters can be queried with:
+
+curl
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+info
+/
+service_types
+.
+json
+-
+H
+"Authorization: bearer
+{api_key}
+"
+
+which returns:
+
+{
+"status_code"
+:
+200
+,
+...
+"data"
+:
+{
+"youtube"
+:
+{
+"display_name"
+:
+"YouTube"
+,
+"parameters"
+:
+{
+"category"
+:
+{
+"default_value"
+:
+""
+,
+"type"
+:
+"select"
+,
+"display_name"
+:
+"Category"
+,
+"options"
+:
+[
+{
+"display_name"
+:
+"Autos & Vehicles"
+,
+"value"
+:
+"Autos"
+},
+...
+]
+},
+...
+}
+},
+"soundcloud"
+:
+{
+"display_name"
+:
+"SoundCloud"
+,
+"parameters"
+:
+{
+"downloadable"
+:
+{
+"default_value"
+:
+true
+,
+"type"
+:
+"checkbox"
+,
+"display_name"
+:
+"Downloadable"
+},
+...
+}
+},
+"dropbox"
+:
+{
+"display_name"
+:
+"Dropbox"
+,
+"parameters"
+:
+null
+},
+...
+}
+}
+
+The response also includes all available parameter values for each outgoing file transfer service! Please note that the range of accepted select values might be not include all the options returned by this API if it varies per-account for the service in question – this is true for the
+type
+parameter of PodBean for instance.
+
+type
+
+Reference Output Files for Outgoing File Transfers
+
+
+If you want to export a specific output file to an outgoing external service,
+you can reference the external service account while setting the output file details:
+
+curl
+-
+H
+"Content-Type: application/json"
+-
+X
+POST
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"output_files"
+:
+[
+{
+"format"
+:
+"mp3"
+,
+"outgoing_services"
+:
+[
+"uO7yLuiyGwQe27gQUz869K"
+]}
+]
+}
+'
+
+which means that the mp3 output file will be copied to the outgoing external
+service with the
+UUID
+uO7yLuiyGwQe27gQUz869K
+.
+If this service was not added as an outgoing file transfer to the current
+production, then these settings will be ignored.
+
+UUID
+
+If you don’t use the
+outgoing_services
+parameter in your output files,
+then the optimal set of output files will be created automatically:
+
+outgoing_services
+
+all files are copied to FTP, SFTP, Dropbox, WebDAV, AmazonS3, Archive.org and blubrry accounts
+
+all files are copied to FTP, SFTP, Dropbox, WebDAV, AmazonS3, Archive.org and blubrry accounts
+
+the lossy audio file with the highest bitrate is exported to a SoundCloud or RSS.com account
+
+the lossy audio file with the highest bitrate is exported to a SoundCloud or RSS.com account
+
+for YouTube outgoing file transfers, the video output is selected, or otherwise
+a video will be generated from your audio file with optimal quality settings
+
+for YouTube outgoing file transfers, the video output is selected, or otherwise
+a video will be generated from your audio file with optimal quality settings
+
+an MP3 output file will be generated for libsyn and Captivate outgoing file transfers
+
+an MP3 output file will be generated for libsyn and Captivate outgoing file transfers
+
+an MP3 output file will be generated for PodBean outgoing file transfers if no MP3 (including the VBR variant) or AAC file has been generated
+
+an MP3 output file will be generated for PodBean outgoing file transfers if no MP3 (including the VBR variant) or AAC file has been generated
+
+Audio Algorithms
+
+
+Setting
+Audio Algorithms
+parameters for a basic example:
+
+curl
+-
+H
+"Content-Type: application/json"
+-
+X
+POST
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"algorithms"
+:
+{
+"leveler"
+:
+true
+,
+"normloudness"
+:
+true
+,
+"loudnesstarget"
+:
+-
+23
+,
+"filtering"
+:
+true
+,
+"denoise"
+:
+false
+,
+"denoiseamount"
+:
+0
+}
+}
+'
+
+Note
+
+A denoiseamount of 0 (default value) means automatic denoiseamount estimation!
+
+This works exactly as in the production/preset form!
+
+More Settings for Audio Algorithms
+
+
+You can set all
+Audio Algorithm Parameters
+using the API (see list of all options below), as you can see in the following advanced example:
+
+curl
+-
+H
+"Content-Type: application/json"
+-
+X
+POST
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"algorithms"
+:
+{
+"leveler"
+:
+true
+,
+"levelerstrength"
+:
+80
+,
+"compressor_speech"
+:
+"medium"
+,
+"compressor_music"
+:
+"off"
+,
+"musicgain"
+:
+3
+,
+"msclassifier"
+:
+"on"
+,
+"maxlra"
+:
+8
+,
+"maxs"
+:
+5
+,
+"maxm"
+:
+10
+,
+"denoise"
+:
+true
+,
+"denoiseamount"
+:
+6
+,
+"dehum"
+:
+50
+,
+"dehumamount"
+:
+12
+,
+"normloudness"
+:
+true
+,
+"loudnesstarget"
+:
+-
+24
+,
+"maxpeak"
+:
+-
+2
+,
+"dualmono"
+:
+false
+,
+"loudnessmethod"
+:
+"dialog"
+,
+"silence_cutter"
+:
+true
+,
+"filler_cutter"
+:
+true
+,
+"cough_cutter"
+:
+true
+,
+"music_cutter"
+:
+true
+,
+"cut_mode"
+:
+"apply_cuts"
+,
+}
+}
+'
+
+Options for
+Adaptive Leveler
+:
+levelerstrength
+:
+100
+(default),
+90
+,
+80
+,
+70
+, …
+0
+(values in %)
+compressor
+:
+auto
+(default),
+soft
+,
+medium
+,
+hard
+or
+off
+Separate MusicSpeech Parameters Mode :
+it is also possible to use separate
+levelerstrength
+and
+compressor
+parameters for speech and music segments
+msclassifier
+(use classifier or set everything to speech/music):
+on
+(default),
+speech
+,
+music
+levelerstrength_speech
+,
+levelerstrength_music
+:
+100
+(default),
+90
+,
+80
+,
+70
+, …
+0
+(values in %)
+compressor_speech
+,
+compressor_music
+:
+auto
+(default),
+soft
+,
+medium
+,
+hard
+or
+off
+musicgain
+(add gain to music segments):
+-6
+, …,
+-1
+,
+0
+(default),
+1
+,
+2
+, …,
+6
+(values in dB)
+Broadcast Mode :
+use a
+Maximum Loudness Range (LRA)
+,
+Maximum Short-term Loudness
+or
+Maximum Momentary Loudness
+target to control the strength of the Leveler
+maxlra
+:
+0
+(Auto, default),
+3
+,
+4
+,
+5
+,
+6
+, …,
+20
+(values in LU)
+maxs
+:
+0
+(Auto, default),
+3
+,
+4
+,
+5
+,
+6
+, …,
+12
+(values in LU, relative to the target loudness)
+maxm
+:
+0
+(Auto, default),
+8
+,
+9
+,
+10
+,
+11
+, …,
+20
+(values in LU, relative to the target loudness)
+musicgain
+(add gain to music segments):
+-6
+, …,
+-1
+,
+0
+(default),
+1
+,
+2
+, …,
+6
+(values in dB)
+for details please see
+Adaptive Leveler Settings
+
+levelerstrength
+:
+100
+(default),
+90
+,
+80
+,
+70
+, …
+0
+(values in %)
+
+levelerstrength
+:
+100
+(default),
+90
+,
+80
+,
+70
+, …
+0
+(values in %)
+
+levelerstrength
+
+compressor
+:
+auto
+(default),
+soft
+,
+medium
+,
+hard
+or
+off
+
+compressor
+:
+auto
+(default),
+soft
+,
+medium
+,
+hard
+or
+off
+
+compressor
+
+Separate MusicSpeech Parameters Mode :
+it is also possible to use separate
+levelerstrength
+and
+compressor
+parameters for speech and music segments
+msclassifier
+(use classifier or set everything to speech/music):
+on
+(default),
+speech
+,
+music
+levelerstrength_speech
+,
+levelerstrength_music
+:
+100
+(default),
+90
+,
+80
+,
+70
+, …
+0
+(values in %)
+compressor_speech
+,
+compressor_music
+:
+auto
+(default),
+soft
+,
+medium
+,
+hard
+or
+off
+musicgain
+(add gain to music segments):
+-6
+, …,
+-1
+,
+0
+(default),
+1
+,
+2
+, …,
+6
+(values in dB)
+
+it is also possible to use separate
+levelerstrength
+and
+compressor
+parameters for speech and music segments
+
+it is also possible to use separate
+levelerstrength
+and
+compressor
+parameters for speech and music segments
+
+msclassifier
+(use classifier or set everything to speech/music):
+on
+(default),
+speech
+,
+music
+
+msclassifier
+(use classifier or set everything to speech/music):
+on
+(default),
+speech
+,
+music
+
+msclassifier
+
+levelerstrength_speech
+,
+levelerstrength_music
+:
+100
+(default),
+90
+,
+80
+,
+70
+, …
+0
+(values in %)
+
+levelerstrength_speech
+,
+levelerstrength_music
+:
+100
+(default),
+90
+,
+80
+,
+70
+, …
+0
+(values in %)
+
+levelerstrength_speech
+
+levelerstrength_music
+
+compressor_speech
+,
+compressor_music
+:
+auto
+(default),
+soft
+,
+medium
+,
+hard
+or
+off
+
+compressor_speech
+,
+compressor_music
+:
+auto
+(default),
+soft
+,
+medium
+,
+hard
+or
+off
+
+compressor_speech
+
+compressor_music
+
+musicgain
+(add gain to music segments):
+-6
+, …,
+-1
+,
+0
+(default),
+1
+,
+2
+, …,
+6
+(values in dB)
+
+musicgain
+(add gain to music segments):
+-6
+, …,
+-1
+,
+0
+(default),
+1
+,
+2
+, …,
+6
+(values in dB)
+
+musicgain
+
+Broadcast Mode :
+use a
+Maximum Loudness Range (LRA)
+,
+Maximum Short-term Loudness
+or
+Maximum Momentary Loudness
+target to control the strength of the Leveler
+maxlra
+:
+0
+(Auto, default),
+3
+,
+4
+,
+5
+,
+6
+, …,
+20
+(values in LU)
+maxs
+:
+0
+(Auto, default),
+3
+,
+4
+,
+5
+,
+6
+, …,
+12
+(values in LU, relative to the target loudness)
+maxm
+:
+0
+(Auto, default),
+8
+,
+9
+,
+10
+,
+11
+, …,
+20
+(values in LU, relative to the target loudness)
+musicgain
+(add gain to music segments):
+-6
+, …,
+-1
+,
+0
+(default),
+1
+,
+2
+, …,
+6
+(values in dB)
+
+use a
+Maximum Loudness Range (LRA)
+,
+Maximum Short-term Loudness
+or
+Maximum Momentary Loudness
+target to control the strength of the Leveler
+
+use a
+Maximum Loudness Range (LRA)
+,
+Maximum Short-term Loudness
+or
+Maximum Momentary Loudness
+target to control the strength of the Leveler
+
+maxlra
+:
+0
+(Auto, default),
+3
+,
+4
+,
+5
+,
+6
+, …,
+20
+(values in LU)
+
+maxlra
+:
+0
+(Auto, default),
+3
+,
+4
+,
+5
+,
+6
+, …,
+20
+(values in LU)
+
+maxlra
+
+maxs
+:
+0
+(Auto, default),
+3
+,
+4
+,
+5
+,
+6
+, …,
+12
+(values in LU, relative to the target loudness)
+
+maxs
+:
+0
+(Auto, default),
+3
+,
+4
+,
+5
+,
+6
+, …,
+12
+(values in LU, relative to the target loudness)
+
+maxs
+
+maxm
+:
+0
+(Auto, default),
+8
+,
+9
+,
+10
+,
+11
+, …,
+20
+(values in LU, relative to the target loudness)
+
+maxm
+:
+0
+(Auto, default),
+8
+,
+9
+,
+10
+,
+11
+, …,
+20
+(values in LU, relative to the target loudness)
+
+maxm
+
+musicgain
+(add gain to music segments):
+-6
+, …,
+-1
+,
+0
+(default),
+1
+,
+2
+, …,
+6
+(values in dB)
+
+musicgain
+(add gain to music segments):
+-6
+, …,
+-1
+,
+0
+(default),
+1
+,
+2
+, …,
+6
+(values in dB)
+
+musicgain
+
+for details please see
+Adaptive Leveler Settings
+
+for details please see
+Adaptive Leveler Settings
+
+Options for
+Noise Reduction
+:
+denoisemethod
+:
+classic
+(default),
+static
+,
+dynamic
+,
+speech_isolation
+denoiseamount
+(noise reduction amount):
+0
+(100 dB full, default),
+-1
+(Off),
+3
+,
+6
+, … (values in dB)
+deverbamount
+(requires
+denoisemethod
+static
+,
+dynamic
+or
+speech_isolation
+):
+0
+(100 dB full, default),
+-1
+(Off),
+3
+,
+6
+, … (values in dB)
+debreathamount
+(requires
+denoisemethod
+dynamic
+or
+speech_isolation
+):
+-1
+(Off, default),
+3
+,
+6
+, … (values in dB)
+Classic Denoising:
+denoiseamount
+(noise reduction amount):
+0
+(Auto, default),
+-1
+(disable denoise, dehum only),
+3
+,
+6
+, … (values in dB)
+dehum
+(hum reduction base frequency):
+0
+(Auto, default),
+50
+or
+60
+dehumamount
+(hum reduction amount):
+0
+(Auto, default),
+-1
+(disable dehum),
+3
+,
+6
+, … (values in dB)
+
+denoisemethod
+:
+classic
+(default),
+static
+,
+dynamic
+,
+speech_isolation
+
+denoisemethod
+:
+classic
+(default),
+static
+,
+dynamic
+,
+speech_isolation
+
+denoisemethod
+
+denoiseamount
+(noise reduction amount):
+0
+(100 dB full, default),
+-1
+(Off),
+3
+,
+6
+, … (values in dB)
+
+denoiseamount
+(noise reduction amount):
+0
+(100 dB full, default),
+-1
+(Off),
+3
+,
+6
+, … (values in dB)
+
+denoiseamount
+
+deverbamount
+(requires
+denoisemethod
+static
+,
+dynamic
+or
+speech_isolation
+):
+0
+(100 dB full, default),
+-1
+(Off),
+3
+,
+6
+, … (values in dB)
+
+deverbamount
+(requires
+denoisemethod
+static
+,
+dynamic
+or
+speech_isolation
+):
+0
+(100 dB full, default),
+-1
+(Off),
+3
+,
+6
+, … (values in dB)
+
+deverbamount
+
+denoisemethod
+
+debreathamount
+(requires
+denoisemethod
+dynamic
+or
+speech_isolation
+):
+-1
+(Off, default),
+3
+,
+6
+, … (values in dB)
+
+debreathamount
+(requires
+denoisemethod
+dynamic
+or
+speech_isolation
+):
+-1
+(Off, default),
+3
+,
+6
+, … (values in dB)
+
+debreathamount
+
+denoisemethod
+
+Classic Denoising:
+denoiseamount
+(noise reduction amount):
+0
+(Auto, default),
+-1
+(disable denoise, dehum only),
+3
+,
+6
+, … (values in dB)
+dehum
+(hum reduction base frequency):
+0
+(Auto, default),
+50
+or
+60
+dehumamount
+(hum reduction amount):
+0
+(Auto, default),
+-1
+(disable dehum),
+3
+,
+6
+, … (values in dB)
+
+denoiseamount
+(noise reduction amount):
+0
+(Auto, default),
+-1
+(disable denoise, dehum only),
+3
+,
+6
+, … (values in dB)
+
+denoiseamount
+(noise reduction amount):
+0
+(Auto, default),
+-1
+(disable denoise, dehum only),
+3
+,
+6
+, … (values in dB)
+
+denoiseamount
+
+dehum
+(hum reduction base frequency):
+0
+(Auto, default),
+50
+or
+60
+
+dehum
+(hum reduction base frequency):
+0
+(Auto, default),
+50
+or
+60
+
+dehum
+
+dehumamount
+(hum reduction amount):
+0
+(Auto, default),
+-1
+(disable dehum),
+3
+,
+6
+, … (values in dB)
+
+dehumamount
+(hum reduction amount):
+0
+(Auto, default),
+-1
+(disable dehum),
+3
+,
+6
+, … (values in dB)
+
+dehumamount
+
+Options for
+Loudness Normalization
+:
+maxpeak
+(maximum true peak level):
+0
+(Auto, default),
+-0.5
+,
+-1
+,
+-1.5
+,
+-2
+,
+-3
+,
+-4
+,
+-5
+,
+-6
+(values in dBTP)
+dualmono
+(treat mono production as dual-mono / -3LU offset):
+false
+(default),
+true
+loudnessmethod
+(anchor-based loudness normalization):
+program
+(default),
+dialog
+(measure dialog/voice loudness),
+rms
+(RMS-based loudness normalization for Audible / ACX)
+
+maxpeak
+(maximum true peak level):
+0
+(Auto, default),
+-0.5
+,
+-1
+,
+-1.5
+,
+-2
+,
+-3
+,
+-4
+,
+-5
+,
+-6
+(values in dBTP)
+
+maxpeak
+(maximum true peak level):
+0
+(Auto, default),
+-0.5
+,
+-1
+,
+-1.5
+,
+-2
+,
+-3
+,
+-4
+,
+-5
+,
+-6
+(values in dBTP)
+
+maxpeak
+
+dualmono
+(treat mono production as dual-mono / -3LU offset):
+false
+(default),
+true
+
+dualmono
+(treat mono production as dual-mono / -3LU offset):
+false
+(default),
+true
+
+dualmono
+
+loudnessmethod
+(anchor-based loudness normalization):
+program
+(default),
+dialog
+(measure dialog/voice loudness),
+rms
+(RMS-based loudness normalization for Audible / ACX)
+
+loudnessmethod
+(anchor-based loudness normalization):
+program
+(default),
+dialog
+(measure dialog/voice loudness),
+rms
+(RMS-based loudness normalization for Audible / ACX)
+
+loudnessmethod
+
+Options for
+Filtering
+:
+filtering
+:
+true
+(default),
+false
+filtermethod
+:
+hipfilter
+(default),
+autoeq
+,
+bwe
+
+filtering
+:
+true
+(default),
+false
+
+filtering
+:
+true
+(default),
+false
+
+filtering
+
+filtermethod
+:
+hipfilter
+(default),
+autoeq
+,
+bwe
+
+filtermethod
+:
+hipfilter
+(default),
+autoeq
+,
+bwe
+
+filtermethod
+
+Options for
+Automatic cutting
+:
+silence_cutter
+:
+false
+(default),
+true
+filler_cutter
+:
+false
+(default),
+true
+cough_cutter
+:
+false
+(default),
+true
+music_cutter
+:
+false
+(default),
+true
+cut_mode
+(what happens to cut segments):
+apply_cuts
+(default),
+export_uncut_audio
+,
+set_cuts_to_silence
+
+silence_cutter
+:
+false
+(default),
+true
+
+silence_cutter
+:
+false
+(default),
+true
+
+silence_cutter
+
+filler_cutter
+:
+false
+(default),
+true
+
+filler_cutter
+:
+false
+(default),
+true
+
+filler_cutter
+
+cough_cutter
+:
+false
+(default),
+true
+
+cough_cutter
+:
+false
+(default),
+true
+
+cough_cutter
+
+music_cutter
+:
+false
+(default),
+true
+
+music_cutter
+:
+false
+(default),
+true
+
+music_cutter
+
+cut_mode
+(what happens to cut segments):
+apply_cuts
+(default),
+export_uncut_audio
+,
+set_cuts_to_silence
+
+cut_mode
+(what happens to cut segments):
+apply_cuts
+(default),
+export_uncut_audio
+,
+set_cuts_to_silence
+
+cut_mode
+
+Please see
+Query Audio Algorithms and Parameters
+for details about all available options!
+
+Query Audio Algorithms and Parameters
+
+
+Audio Algorithms
+and all its available parameter values can be queried by:
+
+curl
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+info
+/
+algorithms
+.
+json
+
+which returns:
+
+{
+"status_code"
+:
+200
+,
+"form_errors"
+:
+{},
+"error_code"
+:
+null
+,
+"error_message"
+:
+""
+,
+"data"
+:
+{
+"filtering"
+:
+{
+"default_value"
+:
+true
+,
+"type"
+:
+"checkbox"
+,
+"display_name"
+:
+"Filtering"
+,
+"description"
+:
+"Filters unnecessary and disturbing low frequencies depending on the context (speech, music, noise)."
+},
+"normloudness"
+:
+{
+"default_value"
+:
+true
+,
+"type"
+:
+"checkbox"
+,
+"display_name"
+:
+"Global Loudness Normalization"
+,
+"description"
+:
+"Adjusts the global, overall loudness to the specified Loudness Target, so that all processed files have a similar average loudness."
+},
+"loudnesstarget"
+:
+{
+"default_value"
+:
+-
+18
+,
+"type"
+:
+"select"
+,
+"display_name"
+:
+"Loudness Target"
+,
+"belongs_to"
+:
+"normloudness"
+,
+"options"
+:
+[
+{
+"display_name"
+:
+"-13 LUFS (very loud)"
+,
+"value"
+:
+-
+13
+},
+...
+{
+"display_name"
+:
+"-24 LUFS, ATSC A/85 (TV, US)"
+,
+"value"
+:
+-
+24
+},
+{
+"display_name"
+:
+"-31 LUFS (very dynamic audio, quiet)"
+,
+"value"
+:
+-
+31
+}
+]
+},
+"denoise"
+:
+{
+"default_value"
+:
+false
+,
+"type"
+:
+"checkbox"
+,
+"display_name"
+:
+"Noise Reduction "
+,
+"description"
+:
+"Classifies regions with different background noises and automatically removes noise and hum."
+},
+"denoiseamount"
+:
+{
+"default_value"
+:
+0
+,
+"type"
+:
+"select"
+,
+"display_name"
+:
+"Noise Reduction Amount"
+,
+"belongs_to"
+:
+"denoise"
+,
+"options"
+:
+[
+{
+"display_name"
+:
+"Automatic"
+,
+"value"
+:
+0
+},
+...
+{
+"display_name"
+:
+"6 dB (low)"
+,
+"value"
+:
+6
+},
+...
+{
+"display_name"
+:
+"12 dB (medium)"
+,
+"value"
+:
+12
+},
+...
+{
+"display_name"
+:
+"100 dB (complete)"
+,
+"value"
+:
+100
+}
+]
+},
+"leveler"
+:
+{
+"default_value"
+:
+true
+,
+"type"
+:
+"checkbox"
+,
+"display_name"
+:
+"Adaptive Leveler "
+,
+"description"
+:
+"Corrects level differences between speakers, music and speech, etc. to achieve a balanced overall loudness."
+},
+...
+}
+}
+
+Adding Intro and Outro
+
+
+You can automatically add an
+Intro and Outro
+to your main input file. Audio and video intros and outros are supported, with video intros and outros being limited to a length of 1 minute.
+
+Intros and outros for presets always need
+External Services
+and can’t be uploaded directly,
+because we store your audio files only for a limited number of days.
+They are referenced in the same way as the main input file
+would be referenced (see
+Files form External Servers
+),
+using a service UUID and a filename.
+
+The easiest way to add intros or outros to your existing production is to upload the files (this only works with productions, use
+External Services
+with
+Preset
+):
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+/
+upload
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"intro_file=@/home/user/your_audio_intro_file.mp3"
+-
+F
+"outro_file=@/home/user/your_audio_outro_file.mp3"
+
+Note that this will always create (or replace) a single intro/outro.
+
+The following command adds an intro from an external service to an existing production/preset:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"multi_input_files"
+:
+[
+{
+"service"
+:
+"pmefeNCzkyT4TbRbDmoCDf"
+,
+"input_file"
+:
+"my_dropbox_file.mp3"
+,
+"type"
+:
+"intro"
+}
+]
+}
+'
+
+If you use HTTP as incoming service, just set the URI as
+input_file
+and
+omit the
+service
+field:
+
+input_file
+
+service
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"multi_input_files"
+:
+[
+{
+"input_file"
+:
+"http://your_server.com/outro.mp3"
+,
+"type"
+:
+"outro"
+}
+]
+}
+'
+
+It’s of course also possible to add intro and outro at once:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"multi_input_files"
+:
+[
+{
+"service"
+:
+"qwsalxnVdasAOpsjeNsjQo"
+,
+"input_file"
+:
+"my_sftp_intro.mp4"
+,
+"type"
+:
+"intro"
+},
+{
+"service"
+:
+"pmefeNCzkyT4TbRbDmoCDf"
+,
+"input_file"
+:
+"another_dropbox_file.mp3"
+,
+"type"
+:
+"outro"
+}
+]
+}
+'
+
+Add multiple Intros or Outros
+
+
+Using the same interface as in our
+Multitrack Productions
+,
+it is possible to add multiple intros/outros to a production as well.
+These intros/outros are played in series.
+
+Every single call to
+multi_input_files
+will append another intro/outro to your production.
+Use the following to add two intros from an external service:
+
+multi_input_files
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"multi_input_files"
+:
+[
+{
+"service"
+:
+"qwsalxnVdasAOpsjeNsjQo"
+,
+"input_file"
+:
+"my_sftp_intro_1.wav"
+,
+"type"
+:
+"intro"
+},
+{
+"service"
+:
+"qwsalxnVdasAOpsjeNsjQo"
+,
+"input_file"
+:
+"my_sftp_intro_2.wav"
+,
+"type"
+:
+"intro"
+}
+]
+}
+'
+
+If you want to upload intros/outros directly (without an external service),
+each intro/outro needs an ID which is used to upload the audio file in a
+second request:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"multi_input_files"
+:
+[
+{
+"type"
+:
+"intro"
+,
+"id"
+:
+"first intro"
+},
+{
+"type"
+:
+"intro"
+,
+"id"
+:
+"second intro"
+}
+]
+}
+'
+
+This will create empty intros. Now upload files using the IDs from above in a second request:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+/
+upload
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"first intro=@/home/user/your_first_audio_intro_file.mp3"
+\
+-
+F
+"second intro=@/home/user/your_second_audio_intro_file.mp3"
+
+If you want to delete all current intros/outros, use the following DELETE request:
+
+curl
+-
+X
+DELETE
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+/
+multi_input_files
+.
+json
+-
+H
+"Authorization: bearer
+{api_key}
+"
+
+Overlapping Intros/Outros (Intro/Outro Offsets)
+
+
+When creating intros/outros, it is possible to let them overlap with the main audio file or the next/previous intro/outro (using the same interface as in
+Multitrack Offsets
+).
+
+For example, set the
+offset
+parameter to 2 (in seconds), to let the intro overlap for 2 seconds with the next audio file:
+
+offset
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"multi_input_files"
+:
+[
+{
+"service"
+:
+"qwsalxnVdasAOpsjeNsjQo"
+,
+"input_file"
+:
+"my_sftp_intro_1.wav"
+,
+"type"
+:
+"intro"
+,
+"offset"
+:
+2
+}
+]
+}
+'
+
+Overlap for outros work the other way around: if an outro has an offset of 5 seconds, it will overlap 5 seconds with the previous audio file.
+
+Audio Manipulations
+
+
+We also offer some audio manipulation operations, they are API-only and cannot be controlled in our web interface.
+
+Add Audio Insert Files
+
+
+Audio Inserts are audio files, which will be inserted into your main audio file (singletrack or multitrack) at your defined offsets in seconds.
+This can be used for
+Dynamic Ad Insertion
+by podcast hosting companies
+(they will insert short audio ads at specific positions in a podcast audio file),
+or if you want to construct an audio production out of multiple segments.
+
+Audio inserts should be edited/processed already before using them in a production (like ads usually are). In an Auphonic production, they are only loudness normalized to match the loudness of your production without further Auphonic processing (no leveling, noise reduction, etc.).
+
+Using the same interface as in
+Adding multiple Intros/Outros
+,
+you can add audio insert files with a call to
+multi_input_files
+.
+Here is an example with one audio insert from an external service, another one from an https URL.
+The offset/position in the main audio file must be given in seconds:
+
+multi_input_files
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"multi_input_files"
+:
+[
+{
+"service"
+:
+"qwsalxnVdasAOpsjeNsjQo"
+,
+"input_file"
+:
+"my_sftp_insert_1.wav"
+,
+"type"
+:
+"insert"
+,
+"offset"
+:
+20.5
+},
+{
+"input_file"
+:
+"https://mydomain.com/my_sftp_intro_2.wav"
+,
+"type"
+:
+"insert"
+,
+"offset"
+:
+120.3
+,
+}
+]
+}
+'
+
+If you want to upload insert files directly (without an external service),
+each insert needs an ID which is used to upload the audio file in a
+second request:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"multi_input_files"
+:
+[
+{
+"type"
+:
+"insert"
+,
+"id"
+:
+"first ad"
+,
+"offset"
+:
+20.5
+},
+{
+"type"
+:
+"insert"
+,
+"id"
+:
+"second ad"
+,
+"offset"
+:
+120.3
+,
+}
+]
+}
+'
+
+This will create empty audio inserts. Now upload files using the IDs from above in a second request:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+/
+upload
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+F
+"first ad=@/home/user/your_first_audio_file.mp3"
+\
+-
+F
+"second ad=@/home/user/your_second_audio_file.mp3"
+
+Adding Cuts
+
+
+Create a new production with cuts:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"cuts"
+:
+[
+[
+1.5
+,
+2.1
+],
+[
+10.24
+,
+10.48
+]
+]
+}
+'
+
+Cuts must be added to the
+cuts
+parameter. They have to be provided as a list of arrays, where each cut is represented as an array of
+[start_time,
+end_time]
+.
+
+cuts
+
+[start_time,
+end_time]
+
+start_time: (float) Start time in seconds (must be >= 0)
+
+start_time: (float) Start time in seconds (must be >= 0)
+
+end_time: (float) End time in seconds (must be > start_time)
+
+end_time: (float) End time in seconds (must be > start_time)
+
+Warning
+
+Cut times must be relative to the main input file!
+If the production contains an additional intro, the length of
+this intro will be added to each cut automatically!
+
+Adding Segments
+
+
+Segments let you apply unique noise reduction settings to specific parts of your audio. This is ideal for files with mixed content, such as speech, music, or multiple speakers.
+
+Create a new production with segments:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"algorithms"
+:
+{
+"denoise"
+:
+true
+,
+"segments"
+:
+[
+{
+"start"
+:
+0
+,
+"stop"
+:
+20
+,
+"denoisemethod"
+:
+"music"
+,
+"denoiseamount"
+:
+6
+},
+{
+"start"
+:
+20
+,
+"stop"
+:
+30
+,
+"denoisemethod"
+:
+"classic"
+},
+{
+"start"
+:
+30
+,
+"stop"
+:
+45
+,
+"denoisemethod"
+:
+"speech"
+,
+"deverbamount"
+:
+12
+}
+]
+}
+}
+'
+
+Note
+
+To apply the denoising settings defined in segments, you must set
+"denoise":
+true
+in the algorithms section. If
+"denoise":
+false
+is set, no denoising will be performed, even if noise reduction settings are specified in the segments.
+
+"denoise":
+true
+
+"denoise":
+false
+
+Segments must be added to the
+segments
+parameter within
+algorithms
+. They have to be provided as a list of dictionaries, where each segment contains at least the following required fields:
+
+segments
+
+algorithms
+
+Required fields:
+
+start
+: (float) Start time in seconds (must be >= 0)
+
+start
+: (float) Start time in seconds (must be >= 0)
+
+stop
+: (float) End time in seconds (must be > start)
+
+stop
+: (float) End time in seconds (must be > start)
+
+Optional fields:
+
+denoisemethod
+: (string) The noise reduction method to use for this segment. Valid values:
+"speech"
+- Removes everything except speech
+"music"
+- Preserves speech, music and sound effects but removes background noise
+"classic"
+- Classic noise reduction
+"off"
+- Disable noise reduction for this segment
+If not specified, the default noise reduction method of the API will be used (
+"classic"
+).
+
+"speech"
+- Removes everything except speech
+
+"speech"
+- Removes everything except speech
+
+"speech"
+
+"music"
+- Preserves speech, music and sound effects but removes background noise
+
+"music"
+- Preserves speech, music and sound effects but removes background noise
+
+"music"
+
+"classic"
+- Classic noise reduction
+
+"classic"
+- Classic noise reduction
+
+"classic"
+
+"off"
+- Disable noise reduction for this segment
+
+"off"
+- Disable noise reduction for this segment
+
+"off"
+
+If not specified, the default noise reduction method of the API will be used (
+"classic"
+).
+
+"classic"
+
+denoiseamount
+: (float) The amount of noise reduction to apply in dB. Valid values:
+0
+(full/auto),
+-1
+(off),
+3
+,
+6
+,
+9
+,
+12
+,
+15
+,
+18
+,
+24
+,
+30
+,
+36
+,
+100
+. If not specified, the default amount will be used. Set to
+-1
+to disable noise reduction for this segment.
+Available for:
+speech
+,
+music
+,
+classic
+
+denoiseamount
+: (float) The amount of noise reduction to apply in dB. Valid values:
+0
+(full/auto),
+-1
+(off),
+3
+,
+6
+,
+9
+,
+12
+,
+15
+,
+18
+,
+24
+,
+30
+,
+36
+,
+100
+. If not specified, the default amount will be used. Set to
+-1
+to disable noise reduction for this segment.
+
+0
+
+-1
+
+3
+
+6
+
+9
+
+12
+
+15
+
+18
+
+24
+
+30
+
+36
+
+100
+
+-1
+
+Available for:
+speech
+,
+music
+,
+classic
+
+speech
+
+music
+
+classic
+
+deverbamount
+: (float) The amount of reverb reduction to apply in dB. Valid values:
+0
+(full/auto),
+-1
+(off),
+3
+,
+6
+,
+9
+,
+12
+,
+15
+,
+18
+,
+24
+,
+30
+,
+36
+,
+100
+. If not specified, the default amount will be used. Set to
+-1
+to disable reverb reduction for this segment.
+Available for:
+speech
+,
+music
+
+deverbamount
+: (float) The amount of reverb reduction to apply in dB. Valid values:
+0
+(full/auto),
+-1
+(off),
+3
+,
+6
+,
+9
+,
+12
+,
+15
+,
+18
+,
+24
+,
+30
+,
+36
+,
+100
+. If not specified, the default amount will be used. Set to
+-1
+to disable reverb reduction for this segment.
+
+0
+
+-1
+
+3
+
+6
+
+9
+
+12
+
+15
+
+18
+
+24
+
+30
+
+36
+
+100
+
+-1
+
+Available for:
+speech
+,
+music
+
+speech
+
+music
+
+debreathamount
+: (float) The amount of breath sound reduction to apply in dB. Valid values:
+-1
+(off),
+3
+,
+6
+,
+9
+,
+12
+,
+15
+,
+18
+,
+24
+,
+30
+,
+36
+,
+100
+. If not specified, the default amount (
+-1
+, off) will be used. Set to
+-1
+to disable breath sound reduction for this segment.
+Available for:
+speech
+only
+
+debreathamount
+: (float) The amount of breath sound reduction to apply in dB. Valid values:
+-1
+(off),
+3
+,
+6
+,
+9
+,
+12
+,
+15
+,
+18
+,
+24
+,
+30
+,
+36
+,
+100
+. If not specified, the default amount (
+-1
+, off) will be used. Set to
+-1
+to disable breath sound reduction for this segment.
+
+-1
+
+3
+
+6
+
+9
+
+12
+
+15
+
+18
+
+24
+
+30
+
+36
+
+100
+
+-1
+
+-1
+
+Available for:
+speech
+only
+
+speech
+
+filtermethod
+: (string) The filtering method to use for this segment. Valid values:
+"hipfilter"
+- Adaptive high-pass filtering
+"autoeq"
+- Voice AutoEQ (includes de-esser, de-plosive, and frequency balance optimization)
+"bwe"
+- Voice AutoEQ + Bandwidth extension (recovers lost high frequencies)
+"off"
+- Disable filtering for this segment
+If not specified, the default filter method will be
+"hipfilter"
+.
+
+"hipfilter"
+- Adaptive high-pass filtering
+
+"hipfilter"
+- Adaptive high-pass filtering
+
+"hipfilter"
+
+"autoeq"
+- Voice AutoEQ (includes de-esser, de-plosive, and frequency balance optimization)
+
+"autoeq"
+- Voice AutoEQ (includes de-esser, de-plosive, and frequency balance optimization)
+
+"autoeq"
+
+"bwe"
+- Voice AutoEQ + Bandwidth extension (recovers lost high frequencies)
+
+"bwe"
+- Voice AutoEQ + Bandwidth extension (recovers lost high frequencies)
+
+"bwe"
+
+"off"
+- Disable filtering for this segment
+
+"off"
+- Disable filtering for this segment
+
+"off"
+
+If not specified, the default filter method will be
+"hipfilter"
+.
+
+"hipfilter"
+
+Important
+
+Segments must be contiguous!
+This means:
+
+Segments cannot overlap with each other
+
+Segments cannot overlap with each other
+
+Segments cannot have gaps between them
+
+Segments cannot have gaps between them
+
+The start time of each segment must equal the stop time of the previous segment
+
+The start time of each segment must equal the stop time of the previous segment
+
+For example, if one segment ends at 20 seconds, the next segment must start at exactly 20 seconds.
+
+Warning
+
+Segment times must be relative to the main input file!
+If the production contains an additional intro, the length of
+this intro will be added to each segment automatically!
+
+Fade In/Out Time of Audio Files
+
+
+With our API, you can set the fade in/out time in ms at the start/end of output files. The default fade time is 100ms, values between 0ms and 5000ms are allowed.
+
+To set a manual fade in/out time, please use the parameter
+fadetime
+in our audio algorithms settings:
+
+fadetime
+
+curl
+-
+H
+"Content-Type: application/json"
+-
+X
+POST
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"algorithms"
+:
+{
+"leveler"
+:
+true
+,
+"normloudness"
+:
+true
+,
+"filtering"
+:
+true
+,
+"fadetime"
+:
+0
+}
+}
+'
+
+It is of course also possible to
+Set all Details in one Request
+:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"input_file"
+:
+"http://your_server.com/somefile.mp3"
+,
+"algorithms"
+:
+{
+"filtering"
+:
+true
+,
+"leveler"
+:
+true
+,
+"normloudness"
+:
+true
+,
+"fadetime"
+:
+250
+},
+"metadata"
+:
+{
+"title"
+:
+"Production with custom fade in/out"
+,
+},
+"output_files"
+:
+[
+{
+"format"
+:
+"aac"
+,
+"bitrate"
+:
+"32"
+,
+"suffix"
+:
+"-small"
+},
+{
+"format"
+:
+"flac"
+}
+]
+}
+'
+
+Adding Speech Recognition
+
+
+External Speech Recognition Services
+
+
+First you have to register a speech recognition service at the
+External Services Page
+.
+For more information about speech recognition, please see
+Automatic Speech Recognition, Shownotes and Chapters
+.
+
+Request to add a speech recognition service to a production (or preset):
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"speech_recognition"
+:
+{
+"uuid"
+:
+"
+{service_uuid}
+"
+}
+}
+'
+
+Depending on the speech recognition service, additional parameters must or can be added to the request.
+
+If you use the
+Google Cloud Speech API
+,
+Amazon Transcribe
+or
+Speechmatics
+, the paramters
+keywords
+and
+language
+are available (you will get a list of all supported languages of your selected speech service in an API error message):
+
+keywords
+
+language
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"speech_recognition"
+:
+{
+"uuid"
+:
+"6m8onAcvWHmZuJtDN6mzK8"
+,
+"keywords"
+:
+[
+"keyword1"
+,
+"keyword2"
+,
+"A longer phrase"
+],
+"language"
+:
+"en-US"
+}
+}
+'
+
+Auphonic Whisper Speech Recognition Service
+
+
+Note
+
+Restricted to
+paying users
+!
+
+To use the Auphonic Whisper Speech Recognition Service, simply provide your desired language - and keywords, if necessary - but
+leave out the uuid field
+:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"speech_recognition"
+:
+{
+"language"
+:
+"en"
+,
+"keywords"
+:
+[
+"keyword1"
+,
+"keyword2"
+,
+"A longer phrase"
+],
+}
+}
+'
+
+Automatic Shownotes and Chapters
+
+
+Note
+
+Restricted to
+paying users
+!
+
+To get autogenerated shownotes and chapters, just add the line
+"shownotes":
+true
+in section speech recognition.
+Additionally you may use
+"shownotes_summary_example":
+"..."
+to provide a summary example.
+
+"shownotes":
+true
+
+"shownotes_summary_example":
+"..."
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"speech_recognition"
+:
+{
+"language"
+:
+"en"
+,
+"keywords"
+:
+[
+"keyword1"
+,
+"keyword2"
+,
+"A longer phrase"
+],
+"shownotes"
+:
+true
+,
+"shownotes_summary_example"
+:
+"This is an example summary."
+}
+}
+'
+
+All generated data will automatically show up once in your transcript
+html
+or
+txt
+file, once in the
+output files’ metadata
+(if you have not entered content before) and also in the API production details.
+Generated chapters will appear just like
+manually added chapters
+, and generated shownotes are displayed in your production data as follows:
+
+html
+
+txt
+
+"shownotes"
+:
+{
+"summaries"
+:
+{
+"long"
+:
+[
+"Example long summary."
+],
+"brief"
+:
+[
+"Example brief summary."
+],
+"subtitle"
+:
+[
+"Example subtitle summary."
+]
+},
+"tags"
+:
+[
+"example_tag1"
+,
+"example_tag2"
+,
+"example_tag3"
+]
+}
+
+Output Formats
+
+
+The Auphonic speech recognition API supports three types of output formats:
+
+subtitle
+: a subtitle format, available as
+srt
+or
+webvtt
+
+subtitle
+: a subtitle format, available as
+srt
+or
+webvtt
+
+subtitle
+
+srt
+
+webvtt
+
+speech
+: a machine readable format, available as
+json
+or
+xml
+
+speech
+: a machine readable format, available as
+json
+or
+xml
+
+speech
+
+json
+
+xml
+
+transcript
+a pure text format readable by humans, available as
+html
+or
+txt
+
+transcript
+a pure text format readable by humans, available as
+html
+or
+txt
+
+transcript
+
+html
+
+txt
+
+Adding speech recognition to your production will always add the necessary output files as well. If you want different output formats, use the following request:
+
+curl
+-
+H
+"Content-Type: application/json"
+-
+X
+POST
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"output_files"
+:
+[{
+"format"
+:
+"speech"
+,
+"ending"
+:
+"xml"
+}]
+}
+'
+
+Set all Details in one Request
+
+
+It’s also possible to set all discussed details directly in one request:
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+productions
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"metadata"
+:
+{
+"title"
+:
+"Production Title"
+,
+"artist"
+:
+"The Artist"
+,
+"album"
+:
+"Our Album"
+,
+"track"
+:
+1
+,
+"subtitle"
+:
+"Our subtitle"
+,
+"append_chapters"
+:
+true
+,
+"summary"
+:
+"Our very long summary."
+,
+"genre"
+:
+"Podcast"
+,
+"year"
+:
+2012
+,
+"publisher"
+:
+"that's me"
+,
+"url"
+:
+"https://auphonic.com"
+,
+"license"
+:
+"Creative Commons Attribution 3.0 Austria"
+,
+"license_url"
+:
+"http://creativecommons.org/licenses/by/3.0/at/"
+,
+"tags"
+:
+[
+"podcast"
+,
+"auphonic api"
+,
+"metadata"
+],
+"location"
+:
+{
+"latitude"
+:
+"47.070"
+,
+"longitude"
+:
+"15.439"
+}
+},
+"output_basename"
+:
+"production-filename"
+,
+"output_files"
+:
+[
+{
+"format"
+:
+"mp3"
+,
+"bitrate"
+:
+"96"
+,
+"mono_mixdown"
+:
+true
+},
+{
+"format"
+:
+"aac"
+,
+"bitrate"
+:
+"32"
+,
+"suffix"
+:
+"-small"
+,
+"ending"
+:
+"m4a"
+},
+{
+"format"
+:
+"flac"
+,
+"split_on_chapters"
+:
+true
+}
+],
+"outgoing_services"
+:
+[{
+"uuid"
+:
+"UC6aoChNZNt7KYZNxJTgUn"
+},
+{
+"uuid"
+:
+"jm7yLuiyGwQe27gQUz869K"
+}],
+"review_before_publishing"
+:
+false
+,
+"algorithms"
+:
+{
+"filtering"
+:
+true
+,
+"leveler"
+:
+true
+,
+"normloudness"
+:
+true
+,
+"denoise"
+:
+true
+,
+"loudnesstarget"
+:
+-
+23
+,
+"denoiseamount"
+:
+12
+},
+"chapters"
+:
+[
+{
+"start"
+:
+"00:00:00"
+,
+"title"
+:
+"Start Chapter"
+,
+"url"
+:
+"http://auphonic.com"
+},
+{
+"start"
+:
+"00:02:18"
+,
+"title"
+:
+"Second Chapter"
+},
+{
+"start"
+:
+"00:05:41"
+,
+"title"
+:
+"Final Chapter"
+}
+],
+"input_file"
+:
+"http://your_server.com/somefile.mp3"
+,
+"multi_input_files"
+:
+[
+{
+"input_file"
+:
+"http://your_server.com/intro.mp3"
+,
+"type"
+:
+"intro"
+,
+"offset"
+:
+2.3
+},
+{
+"service"
+:
+"pmefeNCzkyT4TbRbDmoCDf"
+,
+"input_file"
+:
+"dropbox_outro_file.mp3"
+,
+"type"
+:
+"outro"
+}
+],
+"speech_recognition"
+:
+{
+"uuid"
+:
+"6m8onAcvWHmZuJtDN6mzK8"
+,
+"keywords"
+:
+[
+"Auphonic"
+,
+"Holzmann"
+,
+"Rattinger"
+],
+"language"
+:
+"de-DE"
+,
+"shownotes"
+:
+true
+,
+"shownotes_summary_example"
+:
+"This is an example summary."
+},
+"image"
+:
+"https://auphonic.com/static/images/logo.png"
+,
+"action"
+:
+"start"
+}
+'
+
+Or if you want to start the audio post production in a separate request:
+
+curl
+-
+X
+POST
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+production
+/
+{
+uuid
+}
+/
+start
+.
+json
+-
+H
+"Authorization: bearer
+{api_key}
+"
+
+Creation of Presets
+
+
+The creation of
+Presets
+is mostly equivalent, with the exception that you have to provide a
+preset_name
+and that it’s not possible to add
+chapters or an input file:
+
+preset_name
+
+curl
+-
+X
+POST
+-
+H
+"Content-Type: application/json"
+\
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+presets
+.
+json
+\
+-
+H
+"Authorization: bearer
+{api_key}
+"
+\
+-
+d
+'{
+"preset_name"
+:
+"The New Preset"
+,
+"metadata"
+:
+{
+"artist"
+:
+"The Artist"
+,
+"album"
+:
+"Our Album"
+,
+"subtitle"
+:
+"Our subtitle"
+,
+"append_chapters"
+:
+true
+,
+"summary"
+:
+"Our very long summary."
+,
+"genre"
+:
+"Podcast"
+,
+"year"
+:
+2012
+,
+"publisher"
+:
+"that's me"
+,
+"url"
+:
+"https://auphonic.com"
+,
+"license"
+:
+"Creative Commons Attribution 3.0 Austria"
+,
+"license_url"
+:
+"http://creativecommons.org/licenses/by/3.0/at/"
+,
+"tags"
+:
+[
+"preset"
+,
+"auphonic api"
+,
+"metadata"
+,
+"tags"
+],
+"location"
+:
+{
+"latitude"
+:
+"47.070"
+,
+"longitude"
+:
+"15.439"
+}
+},
+"output_basename"
+:
+"production-filename"
+,
+"output_files"
+:
+[
+{
+"format"
+:
+"mp3"
+,
+"bitrate"
+:
+"64"
+},
+{
+"format"
+:
+"aac"
+,
+"bitrate"
+:
+"48"
+},
+{
+"format"
+:
+"flac"
+}
+],
+"outgoing_services"
+:
+[{
+"uuid"
+:
+"UC6aoChNZNt7KYZNxJTgUn"
+}],
+"review_before_publishing"
+:
+false
+,
+"algorithms"
+:
+{
+"filtering"
+:
+true
+,
+"leveler"
+:
+true
+,
+"normloudness"
+:
+true
+,
+"denoise"
+:
+true
+,
+"loudnesstarget"
+:
+-
+23
+,
+"denoiseamount"
+:
+100
+},
+"multi_input_files"
+:
+[
+{
+"input_file"
+:
+"http://your_server.com/intro.mp3"
+,
+"type"
+:
+"intro"
+},
+{
+"service"
+:
+"pmefeNCzkyT4TbRbDmoCDf"
+,
+"input_file"
+:
+"dropbox_outro_file.mp3"
+,
+"type"
+:
+"outro"
+}
+],
+"speech_recognition"
+:
+{
+"uuid"
+:
+"6m8onAcvWHmZuJtDN6mzK8"
+,
+"keywords"
+:
+[
+"Auphonic"
+,
+"Holzmann"
+,
+"Rattinger"
+],
+"language"
+:
+"de-DE"
+,
+"shownotes"
+:
+true
+,
+"shownotes_summary_example"
+:
+"This is an example summary."
+},
+"image"
+:
+"https://auphonic.com/static/images/logo.png"
+}
+'
+
+Furthermore you can change and update existing presets with the command:
+
+https
+:
+//
+auphonic
+.
+com
+/
+api
+/
+preset
+/
+{
+uuid
+}
+/
+{
+command
+}
+.
+json
+
+where
+command
+should be one of
+metadata
+,
+output_files
+,
+outgoing_services
+,
+multi_input_files
+,
+algorithms
+,
+speech_recognition
+or
+upload
+.
+
+command
+
+metadata
+
+output_files
+
+outgoing_services
+
+multi_input_files
+
+algorithms
+
+speech_recognition
+
+upload
+
+© Copyright 2026, Auphonic.
