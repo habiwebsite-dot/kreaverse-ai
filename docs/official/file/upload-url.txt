@@ -1,0 +1,437 @@
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/url
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"file_url": "https://example.com/image.jpg"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/url
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"file_url": "https://example.com/image.jpg"
+}
+'
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"downloaded.jpg"
+,
+"original_name"
+:
+"downloaded.jpg"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/jpeg"
+,
+"upload_path"
+:
+"downloads"
+,
+"file_url"
+:
+"https://files.evolink.ai/downloads/downloaded.jpg"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"downloaded.jpg"
+,
+"original_name"
+:
+"downloaded.jpg"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/jpeg"
+,
+"upload_path"
+:
+"downloads"
+,
+"file_url"
+:
+"https://files.evolink.ai/downloads/downloaded.jpg"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+URL File Upload
+
+Upload by providing a remote file URL
+
+System will automatically download and store the remote file
+
+Suitable for migrating files from other servers
+
+Files will expire after 72 hours
+
+Current user quota is limited. Uploads will fail when quota is exhausted. Please save locally if persistent storage is needed
+
+Note:
+The file upload API base URL is
+https://files-api.evolink.ai
+
+https://files-api.evolink.ai
+
+cURL
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/url
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"file_url": "https://example.com/image.jpg"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://files-api.evolink.ai/api/v1/files/upload/url
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"file_url": "https://example.com/image.jpg"
+}
+'
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"downloaded.jpg"
+,
+"original_name"
+:
+"downloaded.jpg"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/jpeg"
+,
+"upload_path"
+:
+"downloads"
+,
+"file_url"
+:
+"https://files.evolink.ai/downloads/downloaded.jpg"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"msg"
+:
+"File uploaded successfully"
+,
+"data"
+: {
+"file_id"
+:
+"file_abc123"
+,
+"file_name"
+:
+"downloaded.jpg"
+,
+"original_name"
+:
+"downloaded.jpg"
+,
+"file_size"
+:
+2048
+,
+"mime_type"
+:
+"image/jpeg"
+,
+"upload_path"
+:
+"downloads"
+,
+"file_url"
+:
+"https://files.evolink.ai/downloads/downloaded.jpg"
+,
+"download_url"
+:
+"https://files.evolink.ai/api/v1/files/download/file_abc123"
+,
+"upload_time"
+:
+"2025-10-09T00:00:00+08:00"
+,
+"expires_at"
+:
+"2025-10-12T00:00:00+08:00"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Remote file URL
+
+Requirements:
+
+Must be a publicly accessible URL
+
+Supports HTTP and HTTPS protocols
+
+System will automatically download the file content from this URL
+
+Maximum
+1
+image per request
+
+1
+
+Currently supports uploading files in:
+image/jpeg
+,
+image/png
+,
+image/gif
+,
+image/webp
+formats only
+
+image/jpeg
+
+image/png
+
+image/gif
+
+image/webp
+
+"https://example.com/image.jpg"
+
+"https://example.com/image.jpg"
+
+Custom upload path
+
+Note:
+
+If not specified, system will automatically categorize based on file type
+
+"downloads"
+
+"downloads"
+
+Custom file name
+
+Note:
+
+If not specified, system will automatically generate a unique file name
+
+"downloaded.jpg"
+
+"downloaded.jpg"
+
+Response
+
+File uploaded successfully
+
+Whether the request was successful
+
+true
+
+true
+
+Response status code
+
+200
+
+200
+
+Response message
+
+"File uploaded successfully"
+
+"File uploaded successfully"
+
+Show
+child attributes
