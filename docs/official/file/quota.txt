@@ -1,0 +1,249 @@
+cURL
+
+curl
+--request
+GET
+\
+--url
+https://files-api.evolink.ai/api/v1/files/quota
+\
+--header
+'Authorization: Bearer <token>'
+
+curl
+--request
+GET
+\
+--url
+https://files-api.evolink.ai/api/v1/files/quota
+\
+--header
+'Authorization: Bearer <token>'
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"data"
+: {
+"user_group"
+:
+"default"
+,
+"used_files"
+:
+35
+,
+"max_files"
+:
+2000
+,
+"remain_files"
+:
+65
+,
+"is_custom"
+:
+false
+,
+"quota_reason"
+:
+""
+}
+}
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"data"
+: {
+"user_group"
+:
+"default"
+,
+"used_files"
+:
+35
+,
+"max_files"
+:
+2000
+,
+"remain_files"
+:
+65
+,
+"is_custom"
+:
+false
+,
+"quota_reason"
+:
+""
+}
+}
+
+Get File Quota
+
+Query current user’s file usage and remaining quota
+
+Default user group allows up to
+2000
+files
+
+2000
+
+Note:
+The base URL for file APIs is
+https://files-api.evolink.ai
+
+https://files-api.evolink.ai
+
+cURL
+
+curl
+--request
+GET
+\
+--url
+https://files-api.evolink.ai/api/v1/files/quota
+\
+--header
+'Authorization: Bearer <token>'
+
+curl
+--request
+GET
+\
+--url
+https://files-api.evolink.ai/api/v1/files/quota
+\
+--header
+'Authorization: Bearer <token>'
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"data"
+: {
+"user_group"
+:
+"default"
+,
+"used_files"
+:
+35
+,
+"max_files"
+:
+2000
+,
+"remain_files"
+:
+65
+,
+"is_custom"
+:
+false
+,
+"quota_reason"
+:
+""
+}
+}
+
+{
+"success"
+:
+true
+,
+"code"
+:
+200
+,
+"data"
+: {
+"user_group"
+:
+"default"
+,
+"used_files"
+:
+35
+,
+"max_files"
+:
+2000
+,
+"remain_files"
+:
+65
+,
+"is_custom"
+:
+false
+,
+"quota_reason"
+:
+""
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All APIs require Bearer Token authentication##
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Response
+
+Success
+
+Whether the request was successful
+
+true
+
+true
+
+Response status code
+
+200
+
+200
+
+Show
+child attributes
