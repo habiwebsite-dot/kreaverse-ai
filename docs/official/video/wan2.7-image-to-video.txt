@@ -1,0 +1,1151 @@
+cURL
+
+first_frame
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-image-to-video",
+"generation_mode": "first_frame",
+"prompt": "A cat playing piano",
+"image_start": "https://example.com/first_frame.jpg"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-image-to-video",
+"generation_mode": "first_frame",
+"prompt": "A cat playing piano",
+"image_start": "https://example.com/first_frame.jpg"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+Wan2.7 Image to Video
+
+WAN2.7 (wan2.7-image-to-video) model supports image-to-video generation with multimodal inputs (image / audio / video)
+
+Choose one of three generation modes via the
+generation_mode
+parameter:
+first_frame
+:
+First-frame to video
+— generate a video starting from the given first frame, optional driving audio
+first_last_frame
+:
+First-and-last-frame to video
+— generate a video by interpolating between the first and last frames, optional driving audio
+video_continuation
+:
+Video continuation
+— continue an input video clip; an optional ending frame is allowed (no driving audio)
+
+generation_mode
+
+first_frame
+:
+First-frame to video
+— generate a video starting from the given first frame, optional driving audio
+
+first_frame
+
+first_last_frame
+:
+First-and-last-frame to video
+— generate a video by interpolating between the first and last frames, optional driving audio
+
+first_last_frame
+
+video_continuation
+:
+Video continuation
+— continue an input video clip; an optional ending frame is allowed (no driving audio)
+
+video_continuation
+
+generation_mode
+is optional (backward compatible); if omitted, an appropriate mode will be selected automatically based on the materials in the request
+
+generation_mode
+
+Valid material combinations (any other combination will be rejected):
+image_start
+(first frame)
+image_start
++
+audio_urls
+(first frame + driving audio)
+image_start
++
+image_end
+(first + last frame)
+image_start
++
+image_end
++
+audio_urls
+(first + last frame + driving audio)
+video_urls
+(video continuation)
+video_urls
++
+image_end
+(video continuation + last frame)
+
+image_start
+(first frame)
+
+image_start
+
+image_start
++
+audio_urls
+(first frame + driving audio)
+
+image_start
+
+audio_urls
+
+image_start
++
+image_end
+(first + last frame)
+
+image_start
+
+image_end
+
+image_start
++
+image_end
++
+audio_urls
+(first + last frame + driving audio)
+
+image_start
+
+image_end
+
+audio_urls
+
+video_urls
+(video continuation)
+
+video_urls
+
+video_urls
++
+image_end
+(video continuation + last frame)
+
+video_urls
+
+image_end
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+first_frame
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-image-to-video",
+"generation_mode": "first_frame",
+"prompt": "A cat playing piano",
+"image_start": "https://example.com/first_frame.jpg"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-image-to-video",
+"generation_mode": "first_frame",
+"prompt": "A cat playing piano",
+"image_start": "https://example.com/first_frame.jpg"
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-image-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+All APIs require Bearer Token authentication
+
+Get your API Key:
+
+Visit the
+API Key management page
+to obtain your API Key
+
+Add to request headers:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name, must be
+wan2.7-image-to-video
+
+wan2.7-image-to-video
+
+wan2.7-image-to-video
+
+"wan2.7-image-to-video"
+
+"wan2.7-image-to-video"
+
+Generation mode that determines which material combinations are valid.
+Explicitly specifying it is recommended
+
+Values:
+
+first_frame
+: First-frame to video. Required:
+image_start
+. Optional:
+audio_urls
+. Not accepted:
+image_end
+,
+video_urls
+
+first_frame
+
+image_start
+
+audio_urls
+
+image_end
+
+video_urls
+
+first_last_frame
+: First-and-last-frame to video. Required:
+image_start
++
+image_end
+. Optional:
+audio_urls
+. Not accepted:
+video_urls
+
+first_last_frame
+
+image_start
+
+image_end
+
+audio_urls
+
+video_urls
+
+video_continuation
+: Video continuation. Required:
+video_urls[0]
+. Optional:
+image_end
+(used as ending frame). Not accepted:
+image_start
+,
+audio_urls
+
+video_continuation
+
+video_urls[0]
+
+image_end
+
+image_start
+
+audio_urls
+
+Backward-compatible behavior:
+when
+generation_mode
+is omitted, an appropriate mode will be selected automatically based on the materials in the request; explicit specification is recommended to avoid ambiguity
+
+generation_mode
+
+first_frame
+
+first_last_frame
+
+video_continuation
+
+"first_frame"
+
+"first_frame"
+
+Text prompt for video generation. Supports both Chinese and English; each character/letter counts as 1, with overflow auto-truncated. Maximum length: 5000 characters
+
+5000
+
+"A cat playing piano"
+
+"A cat playing piano"
+
+Negative prompt describing what should not appear in the video. Supports both Chinese and English. Maximum length 500 characters; overflow is auto-truncated
+
+500
+
+"Blurry, low quality"
+
+"Blurry, low quality"
+
+First-frame image URL
+
+Mode constraints:
+
+first_frame
+mode:
+required
+
+first_frame
+
+first_last_frame
+mode:
+required
+
+first_last_frame
+
+video_continuation
+mode:
+not allowed
+
+video_continuation
+
+Image limits:
+
+Formats: JPEG, JPG, PNG (transparency not supported), BMP, WEBP
+
+Resolution: width and height in
+[240, 8000]
+pixels
+
+[240, 8000]
+
+Aspect ratio: 1:8 ~ 8:1
+
+File size: up to
+20MB
+
+20MB
+
+"https://example.com/first_frame.jpg"
+
+"https://example.com/first_frame.jpg"
+
+Ending-frame image URL
+
+Mode constraints:
+
+first_last_frame
+mode:
+required
+
+first_last_frame
+
+video_continuation
+mode: optional (acts as the ending frame for the continuation)
+
+video_continuation
+
+first_frame
+mode:
+not allowed
+(use
+first_last_frame
+if both first and last frames are needed)
+
+first_frame
+
+first_last_frame
+
+Image limits:
+
+Formats: JPEG, JPG, PNG (transparency not supported), BMP, WEBP
+
+Resolution: width and height in
+[240, 8000]
+pixels
+
+[240, 8000]
+
+Aspect ratio: 1:8 ~ 8:1
+
+File size: up to
+20MB
+
+20MB
+
+"https://example.com/last_frame.jpg"
+
+"https://example.com/last_frame.jpg"
+
+Video continuation URL array.
+Only 1 element is supported
+
+Mode constraints:
+
+video_continuation
+mode:
+required
+
+video_continuation
+
+first_frame
+/
+first_last_frame
+mode:
+not allowed
+
+first_frame
+
+first_last_frame
+
+Cannot be combined with
+audio_urls
+
+audio_urls
+
+Video limits:
+
+Formats: mp4, mov
+
+Duration:
+2 ~ 10
+seconds (length of the input clip itself)
+
+2 ~ 10
+
+Resolution: width and height in
+[240, 4096]
+pixels
+
+[240, 4096]
+
+Aspect ratio: 1:8 ~ 8:1
+
+File size: up to
+100MB
+
+100MB
+
+Continuation duration rules:
+
+duration
+represents the
+total final output video length
+(input clip + model-generated continuation)
+
+duration
+
+Generated continuation length =
+duration
+− input video length
+
+duration
+
+duration
+must be ≥ input video length
+
+duration
+
+Billing is based on the total final output length (i.e.
+duration
+)
+
+duration
+
+Examples:
+
+Input clip length
+duration
+Continuation generated
+Final output
+Billed
+3s
+15
+12s
+15s
+15s
+5s
+10
+5s
+10s
+10s
+8s
+8
+0s (input only)
+8s
+8s
+
+Input clip length
+duration
+Continuation generated
+Final output
+Billed
+
+Input clip length
+
+duration
+
+Continuation generated
+
+Final output
+
+Billed
+
+3s
+15
+12s
+15s
+15s
+
+3s
+
+15
+
+12s
+
+15s
+
+15s
+
+5s
+10
+5s
+10s
+10s
+
+5s
+
+10
+
+5s
+
+10s
+
+10s
+
+8s
+8
+0s (input only)
+8s
+8s
+
+8s
+
+8
+
+0s (input only)
+
+8s
+
+8s
+
+[
+"https://example.com/clip.mp4"
+]
+
+[
+"https://example.com/clip.mp4"
+]
+
+Driving audio URL array.
+Currently supports only 1 element
+. The model will use this audio as the driving source for video generation (e.g. lip sync, motion alignment)
+
+Mode constraints:
+
+first_frame
+mode: optional
+
+first_frame
+
+first_last_frame
+mode: optional
+
+first_last_frame
+
+video_continuation
+mode:
+not allowed
+(cannot be combined with
+video_urls
+)
+
+video_continuation
+
+video_urls
+
+Format requirements:
+
+Supported formats:
+wav
+,
+mp3
+
+wav
+
+mp3
+
+Duration range:
+2 ~ 30
+seconds
+
+2 ~ 30
+
+File size: up to
+15MB
+
+15MB
+
+Truncation handling:
+
+If audio length exceeds
+duration
+, the first N seconds are extracted and the rest discarded
+
+duration
+
+If audio length is shorter than the video duration, the remaining portion is silent. For example: if audio is 3s and video duration is 5s, the first 3s have sound and the last 2s are silent
+
+1
+
+[
+"https://example.com/audio.mp3"
+]
+
+[
+"https://example.com/audio.mp3"
+]
+
+Video quality, defaults to
+720p
+
+720p
+
+Options:
+
+720p
+: Standard definition, standard price, this is the default
+
+720p
+
+1080p
+: High definition, higher price
+
+1080p
+
+720p
+
+1080p
+
+"720p"
+
+"720p"
+
+Video duration in seconds (integer). Range
+2 ~ 15
+, default
+5
+
+2 ~ 15
+
+5
+
+Meaning:
+
+first_frame
+/
+first_last_frame
+modes: total length of the generated video
+
+first_frame
+
+first_last_frame
+
+video_continuation
+mode: total length of the final output video (= original input clip + model-generated continuation)
+
+video_continuation
+
+Additional constraints in
+video_continuation
+mode:
+
+video_continuation
+
+duration
+must be
+≥ input video length
+(otherwise an error is returned)
+
+duration
+
+Generated continuation length =
+duration
+− input video length
+
+duration
+
+When
+duration
+equals the input video length, no continuation is generated and the input clip is returned as-is
+
+duration
+
+See the continuation duration rules and examples in the
+video_urls
+field for details
+
+video_urls
+
+Billing:
+based on the actual generated video duration
+
+2 <= x <= 15
+
+5
+
+5
+
+Random seed, defaults to random
+
+Notes:
+
+Range:
+1
+~
+2147483647
+
+1
+
+2147483647
+
+Fixing the seed reduces variation when iterating on prompts and improves reproducibility
+
+1 <= x <= 2147483647
+
+42
+
+42
+
+Whether to enable intelligent prompt rewriting. When enabled, a large model will optimize the prompt, which significantly improves results for simple or insufficiently descriptive prompts.
+
+Note:
+Default is
+false
+. Omitting the field or sending
+false
+will not trigger rewriting; explicitly send
+true
+to enable.
+
+false
+
+false
+
+true
+
+false
+
+false
+
+HTTPS callback URL for task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security Restrictions:
+
+Only HTTPS protocol is supported
+
+Callbacks to internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (retries at
+1
+/
+2
+/
+4
+seconds after failure)
+
+3
+
+1
+
+2
+
+4
+
+Callback response format is consistent with the task query API response
+
+2xx status codes are considered successful, other status codes trigger retries
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"wan2.7-image-to-video"
+
+"wan2.7-image-to-video"
+
+Specific task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Detailed video task information
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
