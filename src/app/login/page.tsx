@@ -3,10 +3,8 @@ import { LoginScreen } from '@/components/login-screen';
 
 export default function LoginPage() {
   return (
-    <div className="container py-16">
-      <Suspense fallback={<div className="text-sm text-muted-foreground">Memuat form login...</div>}>
-        <LoginScreen />
-      </Suspense>
-    </div>
+    <Suspense fallback={<div className="min-h-screen bg-[#050816] px-4 py-10 text-sm text-slate-400">Memuat tampilan login...</div>}>
+      <LoginScreen />
+    </Suspense>
   );
 }
