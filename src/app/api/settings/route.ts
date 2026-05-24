@@ -9,13 +9,21 @@ export async function GET() {
     if (session.role !== 'USER') return fail('Forbidden', 403);
     const user = await prisma.user.findUnique({
       where: { id: session.sub },
-      include: { apiKeys: true },
+      include: { apiKeys: true, sessions: true },
     });
     return ok({
       locale: user?.locale || 'id',
+      theme: 'dark',
+      profile: {
+        name: user?.name || '',
+        bio: user?.bio || '',
+        address: user?.address || '',
+        avatarUrl: user?.avatarUrl || '',
+      },
       hasEvolinkKey: Boolean(user?.apiKeys.find((item) => item.provider === 'evolink')),
+      activeSessions: user?.sessions.length || 0,
     });
-  } catch (error) {
+  } catch {
     return fail('Unauthorized', 401);
   }
 }
@@ -26,8 +34,16 @@ export async function PATCH(request: Request) {
     if (session.role !== 'USER') return fail('Forbidden', 403);
     const body = await request.json();
 
-    if (body.locale) {
-      await prisma.user.update({ where: { id: session.sub }, data: { locale: String(body.locale) } });
+    const updateData: Record<string, unknown> = {};
+
+    if (body.locale) updateData.locale = String(body.locale);
+    if (body.name !== undefined) updateData.name = String(body.name || '');
+    if (body.bio !== undefined) updateData.bio = String(body.bio || '');
+    if (body.address !== undefined) updateData.address = String(body.address || '');
+    if (body.avatarUrl !== undefined) updateData.avatarUrl = String(body.avatarUrl || '');
+
+    if (Object.keys(updateData).length > 0) {
+      await prisma.user.update({ where: { id: session.sub }, data: updateData });
     }
 
     if (body.evolinkApiKey) {
