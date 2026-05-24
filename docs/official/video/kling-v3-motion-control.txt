@@ -1,0 +1,670 @@
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-v3-motion-control",
+"prompt": "A girl dancing gracefully",
+"image_urls": [
+"https://example.com/character.jpg"
+],
+"video_urls": [
+"https://example.com/dance-reference.mp4"
+],
+"quality": "720p",
+"model_params": {
+"character_orientation": "image"
+}
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-v3-motion-control",
+"prompt": "A girl dancing gracefully",
+"image_urls": [
+"https://example.com/character.jpg"
+],
+"video_urls": [
+"https://example.com/dance-reference.mp4"
+],
+"quality": "720p",
+"model_params": {
+"character_orientation": "image"
+}
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-v3-motion-control"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+408240
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-v3-motion-control"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+408240
+,
+"user_group"
+:
+"default"
+}
+}
+
+Kling-V3 Motion Control
+
+Kling-V3 Motion Control (kling-v3-motion-control) model supports generating motion-driven videos using
+reference image + reference video
+
+The system extracts motion trajectories from the reference video and applies them to the character/object in the reference image, generating a new video with motions consistent with the reference video
+
+Video duration depends on
+character_orientation
+:
+image
+max 10 seconds,
+video
+max 30 seconds, minimum 3 seconds
+
+character_orientation
+
+image
+
+video
+
+Asynchronous processing mode, use the returned task ID to
+query task status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-v3-motion-control",
+"prompt": "A girl dancing gracefully",
+"image_urls": [
+"https://example.com/character.jpg"
+],
+"video_urls": [
+"https://example.com/dance-reference.mp4"
+],
+"quality": "720p",
+"model_params": {
+"character_orientation": "image"
+}
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "kling-v3-motion-control",
+"prompt": "A girl dancing gracefully",
+"image_urls": [
+"https://example.com/character.jpg"
+],
+"video_urls": [
+"https://example.com/dance-reference.mp4"
+],
+"quality": "720p",
+"model_params": {
+"character_orientation": "image"
+}
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-v3-motion-control"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+408240
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"kling-v3-motion-control"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+300
+,
+"video_duration"
+:
+8
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_second"
+,
+"credits_reserved"
+:
+408240
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+All API endpoints require Bearer Token authentication
+
+Get your API Key:
+
+Visit the
+API Key Management Page
+to obtain your API Key
+
+Add the following to your request headers:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Video generation model name
+
+kling-v3-motion-control
+
+"kling-v3-motion-control"
+
+"kling-v3-motion-control"
+
+Array of reference image URLs, used to provide the appearance source of the character/object
+
+Note:
+
+Provide one reference image
+
+Image size: no larger than
+10MB
+
+10MB
+
+Supported file formats:
+.jpg
+,
+.jpeg
+,
+.png
+
+.jpg
+
+.jpeg
+
+.png
+
+Image dimensions: width and height ≥
+300px
+, aspect ratio between
+1:2.5
+and
+2.5:1
+
+300px
+
+1:2.5
+
+2.5:1
+
+Image URL must be directly accessible by the server
+
+[
+"https://example.com/character.jpg"
+]
+
+[
+"https://example.com/character.jpg"
+]
+
+Array of reference video URLs to provide motion trajectory
+
+Note:
+
+Provide one reference video
+
+Video duration:
+3
+to
+30
+seconds
+
+3
+
+30
+
+Video size: up to
+100MB
+
+100MB
+
+Video dimensions: width and height between
+340px
+and
+3850px
+
+340px
+
+3850px
+
+Avoid cuts, fast motion, and scene changes
+
+The video URL must be directly accessible by the server
+
+[
+"https://example.com/dance-reference.mp4"
+]
+
+[
+"https://example.com/dance-reference.mp4"
+]
+
+Model-specific parameters (required), used for motion control configuration
+
+Show
+child attributes
+
+Text prompt (optional), used to guide the generated content
+
+Note:
+
+Maximum
+2500
+characters
+
+2500
+
+Can be left empty; the model will automatically generate based on the reference image and video
+
+2500
+
+"A girl dancing gracefully"
+
+"A girl dancing gracefully"
+
+Resolution tier
+
+Details:
+
+720p
+: Standard quality (std)
+
+720p
+
+1080p
+: High quality (pro)
+
+1080p
+
+720p
+
+1080p
+
+"720p"
+
+"720p"
+
+HTTPS callback URL triggered upon task completion
+
+Callback Timing:
+
+Triggered when the task is completed, failed, or cancelled
+
+Sent after billing confirmation is complete
+
+Security Restrictions:
+
+Only HTTPS protocol is supported
+
+Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (retries at
+1
+/
+2
+/
+4
+seconds after failure)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format is consistent with the task query API response
+
+A 2xx status code from the callback URL is considered successful; other status codes will trigger a retry
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video generation task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"kling-v3-motion-control"
+
+"kling-v3-motion-control"
+
+Specific type of the task
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Video task details
+
+Show
+child attributes
+
+Output type of the task
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
