@@ -31,10 +31,12 @@ export function Equalizer({ file }: { file: File | null }) {
     const bassFilter = context.createBiquadFilter();
     bassFilter.type = 'lowshelf';
     bassFilter.frequency.value = 200;
+
     const midFilter = context.createBiquadFilter();
     midFilter.type = 'peaking';
     midFilter.frequency.value = 1000;
     midFilter.Q.value = 1;
+
     const trebleFilter = context.createBiquadFilter();
     trebleFilter.type = 'highshelf';
     trebleFilter.frequency.value = 3000;
@@ -54,26 +56,47 @@ export function Equalizer({ file }: { file: File | null }) {
   useEffect(() => {
     if (bassRef.current) bassRef.current.gain.value = bass;
   }, [bass]);
+
   useEffect(() => {
     if (midRef.current) midRef.current.gain.value = mid;
   }, [mid]);
+
   useEffect(() => {
     if (trebleRef.current) trebleRef.current.gain.value = treble;
   }, [treble]);
 
-  if (!src) return <p className="text-sm text-muted-foreground">Unggah audio untuk mencoba equalizer.</p>;
+  if (!src) {
+    return <p className="text-sm text-muted-foreground">Unggah audio untuk mencoba equalizer.</p>;
+  }
+
+  const controls: Array<{ label: string; value: number; setter: (value: number) => void }> = [
+    { label: 'Bass', value: bass, setter: setBass },
+    { label: 'Mid', value: mid, setter: setMid },
+    { label: 'Treble', value: treble, setter: setTreble },
+  ];
 
   return (
     <div className="space-y-4">
-      <audio ref={audioRef} controls src={src} className="w-full" onPlay={() => contextRef.current?.resume()} />
-      {[
-        ['Bass', bass, setBass],
-        ['Mid', mid, setMid],
-        ['Treble', treble, setTreble],
-      ].map(([label, value, setter]) => (
-        <label key={label} className="grid gap-2 text-sm">
-          <div className="flex items-center justify-between"><span>{label}</span><span>{Number(value)} dB</span></div>
-          <input type="range" min={-15} max={15} value={Number(value)} onChange={(e) => (setter as (v:number)=>void)(Number(e.target.value))} />
+      <audio
+        ref={audioRef}
+        controls
+        src={src}
+        className="w-full"
+        onPlay={() => contextRef.current?.resume()}
+      />
+      {controls.map((item) => (
+        <label key={item.label} className="grid gap-2 text-sm">
+          <div className="flex items-center justify-between">
+            <span>{item.label}</span>
+            <span>{item.value} dB</span>
+          </div>
+          <input
+            type="range"
+            min={-15}
+            max={15}
+            value={item.value}
+            onChange={(e) => item.setter(Number(e.target.value))}
+          />
         </label>
       ))}
     </div>
