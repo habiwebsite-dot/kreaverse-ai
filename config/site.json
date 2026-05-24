@@ -1,17 +1,27 @@
 {
   "name": "Kreaverse AI",
-  "tagline": "Studio AI generator untuk audio, gambar, video, dan mastering.",
+  "tagline": "Aplikasi studio AI yang rapi untuk gambar, audio, video, dan mastering.",
   "logoUrl": "",
+  "loginLogoUrl": "",
+  "footerLogoUrl": "",
   "qrLogoUrl": "",
+  "loginFooterText": "Kreaverse AI × HABI STUDIO",
+  "footerText": "Kreaverse AI × HABI STUDIO · Creative AI workspace yang rapi, cepat, dan siap produksi.",
+  "providerLogoUrl": "",
+  "logoGlowEnabled": true,
   "promoBanner": {
     "title": "Unlimited mode aktif",
     "description": "Generate tanpa repot input API key saat pool admin tersedia.",
-    "ctaLabel": "Mulai Kreasi"
+    "ctaLabel": "Lihat Langganan",
+    "imageUrl": "",
+    "linkUrl": "/settings",
+    "enabled": false
   },
   "toolLogos": {
     "music": "",
     "image": "",
     "video": "",
     "mastering": ""
-  }
+  },
+  "modelLogos": {}
 }
