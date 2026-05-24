@@ -1,0 +1,536 @@
+cURL
+
+text_to_image
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "mj-v7",
+"prompt": "A cinematic shot of a Maine Coon cat on a neon-lit balcony --ar 16:9 --s 500",
+"model_params": {
+"speed": "fast"
+}
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "mj-v7",
+"prompt": "A cinematic shot of a Maine Coon cat on a neon-lit balcony --ar 16:9 --s 500",
+"model_params": {
+"speed": "fast"
+}
+}
+'
+
+{
+"created"
+:
+1757165031
+,
+"id"
+:
+"task-unified-1757165031-mjv7"
+,
+"model"
+:
+"mj-v7"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+45
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.8
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757165031
+,
+"id"
+:
+"task-unified-1757165031-mjv7"
+,
+"model"
+:
+"mj-v7"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+45
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.8
+,
+"user_group"
+:
+"default"
+}
+}
+
+Midjourney V7 Image Generation
+
+Midjourney V7 model supports generating high-quality images via natural language prompts, 4 images per generation
+
+Supports text-to-image and image-to-image (reference image URLs in prompt)
+
+Supports all V7 native parameter syntax (e.g. —ar, —s, —c), see
+Prompt Parameter Guide
+
+Async processing mode, use the returned task ID to
+query status
+
+Generated image links are valid for 24 hours, please save them promptly
+
+Timeout: approximately 20 minutes
+
+System protection:
+--v
+/
+--version
+locked to V7,
+--niji
+not supported,
+--fast
+/
+--turbo
+/
+--draft
+must be controlled via
+model_params.speed
+(these parameters in prompt will be automatically removed)
+
+--v
+
+--version
+
+--niji
+
+--fast
+
+--turbo
+
+--draft
+
+model_params.speed
+
+cURL
+
+text_to_image
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "mj-v7",
+"prompt": "A cinematic shot of a Maine Coon cat on a neon-lit balcony --ar 16:9 --s 500",
+"model_params": {
+"speed": "fast"
+}
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/images/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "mj-v7",
+"prompt": "A cinematic shot of a Maine Coon cat on a neon-lit balcony --ar 16:9 --s 500",
+"model_params": {
+"speed": "fast"
+}
+}
+'
+
+{
+"created"
+:
+1757165031
+,
+"id"
+:
+"task-unified-1757165031-mjv7"
+,
+"model"
+:
+"mj-v7"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+45
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.8
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757165031
+,
+"id"
+:
+"task-unified-1757165031-mjv7"
+,
+"model"
+:
+"mj-v7"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+45
+},
+"type"
+:
+"image"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+1.8
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+All endpoints require Bearer Token authentication
+
+Get API Key:
+
+Visit
+API Key Management Page
+to get your API Key
+
+Add to request header:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name
+
+mj-v7
+
+Prompt, supports all Midjourney V7 native parameter syntax (e.g. --ar 16:9 --s 500).
+
+Image-to-Image:
+Place image URLs at the beginning of the prompt. Supported formats: .png, .gif, .webp, .jpg, .jpeg
+
+Image-to-Image Rules:
+
+1 image + no text =
+invalid
+(will return error)
+
+1 image + text description = valid
+
+2+ images + no text = valid
+
+2+ images + text description = valid
+
+8192
+
+"A cinematic shot of a Maine Coon cat on a neon-lit balcony --ar 16:9 --s 500"
+
+"A cinematic shot of a Maine Coon cat on a neon-lit balcony --ar 16:9 --s 500"
+
+Model parameters
+
+Show
+child attributes
+
+HTTPS callback URL for task completion
+
+Callback timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security restrictions:
+
+HTTPS protocol only
+
+Callbacks to private IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (retries at
+1
+s/
+2
+s/
+4
+s after failure)
+
+3
+
+1
+
+2
+
+4
+
+Callback response body format matches the task query endpoint
+
+A 2xx status code is considered successful; other status codes trigger retries
+
+"https://your-domain.com/webhooks/image-task-completed"
+
+"https://your-domain.com/webhooks/image-task-completed"
+
+Response
+
+Task created successfully
+
+Task creation timestamp
+
+1757165031
+
+1757165031
+
+Task ID
+
+"task-unified-1757165031-mjv7"
+
+"task-unified-1757165031-mjv7"
+
+Actual model name used
+
+"mj-v7"
+
+"mj-v7"
+
+Task object type
+
+image.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Async task info
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"image"
+
+"image"
+
+Usage and billing info
+
+Show
+child attributes
