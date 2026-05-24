@@ -10,6 +10,8 @@ export async function GET() {
   }
 
   const encoder = new TextEncoder();
+  let interval: ReturnType<typeof setInterval> | undefined;
+  let timeout: ReturnType<typeof setTimeout> | undefined;
 
   const stream = new ReadableStream({
     async start(controller) {
@@ -19,7 +21,7 @@ export async function GET() {
 
       send('ready', { ok: true, at: new Date().toISOString() });
 
-      const interval = setInterval(async () => {
+      interval = setInterval(async () => {
         try {
           const [notifications, deviceSession, recentTasks] = await Promise.all([
             prisma.notification.findMany({
@@ -65,21 +67,16 @@ export async function GET() {
         }
       }, 4000);
 
-      const timeout = setTimeout(() => {
-        clearInterval(interval);
+      timeout = setTimeout(() => {
+        if (interval) clearInterval(interval);
         controller.close();
       }, 1000 * 60 * 5);
 
       controller.enqueue(encoder.encode(': connected\n\n'));
-
-      // @ts-expect-error close hook not typed on underlying source in TS DOM lib
-      this.cancel = () => {
-        clearInterval(interval);
-        clearTimeout(timeout);
-      };
     },
     cancel() {
-      // handled by runtime
+      if (interval) clearInterval(interval);
+      if (timeout) clearTimeout(timeout);
     },
   });
 
