@@ -7,6 +7,10 @@ type AppUser = {
   email: string;
   role: 'USER' | 'ADMIN';
   locale?: string;
+  name?: string;
+  bio?: string;
+  address?: string;
+  avatarUrl?: string;
 };
 
 type AppContextValue = {
@@ -73,7 +77,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     source.addEventListener('notifications', (event) => {
       const payload = JSON.parse((event as MessageEvent).data) as Array<{ message: string }>;
       if (payload[0]?.message) {
-        // eslint-disable-next-line no-alert
         window.alert(payload[0].message);
       }
     });
