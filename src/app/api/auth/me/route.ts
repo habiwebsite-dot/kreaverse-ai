@@ -13,6 +13,7 @@ export async function GET() {
         id: 'admin',
         email: session.email,
         role: 'ADMIN',
+        name: 'Admin Kreaverse',
       },
       deviceLocked: false,
     });
@@ -34,6 +35,10 @@ export async function GET() {
       role: user.role,
       locale: user.locale,
       active: user.active,
+      name: user.name,
+      bio: user.bio,
+      address: user.address,
+      avatarUrl: user.avatarUrl,
     },
     deviceLocked: Boolean(deviceSession?.replaceRequestedAt),
     sessionId: session.sessionId,
