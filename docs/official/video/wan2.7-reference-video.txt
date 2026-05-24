@@ -1,0 +1,1038 @@
+cURL
+
+single_reference_video
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-reference-video",
+"prompt": "The character from the reference video dancing on a meadow",
+"video_urls": [
+"https://example.com/reference.mp4"
+]
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-reference-video",
+"prompt": "The character from the reference video dancing on a meadow",
+"video_urls": [
+"https://example.com/reference.mp4"
+]
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-reference-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-reference-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+Wan2.7 Reference Video
+
+WAN2.7 (wan2.7-reference-video) model supports reference-to-video generation, using people or objects as protagonists to produce single-character performances or multi-character interactions
+
+Multimodal inputs: starting frame (
+image_start
+), multiple reference images (
+image_urls
+), multiple reference videos (
+video_urls
+), and per-character voice bindings
+
+image_start
+
+image_urls
+
+video_urls
+
+At least one
+reference image (
+image_urls
+) or reference video (
+video_urls
+) must be provided; passing only
+image_start
+does not satisfy this. The total of
+image_urls
++
+video_urls
+must be ≤ 5
+
+image_urls
+
+video_urls
+
+image_start
+
+image_urls
+
+video_urls
+
+Character indexing in prompt:
+in Chinese use “图1, 图2 / 视频1, 视频2”; in English use “Image 1”, “Video 1” — these correspond 1-based to the order of
+image_urls
+/
+video_urls
+. Images and videos are counted independently, so “Image 1” and “Video 1” can coexist
+
+image_urls
+
+video_urls
+
+Multi-character voice binding:
+prefer
+model_params.voice_bindings
+(precise binding); the legacy
+audio_urls
+(positional alignment) is also supported
+
+model_params.voice_bindings
+
+audio_urls
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+Billing:
+charged based on “input video duration + output video duration”; only successful generations are billed, failed tasks are free
+
+cURL
+
+single_reference_video
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-reference-video",
+"prompt": "The character from the reference video dancing on a meadow",
+"video_urls": [
+"https://example.com/reference.mp4"
+]
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-reference-video",
+"prompt": "The character from the reference video dancing on a meadow",
+"video_urls": [
+"https://example.com/reference.mp4"
+]
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-reference-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-reference-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+All APIs require Bearer Token authentication
+
+Get your API Key:
+
+Visit the
+API Key management page
+to obtain your API Key
+
+Add to request headers:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name, must be
+wan2.7-reference-video
+
+wan2.7-reference-video
+
+wan2.7-reference-video
+
+"wan2.7-reference-video"
+
+"wan2.7-reference-video"
+
+Text prompt for video generation. Supports Chinese and English; each character / letter / punctuation counts as 1, with overflow auto-truncated. Maximum length 5000 characters
+
+Character indexing rules:
+
+Chinese: use "图1, 图2 / 视频1, 视频2" — corresponds 1-based to the order of
+image_urls
+/
+video_urls
+
+image_urls
+
+video_urls
+
+English: use "Image 1", "Video 1" (capitalised, with a space between word and digit)
+
+Images and videos are counted independently, so "Image 1" and "Video 1" can coexist
+
+If only one reference image or one reference video is provided, you can simply write "the reference image" or "the reference video"
+
+Multi-grid (storyboard) image:
+when one multi-grid image is provided, describe key shots in storyboard form; the model recognises the grid layout and fills in the missing transitions
+
+5000
+
+"Video 1 holds Image 3 and plays a soft country folk tune on the chair in Image 4"
+
+"Video 1 holds Image 3 and plays a soft country folk tune on the chair in Image 4"
+
+Negative prompt describing what should not appear in the video. Supports both Chinese and English. Maximum length 500 characters; overflow is auto-truncated
+
+500
+
+"Blurry, low quality"
+
+"Blurry, low quality"
+
+Starting-frame image URL, used as the first frame of the generated video.
+Does not count
+toward the
+image_urls
++
+video_urls
+≤ 5 limit.
+Does not accept voice binding
+(the starting frame itself is not assigned a voice)
+
+image_urls
+
+video_urls
+
+Use cases:
+
+Subject already appears in the starting frame: combine with reference materials to reinforce identity consistency
+
+Subject not in the starting frame: reference materials define new subjects appearing as the video progresses
+
+Image limits:
+
+Formats: JPEG, JPG, PNG (transparency not supported), BMP, WEBP
+
+Resolution: width and height in
+[240, 8000]
+pixels
+
+[240, 8000]
+
+Aspect ratio: 1:8 ~ 8:1
+
+File size: up to
+20MB
+
+20MB
+
+"https://example.com/first_frame.jpg"
+
+"https://example.com/first_frame.jpg"
+
+Reference image URL array. Can supply subjects (people / animals / objects) or scene backgrounds; when a subject is included, each image should contain a
+single
+character
+
+Quantity limits:
+
+image_urls
++
+video_urls
+total ≤ 5
+
+image_urls
+
+video_urls
+
+At least one of
+image_urls
+/
+video_urls
+must be provided (passing only
+image_start
+is not enough)
+
+image_urls
+
+video_urls
+
+image_start
+
+Image limits:
+
+Formats: JPEG, JPG, PNG (transparency not supported), BMP, WEBP
+
+Resolution: width and height in
+[240, 8000]
+pixels
+
+[240, 8000]
+
+Aspect ratio: 1:8 ~ 8:1
+
+File size: up to
+20MB
+
+20MB
+
+[
+"https://example.com/ref1.jpg"
+,
+"https://example.com/ref2.jpg"
+]
+
+[
+"https://example.com/ref1.jpg"
+,
+"https://example.com/ref2.jpg"
+]
+
+Reference video URL array. The video should ideally feature a subject (person / animal / object); empty or pure-background footage is discouraged. When a subject is included, each video should contain a
+single
+character. Audio in the video can be used as a voice reference
+
+Quantity limits:
+
+image_urls
++
+video_urls
+total ≤ 5
+
+image_urls
+
+video_urls
+
+At least one of
+image_urls
+/
+video_urls
+must be provided
+
+image_urls
+
+video_urls
+
+Video limits:
+
+Formats: mp4, mov
+
+Duration:
+1 ~ 30
+seconds
+
+1 ~ 30
+
+Resolution: width and height in
+[240, 4096]
+pixels
+
+[240, 4096]
+
+Aspect ratio: 1:8 ~ 8:1
+
+File size: up to
+100MB
+
+100MB
+
+Note:
+when
+video_urls
+is provided,
+duration
+is capped at 10 seconds
+
+video_urls
+
+duration
+
+[
+"https://example.com/reference.mp4"
+]
+
+[
+"https://example.com/reference.mp4"
+]
+
+[Compatibility field — prefer
+model_params.voice_bindings
+]
+
+model_params.voice_bindings
+
+Reference voice URL array. Bound positionally to reference materials in this order: first match against
+video_urls
+, then against
+image_urls
+(in their array order, one-to-one). Up to 5 elements
+
+video_urls
+
+image_urls
+
+Priority:
+
+When both
+model_params.voice_bindings
+and
+audio_urls
+are supplied, only
+voice_bindings
+is used and this field is ignored
+
+model_params.voice_bindings
+
+audio_urls
+
+voice_bindings
+
+If a video in
+video_urls
+carries audio and no voice binding is set for it, the original audio is used; an explicit voice binding overrides the original audio
+
+video_urls
+
+Audio limits:
+
+Supported formats:
+wav
+,
+mp3
+
+wav
+
+mp3
+
+Duration range:
+1 ~ 10
+seconds
+
+1 ~ 10
+
+File size: up to
+15MB
+
+15MB
+
+5
+
+[
+"https://example.com/voice1.mp3"
+,
+"https://example.com/voice2.mp3"
+]
+
+[
+"https://example.com/voice1.mp3"
+,
+"https://example.com/voice2.mp3"
+]
+
+Advanced parameter container (recommended)
+
+Show
+child attributes
+
+Video quality, defaults to
+720p
+
+720p
+
+Options:
+
+720p
+: Standard definition, standard price, this is the default
+
+720p
+
+1080p
+: High definition, higher price
+
+1080p
+
+720p
+
+1080p
+
+"720p"
+
+"720p"
+
+Video aspect ratio, defaults to
+16:9
+
+16:9
+
+Behavior:
+
+image_start
+not provided: video is generated using the specified
+aspect_ratio
+
+image_start
+
+aspect_ratio
+
+image_start
+provided: this field is
+ignored
+; the video uses an aspect ratio close to the starting-frame image
+
+image_start
+
+Output resolution per quality tier:
+
+Quality
+16:9
+9:16
+1:1
+4:3
+3:4
+720p
+1280×720
+720×1280
+960×960
+1104×832
+832×1104
+1080p
+1920×1080
+1080×1920
+1440×1440
+1648×1248
+1248×1648
+
+Quality
+16:9
+9:16
+1:1
+4:3
+3:4
+
+Quality
+
+16:9
+
+9:16
+
+1:1
+
+4:3
+
+3:4
+
+720p
+1280×720
+720×1280
+960×960
+1104×832
+832×1104
+
+720p
+
+1280×720
+
+720×1280
+
+960×960
+
+1104×832
+
+832×1104
+
+1080p
+1920×1080
+1080×1920
+1440×1440
+1648×1248
+1248×1648
+
+1080p
+
+1920×1080
+
+1080×1920
+
+1440×1440
+
+1648×1248
+
+1248×1648
+
+16:9
+
+9:16
+
+1:1
+
+4:3
+
+3:4
+
+"16:9"
+
+"16:9"
+
+Video duration in seconds (integer)
+
+Range:
+
+Without
+video_urls
+:
+2 ~ 15
+, default
+5
+
+video_urls
+
+2 ~ 15
+
+5
+
+With
+video_urls
+:
+2 ~ 10
+(capped at 10 seconds)
+
+video_urls
+
+2 ~ 10
+
+Billing:
+based on the actual generated video duration
+
+2 <= x <= 15
+
+5
+
+5
+
+Random seed, defaults to random
+
+Notes:
+
+Range:
+1
+~
+2147483647
+
+1
+
+2147483647
+
+Fixing the seed reduces variation when iterating on prompts and improves reproducibility
+
+1 <= x <= 2147483647
+
+42
+
+42
+
+Whether to enable intelligent prompt rewriting. When enabled, a large model will optimize the prompt, which significantly improves results for simple or insufficiently descriptive prompts.
+
+Note:
+Default is
+false
+. Omitting the field or sending
+false
+will not trigger rewriting; explicitly send
+true
+to enable.
+
+false
+
+false
+
+true
+
+false
+
+false
+
+HTTPS callback URL for task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security Restrictions:
+
+Only HTTPS protocol is supported
+
+Callbacks to internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (retries at
+1
+/
+2
+/
+4
+seconds after failure)
+
+3
+
+1
+
+2
+
+4
+
+Callback response format is consistent with the task query API response
+
+2xx status codes are considered successful, other status codes trigger retries
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"wan2.7-reference-video"
+
+"wan2.7-reference-video"
+
+Specific task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Detailed video task information
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
