@@ -1,0 +1,771 @@
+cURL
+
+single_shot
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-text-to-video",
+"prompt": "A small kitten running under the moonlight",
+"aspect_ratio": "16:9",
+"duration": 5
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-text-to-video",
+"prompt": "A small kitten running under the moonlight",
+"aspect_ratio": "16:9",
+"duration": 5
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-text-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-text-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+Wan2.7 Text to Video
+
+WAN2.7 (wan2.7-text-to-video) model supports text-to-video generation, producing fluent videos from textual prompts
+
+Multi-shot narrative:
+Control shot structure via natural language in
+prompt
+Single shot: state “generate a single-shot video” in the prompt
+Multi shot: use “generate a multi-shot video” or timestamped shot lists (e.g. “Shot 1 [0-3s] wide angle: rainy night street”)
+Default: when unspecified, the model interprets
+prompt
+content on its own
+
+prompt
+
+Single shot: state “generate a single-shot video” in the prompt
+
+Multi shot: use “generate a multi-shot video” or timestamped shot lists (e.g. “Shot 1 [0-3s] wide angle: rainy night street”)
+
+Default: when unspecified, the model interprets
+prompt
+content on its own
+
+prompt
+
+Audio handling:
+With
+audio_urls
+: the model uses the provided audio as the driving source
+Without
+audio_urls
+: the model auto-generates background music or sound effects matching the visual content
+
+With
+audio_urls
+: the model uses the provided audio as the driving source
+
+audio_urls
+
+Without
+audio_urls
+: the model auto-generates background music or sound effects matching the visual content
+
+audio_urls
+
+Asynchronous processing mode, use the returned task ID to
+query status
+
+Generated video links are valid for 24 hours, please save them promptly
+
+cURL
+
+single_shot
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-text-to-video",
+"prompt": "A small kitten running under the moonlight",
+"aspect_ratio": "16:9",
+"duration": 5
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/videos/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "wan2.7-text-to-video",
+"prompt": "A small kitten running under the moonlight",
+"aspect_ratio": "16:9",
+"duration": 5
+}
+'
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-text-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+{
+"created"
+:
+1757169743
+,
+"id"
+:
+"task-unified-1757169743-7cvnl5zw"
+,
+"model"
+:
+"wan2.7-text-to-video"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+120
+},
+"type"
+:
+"video"
+,
+"usage"
+: {
+"billing_rule"
+:
+"per_call"
+,
+"credits_reserved"
+:
+5
+,
+"user_group"
+:
+"default"
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+All APIs require Bearer Token authentication
+
+Get your API Key:
+
+Visit the
+API Key management page
+to obtain your API Key
+
+Add to request headers:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name, must be
+wan2.7-text-to-video
+
+wan2.7-text-to-video
+
+wan2.7-text-to-video
+
+"wan2.7-text-to-video"
+
+"wan2.7-text-to-video"
+
+Text prompt for video generation. Supports both Chinese and English; each character/letter counts as 1, with overflow auto-truncated. Maximum length: 5000 characters
+
+Multi-shot narrative:
+Control shot structure via natural language
+
+Single shot: state "generate a single-shot video" in the prompt
+
+Multi shot: use "generate a multi-shot video" or timestamped shot lists (e.g. "Shot 1 [0-3s]")
+
+5000
+
+"A small kitten running under the moonlight"
+
+"A small kitten running under the moonlight"
+
+Negative prompt describing what should not appear in the video. Supports both Chinese and English. Maximum length 500 characters; overflow is auto-truncated
+
+500
+
+"Blurry, low quality"
+
+"Blurry, low quality"
+
+Driving audio URL array (optional).
+Currently supports only 1 element
+
+Behavior:
+
+Provided: the model uses this audio as the driving source
+
+Omitted: the model auto-generates background music or sound effects matching the visual content
+
+Format requirements:
+
+Supported formats:
+wav
+,
+mp3
+
+wav
+
+mp3
+
+Duration range:
+2 ~ 30
+seconds
+
+2 ~ 30
+
+File size: up to
+15MB
+
+15MB
+
+Truncation handling:
+
+If audio length exceeds
+duration
+, the first N seconds are extracted and the rest discarded
+
+duration
+
+If audio length is shorter than the video duration, the remaining portion is silent. For example: if audio is 3s and video duration is 5s, the first 3s have sound and the last 2s are silent
+
+1
+
+[
+"https://example.com/audio.mp3"
+]
+
+[
+"https://example.com/audio.mp3"
+]
+
+Video quality, defaults to
+720p
+
+720p
+
+Options:
+
+720p
+: Standard definition, standard price, this is the default
+
+720p
+
+1080p
+: High definition, higher price
+
+1080p
+
+720p
+
+1080p
+
+"720p"
+
+"720p"
+
+Video aspect ratio, defaults to
+16:9
+
+16:9
+
+Output resolution per quality tier:
+
+Quality
+16:9
+9:16
+1:1
+4:3
+3:4
+720p
+1280×720
+720×1280
+960×960
+1104×832
+832×1104
+1080p
+1920×1080
+1080×1920
+1440×1440
+1648×1248
+1248×1648
+
+Quality
+16:9
+9:16
+1:1
+4:3
+3:4
+
+Quality
+
+16:9
+
+9:16
+
+1:1
+
+4:3
+
+3:4
+
+720p
+1280×720
+720×1280
+960×960
+1104×832
+832×1104
+
+720p
+
+1280×720
+
+720×1280
+
+960×960
+
+1104×832
+
+832×1104
+
+1080p
+1920×1080
+1080×1920
+1440×1440
+1648×1248
+1248×1648
+
+1080p
+
+1920×1080
+
+1080×1920
+
+1440×1440
+
+1648×1248
+
+1248×1648
+
+16:9
+
+9:16
+
+1:1
+
+4:3
+
+3:4
+
+"16:9"
+
+"16:9"
+
+Video duration in seconds, range 2-15
+
+Note:
+
+Any integer value between
+2~15
+seconds is supported
+
+2~15
+
+Final billing is based on the actual generated video duration
+
+2 <= x <= 15
+
+5
+
+5
+
+Random seed, defaults to random
+
+Notes:
+
+Range:
+1
+~
+2147483647
+
+1
+
+2147483647
+
+Fixing the seed reduces variation when iterating on prompts and improves reproducibility
+
+1 <= x <= 2147483647
+
+42
+
+42
+
+Whether to enable intelligent prompt rewriting. When enabled, a large model will optimize the prompt, which significantly improves results for simple or insufficiently descriptive prompts.
+
+Note:
+Default is
+false
+. Omitting the field or sending
+false
+will not trigger rewriting; explicitly send
+true
+to enable.
+
+false
+
+false
+
+true
+
+false
+
+false
+
+HTTPS callback URL for task completion
+
+Callback Timing:
+
+Triggered when task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security Restrictions:
+
+Only HTTPS protocol is supported
+
+Callbacks to internal IP addresses are prohibited (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback Mechanism:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (retries at
+1
+/
+2
+/
+4
+seconds after failure)
+
+3
+
+1
+
+2
+
+4
+
+Callback response format is consistent with the task query API response
+
+2xx status codes are considered successful, other status codes trigger retries
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+"https://your-domain.com/webhooks/video-task-completed"
+
+Response
+
+Video task created successfully
+
+Task creation timestamp
+
+1757169743
+
+1757169743
+
+Task ID
+
+"task-unified-1757169743-7cvnl5zw"
+
+"task-unified-1757169743-7cvnl5zw"
+
+Actual model name used
+
+"wan2.7-text-to-video"
+
+"wan2.7-text-to-video"
+
+Specific task type
+
+video.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Detailed video task information
+
+Show
+child attributes
+
+Task output type
+
+text
+
+image
+
+audio
+
+video
+
+"video"
+
+"video"
+
+Usage and billing information
+
+Show
+child attributes
