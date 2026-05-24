@@ -1,0 +1,513 @@
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "qwen3-tts-vd",
+"prompt": "Good evening, listeners. Welcome to the evening news broadcast.",
+"voice": "qwen-tts-vd-announcer-voice-20260402-a1b2"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "qwen3-tts-vd",
+"prompt": "Good evening, listeners. Welcome to the evening news broadcast.",
+"voice": "qwen-tts-vd-announcer-voice-20260402-a1b2"
+}
+'
+
+{
+"created"
+:
+1775122733
+,
+"id"
+:
+"task-unified-1775122733-lozyt2i5"
+,
+"model"
+:
+"qwen3-tts-vd"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+10
+,
+"audio_type"
+:
+"tts"
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"credits_reserved"
+:
+0.32
+}
+}
+
+{
+"created"
+:
+1775122733
+,
+"id"
+:
+"task-unified-1775122733-lozyt2i5"
+,
+"model"
+:
+"qwen3-tts-vd"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+10
+,
+"audio_type"
+:
+"tts"
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"credits_reserved"
+:
+0.32
+}
+}
+
+Qwen3 TTS VD
+
+Convert text to speech audio;
+must use a custom voice created with
+Qwen Voice Design
+— system built-in voices are not supported
+
+Workflow: call
+qwen-voice-design
+to create a voice → obtain the
+voice
+name → pass it to the
+voice
+parameter of this API
+
+qwen-voice-design
+
+voice
+
+voice
+
+Asynchronous processing mode; use the returned task ID to
+query the result
+
+Generated audio links are valid for 24 hours — save them promptly
+
+cURL
+
+basic
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "qwen3-tts-vd",
+"prompt": "Good evening, listeners. Welcome to the evening news broadcast.",
+"voice": "qwen-tts-vd-announcer-voice-20260402-a1b2"
+}
+'
+
+curl
+--request
+POST
+\
+--url
+https://api.evolink.ai/v1/audios/generations
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'
+{
+"model": "qwen3-tts-vd",
+"prompt": "Good evening, listeners. Welcome to the evening news broadcast.",
+"voice": "qwen-tts-vd-announcer-voice-20260402-a1b2"
+}
+'
+
+{
+"created"
+:
+1775122733
+,
+"id"
+:
+"task-unified-1775122733-lozyt2i5"
+,
+"model"
+:
+"qwen3-tts-vd"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+10
+,
+"audio_type"
+:
+"tts"
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"credits_reserved"
+:
+0.32
+}
+}
+
+{
+"created"
+:
+1775122733
+,
+"id"
+:
+"task-unified-1775122733-lozyt2i5"
+,
+"model"
+:
+"qwen3-tts-vd"
+,
+"progress"
+:
+0
+,
+"status"
+:
+"pending"
+,
+"task_info"
+: {
+"can_cancel"
+:
+true
+,
+"estimated_time"
+:
+10
+,
+"audio_type"
+:
+"tts"
+},
+"type"
+:
+"audio"
+,
+"usage"
+: {
+"credits_reserved"
+:
+0.32
+}
+}
+
+Documentation Index
+
+Fetch the complete documentation index at:
+https://docs.evolink.ai/llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Authorizations
+
+##All endpoints require Bearer Token authentication##
+
+Get your API Key:
+
+Visit the
+API Key management page
+to obtain your API Key
+
+Add the following header to every request:
+
+Authorization: Bearer YOUR_API_KEY
+
+Authorization: Bearer YOUR_API_KEY
+
+Body
+
+Model name
+
+qwen3-tts-vd
+
+"qwen3-tts-vd"
+
+"qwen3-tts-vd"
+
+Text to synthesize
+
+Constraints:
+
+Maximum
+600
+characters
+
+600
+
+600
+
+"Good evening, listeners. Welcome to the evening news broadcast."
+
+"Good evening, listeners. Welcome to the evening news broadcast."
+
+Voice name
+
+Must first create a voice via
+Qwen Voice Design
+
+Obtain the value from
+result_data.voice
+in the Voice Design task result
+
+result_data.voice
+
+System built-in voices are not supported
+
+"qwen-tts-vd-announcer-voice-20260402-a1b2"
+
+"qwen-tts-vd-announcer-voice-20260402-a1b2"
+
+Language hint to help the model select pronunciation rules
+
+Auto-detected if not provided
+
+Auto
+
+Chinese
+
+English
+
+Japanese
+
+Korean
+
+French
+
+German
+
+Spanish
+
+Italian
+
+Russian
+
+Portuguese
+
+"Auto"
+
+"Auto"
+
+HTTPS callback URL invoked when the task completes
+
+Trigger conditions:
+
+Triggered when the task is completed, failed, or cancelled
+
+Sent after billing confirmation
+
+Security restrictions:
+
+HTTPS only
+
+Internal IP addresses are blocked (127.0.0.1, 10.x.x.x, 172.16-31.x.x, 192.168.x.x, etc.)
+
+URL length must not exceed
+2048
+characters
+
+2048
+
+Callback behavior:
+
+Timeout:
+10
+seconds
+
+10
+
+Up to
+3
+retries after failure (at 1s / 2s / 4s intervals)
+
+3
+
+Response body format matches the task query API response
+
+A 2xx status code is considered success; other codes trigger a retry
+
+"https://your-domain.com/webhooks/tts-completed"
+
+"https://your-domain.com/webhooks/tts-completed"
+
+Response
+
+Speech synthesis task created successfully
+
+Task creation timestamp
+
+1775122733
+
+1775122733
+
+Task ID
+
+"task-unified-1775122733-lozyt2i5"
+
+"task-unified-1775122733-lozyt2i5"
+
+Actual model name used
+
+"qwen3-tts-vd"
+
+"qwen3-tts-vd"
+
+Specific task type
+
+audio.generation.task
+
+Task progress percentage (0-100)
+
+0 <= x <= 100
+
+0
+
+0
+
+Task status
+
+pending
+
+processing
+
+completed
+
+failed
+
+"pending"
+
+"pending"
+
+Audio task details
+
+Show
+child attributes
+
+Task output type
+
+audio
+
+"audio"
+
+"audio"
+
+Usage and billing information
+
+Show
+child attributes
